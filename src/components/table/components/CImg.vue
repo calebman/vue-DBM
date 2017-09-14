@@ -2,8 +2,9 @@
   <section>
     <div class="demo-upload-list" v-for="(item,index) in uploadList">
       <template v-if="item.status === 'finished'">
-        <img v-if="HOST=='/static'" :src="item.src">
-        <img v-else :src="HOST+'/'+item.src">
+        <img :src="item.src">
+        <!--<img v-if="HOST=='/static'" :src="item.src">-->
+        <!--<img v-else :src="HOST+'/'+item.src">-->
         <div class="demo-upload-list-cover">
           <Icon type="ios-eye-outline" size="20" style="margin-top: 5px;margin-right: 3px;" @click.native="handleView(item)"></Icon>
         </div>
@@ -31,8 +32,9 @@
       </div>
     </Upload>
     <Modal title="查看图片" v-model="visible" ok-text="删除" @on-ok="handleRemove(uploadItem)">
-      <img v-if="HOST=='/static'" :src="uploadItem.src" width="100%">
-      <img v-else :src="HOST+'/'+uploadItem.src" width="100%">
+      <img :src="uploadItem.src" width="100%">
+      <!--<img v-if="HOST=='/static'" :src="uploadItem.src" width="100%">-->
+      <!--<img v-else :src="HOST+'/'+uploadItem.src" width="100%">-->
     </Modal>
 
   </section>

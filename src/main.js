@@ -23,7 +23,7 @@ Vue.use(VueResource)
 //引用vuex状态机管理
 Vue.use(Vuex)
 //对vue-resource做相关配置
-Vue.http.options.root = process.env.NODE_ENV === 'development' ? 'static' : ''
+// Vue.http.options.root = process.env.NODE_ENV === 'development' ? 'static' : ''
 Vue.http.options.emulateJSON = true
 //项目上线后不再提示警告
 Vue.config.productionTip = false
@@ -31,7 +31,7 @@ Vue.config.productionTip = false
 Vue.prototype.$logHelper = log
 //引入工具，配置代理
 Vue.prototype.$utilHelper = util
-Vue.prototype.HOST = '/static'
+Vue.prototype.HOST = process.env.NODE_ENV === 'development' ? 'static' : 'static'
 // Vue.prototype.HOST = process.env.NODE_ENV === 'development'? '/api':''
 
 let vm = new Vue({
@@ -94,10 +94,12 @@ Vue.http.interceptors.push(function(request, next) {
   //开启全局Loading
   this.$Loading.start()
 
-  //在使用静态数据测试阶段需要开启以下两个配置
-  request.method = "GET"
-  request.url+=".json"
-  //在使用静态数据测试阶段需要开启以下两个配置
+  if(Vue.prototype.HOST.indexOf("static")>-1){
+    //在使用静态数据测试阶段需要开启以下两个配置
+    request.method = "GET"
+    request.url+=".json"
+    //在使用静态数据测试阶段需要开启以下两个配置
+  }
 
   //打印请求体的内容
   var requestParams = request.body
