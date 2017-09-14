@@ -9,6 +9,7 @@ import Vuex from 'vuex'
 import store from './vuex/store'
 import iView from 'iview'
 import util from './common/js/util'
+import log from './common/js/log'
 import 'iview/dist/styles/iview.css'
 import 'element-ui/lib/theme-default/index.css'
 
@@ -26,9 +27,11 @@ Vue.http.options.root = process.env.NODE_ENV === 'development' ? 'static' : '/Fo
 Vue.http.options.emulateJSON = true
 //项目上线后不再提示警告
 Vue.config.productionTip = false
+//引入log工具
+Vue.prototype.$logHelper = log
 //引入工具，配置代理
 Vue.prototype.$utilHelper = util
-Vue.prototype.HOST = process.env.NODE_ENV === 'development'? '/api':''
+Vue.prototype.HOST = process.env.NODE_ENV === 'development'? '/static':''
 // Vue.prototype.HOST = process.env.NODE_ENV === 'development'? '/api':''
 
 let vm = new Vue({
@@ -45,6 +48,8 @@ let vm = new Vue({
     }
   },
   created(){
+    //全局配置log是否打印,默认为false
+    this.$logHelper.openLog = true
     //全局配置Message 参数分别为距离上部高度、延时关闭秒数
     this.$Message.config({top: 50, duration: 2})
     //全局配置Notice 参数分别为距离上部高度、延时关闭秒数
@@ -90,8 +95,8 @@ Vue.http.interceptors.push(function(request, next) {
   this.$Loading.start()
 
   //在使用静态数据测试阶段需要开启以下两个配置
-  // request.method = "GET"
-  // request.url+=".json"
+  request.method = "GET"
+  request.url+=".json"
   //在使用静态数据测试阶段需要开启以下两个配置
 
   //打印请求体的内容
@@ -100,10 +105,10 @@ Vue.http.interceptors.push(function(request, next) {
   request.body = {
     data:JSON.stringify(requestParams)
   }
-  console.log("[requset data]---"+request.body.data)
+  this.$logHelper.info("[requset data]---"+request.body.data)
   //对请求结果做处理
   next(function(response) {
-    console.log("[response data]---"+JSON.stringify(response.body))
+    this.$logHelper.info("[response data]---"+JSON.stringify(response.body))
     //请求响应成功的全局处理
     if(response.status == 200){
       //判断业务结果吗是否正确

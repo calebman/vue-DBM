@@ -59,7 +59,7 @@
           if(response.status == 200){
             var data = response.body.data
             tabItem.info = data
-            console.log(JSON.stringify(tabItem.info))
+            this.$logHelper.log(JSON.stringify(tabItem.info))
             this.$store.commit('addTabItem', tabItem)
           }
         })

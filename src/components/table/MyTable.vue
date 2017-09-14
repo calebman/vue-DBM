@@ -315,11 +315,9 @@
       //导入数据
       importData(){
         this.$Loading.start()
-        console.log("start")
         var t
         clearTimeout(t)
         t = setTimeout(()=>{
-          console.log("finish")
           this.$Loading.finish()
         }, 3000)
       },

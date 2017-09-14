@@ -97,14 +97,14 @@
       methods:{
         editTable(){
           this.$emit('onEditTable',this.tableName,this.columnsData)
-          console.log("[editTable]")
+          this.$logHelper.log("[editTable]")
         },
         delTable(){
           this.delVisible = false
-          console.log("[delTable]")
+          this.$logHelper.log("[delTable]")
         },
         delColumn(item){
-          console.log(JSON.stringify(item))
+          this.$logHelper.log(JSON.stringify(item))
         },
         showDel(){
           this.delVisible = true

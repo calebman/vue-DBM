@@ -100,7 +100,6 @@
           this.stepMode = "空表格"
         },
         search(value){
-          console.log(value)
           this.searchText = value
         },
         filterMethod (value, option) {

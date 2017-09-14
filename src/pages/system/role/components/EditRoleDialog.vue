@@ -45,8 +45,6 @@
       methods: {
         handleChange (newTargetKeys) {
           this.roleInfo.roles = newTargetKeys
-          console.log(this.mockData)
-          console.log(this.mockData[0].disabled)
         },
         render (item) {
           return item.label + ' - ' + item.description;

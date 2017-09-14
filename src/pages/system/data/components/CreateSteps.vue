@@ -223,7 +223,7 @@
         },
         commit(){
           this.v = false
-          console.log("[commit]"+JSON.stringify(this.tableParam))
+          this.$logHelper.log("[commit]"+JSON.stringify(this.tableParam))
         },
         handleSuccess(res, file) {
           res.data.columnsData.forEach((value,index)=>{

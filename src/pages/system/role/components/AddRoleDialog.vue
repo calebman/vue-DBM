@@ -59,7 +59,6 @@
               description:roleData.description,
               roles:[]
             }
-            console.log(JSON.stringify(data))
             this.$http.post(this.HOST+'/admin/system/role/add',data).then((response) => {
               if(response.status == 200){
                 data.roleCode = response.body.data
