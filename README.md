@@ -70,6 +70,9 @@ npm run build
 
 # 部分截图
 
+
+<img style="margin-top: 10px" src="https://carrayboy.github.io/vue-DBM/img0.png"/>
+
 <img style="margin-top: 10px" src="https://carrayboy.github.io/vue-DBM/img1.png"/>
 
 <img style="margin-top: 30px" src="https://carrayboy.github.io/vue-DBM/img2.png"/>
