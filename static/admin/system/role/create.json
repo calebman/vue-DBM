@@ -1,0 +1,105 @@
+{
+  "code": 200,
+  "message": "查询成功",
+  "data": {
+    "roles": [
+      {
+        "key": 1,
+        "label": "查看角色",
+        "description": "查看所有的角色列表",
+        "disabled": true
+      },
+      {
+        "key": 2,
+        "label": "添加角色",
+        "description": "添加一个新的角色",
+        "disabled": true
+      },
+      {
+        "key": 3,
+        "label": "编辑角色",
+        "description": "编辑已有角色的权限列表",
+        "disabled": true
+      },
+      {
+        "key": 4,
+        "label": "删除角色",
+        "description": "删除一个已有的角色",
+        "disabled": true
+      },
+      {
+        "key": 5,
+        "label": "查看用户",
+        "description": "查看所有的用户列表",
+        "disabled": true
+      },
+      {
+        "key": 6,
+        "label": "添加用户",
+        "description": "添加一个新的用户",
+        "disabled": true
+      },
+      {
+        "key": 7,
+        "label": "启用用户",
+        "description": "启用一个已有用户",
+        "disabled": true
+      },
+      {
+        "key": 8,
+        "label": "禁用用户",
+        "description": "禁用一个已有用户",
+        "disabled": true
+      },
+      {
+        "key": 9,
+        "label": "删除用户",
+        "description": "删除一个已有用户",
+        "disabled": true
+      },
+      {
+        "key": 10,
+        "label": "编辑用户",
+        "description": "修改一个已有用户的所属角色",
+        "disabled": true
+      },
+      {
+        "key": 11,
+        "label": "表格权限",
+        "description": "所有表格权限",
+        "disabled": false
+      },
+      {
+        "key": 12,
+        "label": "所有权限",
+        "description": "测试用的所有权限",
+        "disabled": true
+      }
+    ],
+    "roleInfos": [
+      {
+        "roleCode": 13,
+        "nickName": "普通用户",
+        "description": "普通权限",
+        "roles": [
+          11
+        ],
+        "relevantUserCount": 1
+      },
+      {
+        "roleCode": 16,
+        "nickName": "潮神",
+        "description": "dota",
+        "roles": [],
+        "relevantUserCount": 0
+      },
+      {
+        "roleCode": 19,
+        "nickName": "GAI",
+        "description": "没有描述",
+        "roles": [],
+        "relevantUserCount": 0
+      }
+    ]
+  }
+}

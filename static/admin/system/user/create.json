@@ -1,0 +1,37 @@
+{
+  "code": 200,
+  "message": "构建成功",
+  "data": {
+    "roles": [
+      {
+        "roleCode": 13,
+        "nickName": "普通用户",
+        "description": "普通权限"
+      },
+      {
+        "roleCode": 16,
+        "nickName": "潮神",
+        "description": "dota"
+      },
+      {
+        "roleCode": 18,
+        "nickName": "超级管理员",
+        "description": "系统的最高级别角色"
+      },
+      {
+        "roleCode": 19,
+        "nickName": "GAI",
+        "description": "没有描述"
+      }
+    ],
+    "users": [
+      {
+        "userCode": 2,
+        "username": "user2",
+        "realname": "user2",
+        "isUse": true,
+        "nickName": "普通用户"
+      }
+    ]
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "code": 200,
+  "message": "请求表格数据成功",
+  "data": {
+    "tableInfos": [
+      {
+        "tableName": "测试表格",
+        "columnsData": [
+          {
+            "type": "text",
+            "label": "文本列",
+            "prop": "text_文本列",
+            "items": [],
+            "inputItem": "",
+            "selectItem": ""
+          },
+          {
+            "type": "number",
+            "label": "数字列",
+            "prop": "number_数字列",
+            "items": [],
+            "inputItem": "",
+            "selectItem": ""
+          },
+          {
+            "type": "date",
+            "label": "时间列",
+            "prop": "date_时间列",
+            "items": [],
+            "inputItem": "",
+            "selectItem": ""
+          },
+          {
+            "type": "select",
+            "label": "选择列",
+            "prop": "select_选择列",
+            "items": [
+              {
+                "value": "苹果"
+              },
+              {
+                "value": "香蕉"
+              },
+              {
+                "value": "梨"
+              }
+            ],
+            "inputItem": "",
+            "selectItem": ""
+          },
+          {
+            "type": "img",
+            "label": "图片列",
+            "prop": "img_图片列",
+            "items": [],
+            "inputItem": "",
+            "selectItem": ""
+          }
+        ],
+        "tableDataCount": 16
+      },
+      {
+        "tableName": "测试表格3",
+        "columnsData": [
+          {
+            "type": "text",
+            "label": "123",
+            "prop": "text_123",
+            "items": [],
+            "inputItem": "",
+            "selectItem": ""
+          },
+          {
+            "type": "text",
+            "label": "asd",
+            "prop": "text_asd",
+            "items": [],
+            "inputItem": "",
+            "selectItem": ""
+          },
+          {
+            "type": "text",
+            "label": "sdf",
+            "prop": "text_sdf",
+            "items": [],
+            "inputItem": "",
+            "selectItem": ""
+          }
+        ],
+        "tableDataCount": 0
+      }
+    ]
+  }
+}
