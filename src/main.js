@@ -23,7 +23,7 @@ Vue.use(VueResource)
 //引用vuex状态机管理
 Vue.use(Vuex)
 //对vue-resource做相关配置
-Vue.http.options.root = process.env.NODE_ENV === 'development' ? 'static' : '/Fore'
+Vue.http.options.root = process.env.NODE_ENV === 'development' ? 'static' : ''
 Vue.http.options.emulateJSON = true
 //项目上线后不再提示警告
 Vue.config.productionTip = false
@@ -31,7 +31,7 @@ Vue.config.productionTip = false
 Vue.prototype.$logHelper = log
 //引入工具，配置代理
 Vue.prototype.$utilHelper = util
-Vue.prototype.HOST = process.env.NODE_ENV === 'development'? '/static':''
+Vue.prototype.HOST = '/static'
 // Vue.prototype.HOST = process.env.NODE_ENV === 'development'? '/api':''
 
 let vm = new Vue({
