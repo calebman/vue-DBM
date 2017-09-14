@@ -16,9 +16,6 @@
           placeholder="输入表格名称搜索">
 
         </AutoComplete>
-        <!--<Input style="width: 300px" placeholder="输入表格名称搜索" v-model="text">-->
-          <!--<Button slot="append" icon="ios-search" @click="search"></Button>-->
-        <!--</Input>-->
       </Col>
     </Row>
     <br>
@@ -36,10 +33,16 @@
           :tableName="item.tableName"
           :tableDataCount="item.tableDataCount"
           :columnsData="item.columnsData"
-          @onEditTable="editTable"></table-card>
+          @onEditTable="editTable"
+          @onDelTable="delTable"
+          @onDelCol="editTableData"></table-card>
       </waterfall-slot>
     </waterfall>
-    <create-steps v-model="createStepsVisible" :table="tableParam" :selectMode="stepMode"></create-steps>
+    <create-steps
+      v-model="createStepsVisible"
+      :table="tableParam"
+      :selectMode="stepMode"
+      @onEditTable="editTableData"></create-steps>
   </div>
 </template>
 
@@ -116,45 +119,84 @@
           this.tableParam.tableData = []
           this.stepMode = "已存在表格"
           this.createStepsVisible = true
+        },
+        delTable(tableName){
+          var data = {
+            tableName:tableName
+          }
+          this.$http.post(this.HOST+'/admin/system/table/del',data).then((response) => {
+            if(response.status == 200){
+              this.items.forEach((v,i)=>{
+                if(v.tableName == tableName){
+                  this.items.splice(i,1)
+                }
+              })
+            }
+          })
+        },
+        editTableData(tableName,updateOpts){
+          var data = {
+            updateOpts:updateOpts
+          }
+          this.$http.post(this.HOST+'/admin/system/table/edit',data).then((response) => {
+            if(response.status == 200){
+              var table = {
+                tableName:"",
+                columnsData:[],
+                tableDataCount:0
+              }
+              var tableIndex = -1
+              this.items.forEach((v,i)=>{
+                if(v.tableName == tableName){
+                  table = v
+                  tableIndex = i
+                }
+              })
+              updateOpts.forEach((upt,i)=>{
+                switch (upt.opt){
+                  case "addName":
+                    tableIndex = -1
+                    table.tableName = upt.tableName
+                    break
+                  case "rename":
+                    this.items.forEach((v,i)=>{
+                      if(v.tableName == upt.oldTableName){
+                        table = v
+                        tableIndex = i
+                      }
+                    })
+                    table.tableName = upt.tableName
+                    break
+                  case "add":
+                    table.columnsData.push(upt.col)
+                    break
+                  case "edit":
+                    table.columnsData.forEach((col,i)=>{
+                      if(col.prop == upt.col.prop){
+                        table.columnsData.splice(i,1,upt.col)
+                      }
+                    })
+                    break
+                  case "del":
+                    table.columnsData.forEach((col,i)=>{
+                      if(col.prop == upt.col.prop){
+                        table.columnsData.splice(i,1)
+                      }
+                    })
+                    break
+                }
+              })
+              if(tableIndex>-1){
+                this.items.splice(tableIndex,1,table)
+              }else{
+                this.items.push(table)
+              }
+            }
+          })
         }
       },
       props:{
         _tableInfos:Array
-      },
-      created(){
-//        var tableName = "测试表格"
-//        var columnData = [{label:"文本列", type:"text"},
-//          {label:"数字列", type:"number"},
-//          {label:"选择列", type:"select"},
-//          {label:"时间列", type:"date"},
-//          {label:"图片列", type:"img"}]
-//        for(var i=0;i<15;i++){
-//          var getTableName = tableName+i
-//          var getColumnData = []
-//          var getTableDataCount = Math.floor(Math.random()*20000+0)
-//          var columnCount = Math.floor(Math.random()*30+1)
-//          for(var j=0;j<columnCount;j++){
-//            var col = columnData[Math.floor(Math.random()*4)]
-//            getColumnData.push({
-//              label:col.label,
-//              type:col.type,
-//              prop:this.$utilHelper.generateUUID(),
-//              items:[],
-//              inputItem:"",
-//              selectItem:""
-//            })
-//          }
-//          this.items.push({
-//            tableName:getTableName,
-//            columnData:getColumnData,
-//            tableDataCount:getTableDataCount
-//          })
-//          this.showItems.push({
-//            tableName:getTableName,
-//            columnData:getColumnData,
-//            tableDataCount:getTableDataCount
-//          })
- //       }
       }
     }
 </script>

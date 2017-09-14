@@ -21,7 +21,7 @@
 </style>
 <template>
   <div>
-    <Card style="border-color: #5e7382">
+    <Card style="border-color: #c0ccda">
       <p slot="title">
         <Icon size="18" type="ios-calendar-outline"></Icon>
         <span class="span_table">{{tableName}}</span>
@@ -37,7 +37,7 @@
         删除
       </a>
       <ul>
-        <li v-for="item in columnsData" style="margin-top: 3px">
+        <li v-for="(item,index) in columnsData" style="margin-top: 3px">
           <Row>
             <Col :span="8">
             <span class="span_label">{{item.label}}</span>
@@ -53,14 +53,14 @@
             <span class="span_type" v-if="item.type == 'date'">时间类型</span>
             <span class="span_type" v-if="item.type == 'img'">图片类型</span>
             <span class="span_type" v-if="item.type == 'number'">数字类型</span>
-            <span class="span_type" v-if="item.type == 'select'">可选类型</span>
+            <span class="span_type" v-if="item.type == 'select'">{{item.items.length}}项可选</span>
             </Col>
             <Col :span="4">
             <Poptip
               confirm
               placement="bottom-start"
               title="您确认删除列吗？"
-              @on-ok="delColumn(item)">
+              @on-ok="delColumn(item,index)">
               <a>
                 <span class="span_operation">删除</span>
               </a>
@@ -97,14 +97,19 @@
       methods:{
         editTable(){
           this.$emit('onEditTable',this.tableName,this.columnsData)
-          this.$logHelper.log("[editTable]")
         },
         delTable(){
           this.delVisible = false
-          this.$logHelper.log("[delTable]")
+          this.$emit('onDelTable',this.tableName)
         },
-        delColumn(item){
-          this.$logHelper.log(JSON.stringify(item))
+        delColumn(col,index){
+          var updateOpts = []
+          updateOpts.push({
+            opt:"del",
+            col:col,
+            index:index
+          })
+          this.$emit('onDelCol',this.tableName,updateOpts)
         },
         showDel(){
           this.delVisible = true

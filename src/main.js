@@ -31,8 +31,8 @@ Vue.config.productionTip = false
 Vue.prototype.$logHelper = log
 //引入工具，配置代理
 Vue.prototype.$utilHelper = util
-Vue.prototype.HOST = process.env.NODE_ENV === 'development' ? 'static' : 'static'
-// Vue.prototype.HOST = process.env.NODE_ENV === 'development'? '/api':''
+Vue.prototype.HOST = 'static'
+//Vue.prototype.HOST = process.env.NODE_ENV === 'development'? '/api':''
 
 let vm = new Vue({
   el: '#app',
@@ -94,11 +94,11 @@ Vue.http.interceptors.push(function(request, next) {
   //开启全局Loading
   this.$Loading.start()
 
+  //如果是使用静态数据模式
   if(Vue.prototype.HOST.indexOf("static")>-1){
     //在使用静态数据测试阶段需要开启以下两个配置
     request.method = "GET"
     request.url+=".json"
-    //在使用静态数据测试阶段需要开启以下两个配置
   }
 
   //打印请求体的内容

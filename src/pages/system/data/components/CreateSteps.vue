@@ -121,6 +121,7 @@
           status:"wait",
           tableParam:{},
           editLog:[],
+          updateOpts:[],
           canCommit:false,
           importTableParam:{
             tableName:"",
@@ -194,23 +195,26 @@
         current(val){
           switch (val){
             case 0:
-              this.editLog = []
+              this.updateOpts = []
               break
             case 1:
-              this.editLog = []
+              this.updateOpts = []
               break
             case 2:
+              var getEdit = {}
               switch (this.selectMode){
                 case "已存在表格":
-                  this.editLog=this.getEditLog(JSON.parse(JSON.stringify(this.table)),this.tableParam)
+                  getEdit = this.getEditLog(JSON.parse(JSON.stringify(this.table)),this.tableParam)
                   break
                 case "空表格":
-                  this.editLog=this.getEditLog(null,this.tableParam)
+                  getEdit = this.getEditLog(null,this.tableParam)
                   break
                 case "从文件导入":
-                  this.editLog=this.getEditLog(null,this.tableParam)
+                  getEdit = this.getEditLog(null,this.tableParam)
                   break
               }
+              this.editLog=getEdit.logs
+              this.updateOpts=getEdit.updateOpts
           }
         }
       },
@@ -223,7 +227,7 @@
         },
         commit(){
           this.v = false
-          this.$logHelper.log("[commit]"+JSON.stringify(this.tableParam))
+          this.$emit('onEditTable',this.tableParam.tableName,this.updateOpts)
         },
         handleSuccess(res, file) {
           res.data.columnsData.forEach((value,index)=>{
@@ -282,21 +286,34 @@
           this.setp2Param.showErrorInfo = []
         },
         getEditLog(oldTable,newTable){
+          var getEdit = {
+            logs:[],
+            updateOpts:[]
+          }
           var log = []
           var sameItem = []
           this.canCommit = true
           //检测表名变化
           if(oldTable){
             if(newTable.tableName != oldTable.tableName){
-              log.push({
+              getEdit.logs.push({
                 type:"warning",
                 info:"数据表【"+oldTable.tableName+"】表名变更为【"+newTable.tableName+"】"
               })
+              getEdit.updateOpts.push({
+                opt:"rename",
+                oldTableName:oldTable.tableName,
+                tableName:newTable.tableName
+              })
             }
           }else{
-            log.push({
+            getEdit.logs.push({
               type:"success",
               info:"新增数据表名称为 【"+newTable.tableName+"】"
+            })
+            getEdit.updateOpts.push({
+              opt:"addName",
+              tableName:newTable.tableName
             })
           }
           //检测表所处位置变化
@@ -306,13 +323,14 @@
             var newCol = newTable.columnsData[i]
             //检测输入列是否为空
             if(newCol.label==""){
-              log = []
-              log.push({
+              getEdit.logs = []
+              getEdit.updateOpts = []
+              getEdit.logs.push({
                 type:"error",
                 info:"存在列为空！"
               })
               this.canCommit = false
-              return log
+              return getEdit
             }
             //检测列是否重复
             var colRepeatCount = 0
@@ -322,23 +340,25 @@
               }
             })
             if(colRepeatCount>1){
-              log = []
-              log.push({
+              getEdit.logs = []
+              getEdit.updateOpts = []
+              getEdit.logs.push({
                 type:"error",
                 info:"列【"+newCol.label+"】出现重复！"
               })
               this.canCommit = false
-              return log
+              return getEdit
             }
             //检测选项是否为空
             if(newCol.type == "select" && newCol.items.length<1){
-              log = []
-              log.push({
+              getEdit.logs = []
+              getEdit.updateOpts = []
+              getEdit.logs.push({
                 type:"error",
                 info:"列【"+newCol.label+"】为可选项但选项为空！"
               })
               this.canCommit = false
-              return log
+              return getEdit
             }
             //比对改变
             let equalOldCol = null
@@ -368,17 +388,26 @@
                 info+=oldItemStr==""?"":("包含选项【"+oldItemStr+"】")
                 info+=" 为 【"+newCol.label+"】【"+newType+"】"
                 info+=newItemStr==""?"":("包含选项【"+newItemStr+"】")
-                log.push({
+                getEdit.logs.push({
                   type:"warning",
                   info:info
+                })
+                getEdit.updateOpts.push({
+                  opt:"edit",
+                  oldCol:equalOldCol,
+                  col:newCol
                 })
               }
             }else{
               var info = "新增列【"+newCol.label+"】【"+newType+"】"
               info+=newItemStr==""?"":("包含选项【"+newItemStr+"】")
-              log.push({
+              getEdit.logs.push({
                 type:"success",
                 info:info
+              })
+              getEdit.updateOpts.push({
+                opt:"add",
+                col:newCol
               })
             }
           }
@@ -391,13 +420,18 @@
                 delItemStr=this.getItemsStr(oldCol.items)
               }
               info+=delItemStr==""?"":("包含选项【"+delItemStr+"】")
-              log.push({
+              getEdit.logs.push({
                 type:"warning",
                 info:info
               })
+              getEdit.updateOpts.push({
+                opt:"del",
+                col:oldCol,
+                index:i
+              })
             })
           }
-          return log
+          return getEdit
         },
         getColumnTypeStr(type){
           for(var i=0;i<this.setp2Param.typeList.length;i++){
