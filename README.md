@@ -54,12 +54,14 @@ npm run dev
 # 打包页面
 npm run build
 
+# 登录系统
+由于演示版本使用模拟数据，登录账号与密码可随意输入
 
 # 效果演示
 
 [demo地址](https://carrayboy.github.io/vue-DBM/index.html)
 
-#对应的后端工程
+# 对应的后端工程
 
 [地址在这里](https://github.com/carrayboy/nodejs-DBM)
 
