@@ -11,57 +11,68 @@
     },
     "tableTree": [
       {
-        "id": 1,
+        "value": 1,
         "label": "安检部",
+        "status":0,
         "children": [
           {
-            "id": 2,
+            "value": 2,
             "label": "测试表格",
+            "status":-1,
             "children": []
           },
           {
-            "id": 3,
+            "value": 3,
             "label": "测试表格二",
+            "status":-1,
             "children": []
           },
           {
-            "id": 4,
+            "value": 4,
             "label": "测试表格三",
+            "status":-1,
             "children": []
           }
         ]
       },
       {
-        "id": 5,
+        "value": 5,
         "label": "护卫部",
+        "status":0,
         "children": [
           {
-            "id": 6,
+            "value": 6,
             "label": "测试表格四",
+            "status":-1,
             "children": []
           },
           {
-            "id": 7,
+            "value": 7,
             "label": "测试表格五",
+            "status":-1,
             "children": []
           }
         ]
       },
       {
-        "id": 8,
+        "value": 8,
         "label": "其他部",
+        "status":0,
         "children": [
           {
-            "id": 9,
+            "value": 9,
             "label": "其他一部",
+            "status":0,
             "children": [
               {
-                "id": 11,
+                "value": 11,
                 "label": "内容测试",
+                "status":0,
                 "children": [
                   {
-                    "id": 12,
+                    "value": 12,
                     "label": "测试表格六",
+                    "status":-1,
                     "children": []
                   }
                 ]
@@ -69,12 +80,14 @@
             ]
           },
           {
-            "id": 10,
+            "value": 10,
             "label": "其他二部",
+            "status":0,
             "children": [
               {
-                "id": 13,
+                "value": 13,
                 "label": "测试表格七",
+                "status":-1,
                 "children": []
               }
             ]

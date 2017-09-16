@@ -46,7 +46,7 @@
 # 项目运行
 
 # 克隆到本地
-git clone https://github.com/carrayboy/vue-DBM.git
+git clone https://github.com/calebman/vue-DBM.git
 
 # 安装依赖包
 npm install
@@ -62,19 +62,19 @@ npm run build
 
 # 效果演示
 
-[demo地址](https://carrayboy.github.io/vue-DBM/index.html)
+[demo地址](https://calebman.github.io/vue-DBM/index.html)
 
 # 对应的后端工程
 
-[地址在这里](https://github.com/carrayboy/nodejs-DBM)
+[地址在这里](https://github.com/calebman/nodejs-DBM)
 
 # 部分截图
 
 
-<img style="margin-top: 10px" src="https://carrayboy.github.io/vue-DBM/img0.png"/>
+<img style="margin-top: 10px" src="https://calebman.github.io/vue-DBM/img0.png"/>
 
-<img style="margin-top: 10px" src="https://carrayboy.github.io/vue-DBM/img1.png"/>
+<img style="margin-top: 10px" src="https://calebman.github.io/vue-DBM/img1.png"/>
 
-<img style="margin-top: 30px" src="https://carrayboy.github.io/vue-DBM/img2.png"/>
+<img style="margin-top: 30px" src="https://calebman.github.io/vue-DBM/img2.png"/>
 
 

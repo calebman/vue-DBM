@@ -15,7 +15,16 @@
     </div>
     <div style="height: 500px;overflow:auto;">
       <template v-if="current == 0">
-        <Input v-model="tableParam.tableName" size="large" placeholder="表格名称"></Input>
+        <Alert type="warning" v-if="!isHavaName" style="font-size: 14px;" show-icon>请填写表格名称</Alert>
+        <Input style="font-size: 14px;margin-bottom: 6px" v-model="tableParam.tableName" size="large" placeholder="表格名称"></Input>
+        <Alert type="warning" v-if="!isHavePosition" style="font-size: 14px;margin-bottom: 6px" show-icon>请选择表格创建的位置</Alert>
+        <Cascader style="font-size: 14px;"
+                  :size="'large'"
+                  :data="tableTree"
+                  v-model="tableParam.position"
+                  placeholder="表格位置"
+                  @on-change="setSelectData"
+                  change-on-select></Cascader>
         <br><br>
         <RadioGroup v-model="selectMode">
           <Radio v-if="selectMode != '已存在表格'" label="空表格"></Radio>
@@ -116,6 +125,7 @@
     export default {
       data() {
         return {
+          ve:{},
           v:this.value,
           current:0,
           status:"wait",
@@ -123,8 +133,10 @@
           editLog:[],
           updateOpts:[],
           canCommit:false,
+          selectPosition:"",
           importTableParam:{
             tableName:"",
+            position:[],
             columnsData:[],
             tableData:[]
           },
@@ -163,6 +175,7 @@
           default() {
             return {
               tableName:"",
+              position:[],
               columnsData:[],
               tableData:[]
             }
@@ -179,6 +192,7 @@
             case "空表格":
               this.tableParam = {
                 tableName:"",
+                position:[],
                 columnsData:[],
                 tableData:[]
               }
@@ -293,7 +307,7 @@
           var log = []
           var sameItem = []
           this.canCommit = true
-          //检测表名变化
+          //检测表名与表位置变化变化
           if(oldTable){
             if(newTable.tableName != oldTable.tableName){
               getEdit.logs.push({
@@ -306,17 +320,37 @@
                 tableName:newTable.tableName
               })
             }
+            if(JSON.stringify(newTable.position) != JSON.stringify(oldTable.position)){
+              getEdit.logs.push({
+                type:"warning",
+                info:"数据表移动到【"+this.selectPosition+"】"
+              })
+              getEdit.updateOpts.push({
+                opt:"changePosition",
+                tableName:newTable.tableName,
+                oldPosition:oldTable.position,
+                newPosition:newTable.position
+              })
+            }
           }else{
             getEdit.logs.push({
               type:"success",
-              info:"新增数据表名称为 【"+newTable.tableName+"】"
+              info:"新增数据表的名称为 【"+newTable.tableName+"】"
             })
             getEdit.updateOpts.push({
               opt:"addName",
               tableName:newTable.tableName
             })
+            getEdit.logs.push({
+              type:"success",
+              info:"新增数据表的位置为 【"+this.selectPosition+"】"
+            })
+            getEdit.updateOpts.push({
+              opt:"addPosition",
+              tableName:newTable.tableName,
+              position:newTable.position
+            })
           }
-          //检测表所处位置变化
 
           //检测列信息变化
           for(var i=0;i<newTable.columnsData.length;i++){
@@ -447,6 +481,16 @@
             itemStr+=v.value+","
           })
           return itemStr.substr(0,itemStr.length-1)
+        },
+        setSelectData(v,selectedData){
+          this.selectPosition = this.formatSelectPosition(selectedData)
+        },
+        formatSelectPosition(selectedData){
+          var selectPosition = ""
+          selectedData.forEach((v,i)=>{
+            selectPosition+=v.label+"->"
+          })
+          return selectPosition.substring(0,selectPosition.length-2)
         }
       },
       computed:{
@@ -454,11 +498,26 @@
           return this.current==0?true:false
         },
         nextDisabled(){
-          return (this.current==2||this.tableParam.tableName=="")?true:false
+          return (this.current==2||!this.isHavaName||!this.isHavePosition)?true:false
         },
         commitDisabled(){
           return (this.current==2&&this.canCommit)?false:true
+        },
+        isHavaName(){
+          return this.tableParam.tableName==""?false:true
+        },
+        isHavePosition(){
+          return JSON.stringify(this.tableParam.position)=="[]"?false:true
+        },
+        tableTree:{
+          get(){
+            var tree = JSON.parse(JSON.stringify(this.$store.state.tableTree))
+            this.$utilHelper.clearTable(tree)
+            console.log("[tree]"+JSON.stringify(tree))
+            return tree
+          }
         }
       }
+
     }
 </script>

@@ -21,7 +21,7 @@
 </style>
 <template>
   <div>
-    <Card style="border-color: #c0ccda">
+    <Card style="border-color: #c0ccda;">
       <p slot="title">
         <Icon size="18" type="ios-calendar-outline"></Icon>
         <span class="span_table">{{tableName}}</span>
@@ -58,7 +58,7 @@
             <Col :span="4">
             <Poptip
               confirm
-              placement="bottom-start"
+              placement="left"
               title="您确认删除列吗？"
               @on-ok="delColumn(item,index)">
               <a>
@@ -96,7 +96,7 @@
       },
       methods:{
         editTable(){
-          this.$emit('onEditTable',this.tableName,this.columnsData)
+          this.$emit('onEditTable',this.tableName,this.columnsData,this.position)
         },
         delTable(){
           this.delVisible = false
@@ -118,7 +118,8 @@
       props:{
         tableName:String,
         tableDataCount:Number,
-        columnsData:Array
+        columnsData:Array,
+        position:Array
       }
     }
 </script>

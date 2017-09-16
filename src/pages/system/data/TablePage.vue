@@ -27,12 +27,13 @@
       <waterfall-slot
         v-for="(item, index) in showItems"
         :width="400"
-        :height="80+item.columnsData.length*30"
+        :height="100+item.columnsData.length*30"
         :key="index">
         <table-card
           :tableName="item.tableName"
           :tableDataCount="item.tableDataCount"
           :columnsData="item.columnsData"
+          :position="item.position"
           @onEditTable="editTable"
           @onDelTable="delTable"
           @onDelCol="editTableData"></table-card>
@@ -63,6 +64,7 @@
           filterCount:0,
           tableParam:{
             tableName:"",
+            position:[],
             columnsData:[],
             tableData:[]
           }
@@ -95,6 +97,14 @@
             names.push(item.tableName)
           })
           return names
+        },
+        tableTree:{
+          get(){
+            return this.$store.state.tableTree
+          },
+          set(newValue){
+            this.$store.state.tableTree = newValue
+          }
         }
       },
       methods:{
@@ -113,10 +123,11 @@
           }
           return false
         },
-        editTable(tableName,columnsData){
+        editTable(tableName,columnsData,position){
           this.tableParam.tableName = tableName
           this.tableParam.columnsData = columnsData
           this.tableParam.tableData = []
+          this.tableParam.position = position
           this.stepMode = "已存在表格"
           this.createStepsVisible = true
         },
@@ -152,6 +163,11 @@
                   tableIndex = i
                 }
               })
+              if(this.HOST == "static"){
+                var tableTid = this.$utilHelper.generateUUID()
+              }else{
+                var tableTid = data.tid
+              }
               updateOpts.forEach((upt,i)=>{
                 switch (upt.opt){
                   case "addName":
@@ -166,6 +182,35 @@
                       }
                     })
                     table.tableName = upt.tableName
+                    break
+                  case "addPosition":
+                    var table = {
+                      value:tableTid,
+                      label:upt.tableName,
+                      status:-1,
+                      children:[]
+                    }
+                    var node = this.$utilHelper.getNode(this.tableTree,upt.position[upt.position.length-1]).node
+                    node.children.push(table)
+                    break
+                  case "changePosition":
+                    var tableNodeId = upt.oldPosition[upt.oldPosition.length-1]
+                    var table = {
+                      value:tableNodeId,
+                      label:upt.tableName,
+                      status:-1,
+                      children:[]
+                    }
+                    var parentNode = this.$utilHelper.getNode(this.tableTree,tableNodeId).parentNode
+                    console.log(JSON.stringify(parentNode))
+                    parentNode.children.forEach((v,i)=>{
+                      if(v.value == tableNodeId){
+                        parentNode.children.splice(i,1)
+                      }
+                    })
+                    var tableRemoveNode = upt.newPosition[upt.newPosition.length-1]
+                    var node = this.$utilHelper.getNode(this.tableTree,tableRemoveNode).node
+                    node.children.push(table)
                     break
                   case "add":
                     table.columnsData.push(upt.col)

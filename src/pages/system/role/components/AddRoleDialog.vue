@@ -61,7 +61,11 @@
             }
             this.$http.post(this.HOST+'/admin/system/role/add',data).then((response) => {
               if(response.status == 200){
-                data.roleCode = response.body.data
+                if(this.HOST == "static"){
+                  data.roleCode = this.$utilHelper.generateUUID()
+                }else{
+                  data.roleCode = response.body.data
+                }
                 this.$emit('onSuccess',data)
               }
             })

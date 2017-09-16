@@ -68,6 +68,11 @@
         if(this.param.isAdd){
           this.$http.post(this.HOST+this.addUrl, data).then((response) => {
             if(response.status == 200){
+              if(this.HOST == "static"){
+                this.param.rowData.tid = this.$utilHelper.generateUUID()
+              }else{
+                this.param.rowData.tid = response.body.data.tid
+              }
               this.param.rowData.tid = response.body.data.tid
               this.$emit('onEditSuccess',true,this.param.rowData)
             }

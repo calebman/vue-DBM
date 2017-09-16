@@ -1,7 +1,7 @@
 <template>
   <div style="margin-right: 16px">
     <Row :gutter="16">
-      <Col span="3">
+      <Col span="4">
       <template v-if="showNavMenu == 0">
         <nav-menu></nav-menu>
       </template>
@@ -9,7 +9,7 @@
         <tree-menu></tree-menu>
       </template>
       </Col>
-      <Col span="21">
+      <Col span="20">
         <Tabs type="card" animated=false size="small" :animated="false" :value="tabParams.activeName" @on-tab-remove="handleTabRemove">
           <Tab-pane name="home" icon="ios-home" label="主页">
             <home-page></home-page>
