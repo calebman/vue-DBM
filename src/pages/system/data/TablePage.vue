@@ -154,6 +154,7 @@
               var table = {
                 tableName:"",
                 columnsData:[],
+                position:[],
                 tableDataCount:0
               }
               var tableIndex = -1
@@ -184,18 +185,21 @@
                     table.tableName = upt.tableName
                     break
                   case "addPosition":
-                    var table = {
+                    var tableNode = {
                       value:tableTid,
                       label:upt.tableName,
                       status:-1,
                       children:[]
                     }
+                    table.position = upt.position
                     var node = this.$utilHelper.getNode(this.tableTree,upt.position[upt.position.length-1]).node
-                    node.children.push(table)
+                    node.children.push(tableNode)
+                    upt.position.push(tableTid)
+                    table.position = upt.position
                     break
                   case "changePosition":
                     var tableNodeId = upt.oldPosition[upt.oldPosition.length-1]
-                    var table = {
+                    var tableNode = {
                       value:tableNodeId,
                       label:upt.tableName,
                       status:-1,
@@ -210,7 +214,9 @@
                     })
                     var tableRemoveNode = upt.newPosition[upt.newPosition.length-1]
                     var node = this.$utilHelper.getNode(this.tableTree,tableRemoveNode).node
-                    node.children.push(table)
+                    node.children.push(tableNode)
+                    upt.newPosition.push(tableNodeId)
+                    table.position = upt.newPosition
                     break
                   case "add":
                     table.columnsData.push(upt.col)
