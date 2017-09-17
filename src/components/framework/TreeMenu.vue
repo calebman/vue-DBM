@@ -1,10 +1,10 @@
 <template>
-  <div style="margin-left: 5px">
+  <div style="margin-left: 5px;">
     <el-input
       placeholder="输入关键字进行过滤"
       v-model="filterText">
     </el-input>
-
+    <Button  style="margin-bottom: 5px" type="success" @click="addNode" long>新增根节点</Button>
     <el-tree
       class="filter-tree"
       style="overflow:auto;"
@@ -37,6 +37,15 @@
       filterNode(value, data) {
         if (!value) return true
         return data.label.indexOf(value) !== -1
+      },
+      addNode(){
+        this.tableTree.splice(0,0,{
+          value:this.$utilHelper.generateUUID(),
+          label: '请输入模块名称',
+          children: [],
+          status:1,
+          isAdd:true
+        })
       },
       handleNodeClick(nodeData) {
         if(nodeData.status == -1 ){

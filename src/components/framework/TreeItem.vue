@@ -1,7 +1,7 @@
 <template>
   <span class="span_item">
     <span @click="Expanded">
-      <Input v-if="node.status == 1" style="width: 100px;" v-model="node.label" size="small"></Input>
+      <Input v-if="node.status == 1" style="width: 100px;" v-model="node.label" size="small" ></Input>
       <Icon  v-if="node.status == 0" type="asterisk"></Icon>
       <Icon v-if="node.status == -1" type="ios-keypad-outline"></Icon>
       <span v-if="node.status != 1">{{node.label}}</span>
@@ -70,7 +70,6 @@
         },
         node:{
           handler:function(val){
-            this.$logHelper.log(JSON.stringify("[node update]"+JSON.stringify(val)))
             this.$emit('input',val)
           },
           deep:true

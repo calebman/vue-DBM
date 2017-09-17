@@ -100,7 +100,7 @@
         },
         delTable(){
           this.delVisible = false
-          this.$emit('onDelTable',this.tableName)
+          this.$emit('onDelTable',this.tableName,this.position)
         },
         delColumn(col,index){
           var updateOpts = []

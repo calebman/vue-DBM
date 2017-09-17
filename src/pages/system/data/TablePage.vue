@@ -131,7 +131,7 @@
           this.stepMode = "已存在表格"
           this.createStepsVisible = true
         },
-        delTable(tableName){
+        delTable(tableName,position){
           var data = {
             tableName:tableName
           }
@@ -140,6 +140,13 @@
               this.items.forEach((v,i)=>{
                 if(v.tableName == tableName){
                   this.items.splice(i,1)
+                }
+              })
+              var tableNodeId = position[position.length-1]
+              var parentNode = this.$utilHelper.getNode(this.tableTree,tableNodeId).parentNode
+              parentNode.children.forEach((v,i)=>{
+                if(v.value == tableNodeId){
+                  parentNode.children.splice(i,1)
                 }
               })
             }
@@ -206,7 +213,6 @@
                       children:[]
                     }
                     var parentNode = this.$utilHelper.getNode(this.tableTree,tableNodeId).parentNode
-                    console.log(JSON.stringify(parentNode))
                     parentNode.children.forEach((v,i)=>{
                       if(v.value == tableNodeId){
                         parentNode.children.splice(i,1)

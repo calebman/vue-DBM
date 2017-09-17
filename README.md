@@ -60,6 +60,8 @@ npm run build
 # 登录系统
 由于演示版本使用模拟数据，登录账号与密码可随意输入
 
+ps:由于前端工程使用了大量的json文件来做数据模拟，因此可以在不搭建nodejs+mysql后台的情况下运行
+
 # 效果演示
 
 [demo地址](https://calebman.github.io/vue-DBM/index.html)
@@ -70,11 +72,24 @@ npm run build
 
 # 部分截图
 
+#### 登录
 
-<img style="margin-top: 10px" src="https://calebman.github.io/vue-DBM/img0.png"/>
+<img style="margin-top: 10px" src="https://calebman.github.io/vue-DBM/login.png"/>
 
-<img style="margin-top: 10px" src="https://calebman.github.io/vue-DBM/img1.png"/>
+#### 权限管理
 
-<img style="margin-top: 30px" src="https://calebman.github.io/vue-DBM/img2.png"/>
+<img style="margin-top: 10px" src="https://calebman.github.io/vue-DBM/permission.png"/>
+
+#### 表格列表
+
+<img style="margin-top: 10px" src="https://calebman.github.io/vue-DBM/table.png"/>
+
+#### 创建表格
+
+<img style="margin-top: 10px" src="https://calebman.github.io/vue-DBM/createTable.png"/>
+
+#### 表格操作
+
+<img style="margin-top: 10px" src="https://calebman.github.io/vue-DBM/tableData.png"/>
 
 
