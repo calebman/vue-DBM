@@ -168,7 +168,7 @@
 * 基于element-ui树形控件的二次封装
 * 提供编辑、删除节点的接口
 * 提供一个next钩子，在业务处理失败时可使用next(false)回滚操作
-* 控件详情请查看[demo](https://calebman.github.io/vue-DBM/index.html)
+* 控件演示请查看[demo](https://calebman.github.io/vue-DBM/index.html)
 
 #### 文档
 * props
@@ -258,22 +258,22 @@ ps:由于前端工程使用了大量的json文件来做数据模拟，因此可�
 
 #### 登录
 
-<img style="margin-top: 10px" src="https://calebman.github.io/vue-DBM/login.png"/>
+![](https://calebman.github.io/vue-DBM/login.png)
 
 #### 权限管理
 
-<img style="margin-top: 10px" src="https://calebman.github.io/vue-DBM/permission.png"/>
+![](https://calebman.github.io/vue-DBM/permission.png)
 
 #### 表格列表
 
-<img style="margin-top: 10px" src="https://calebman.github.io/vue-DBM/table.png"/>
+![](https://calebman.github.io/vue-DBM/table.png)
 
 #### 创建表格
 
-<img style="margin-top: 10px" src="https://calebman.github.io/vue-DBM/createTable.png"/>
+![](https://calebman.github.io/vue-DBM/createTable.png)
 
 #### 表格操作
 
-<img style="margin-top: 10px" src="https://calebman.github.io/vue-DBM/tableData.png"/>
+![](https://calebman.github.io/vue-DBM/tableData.png)
 
 
