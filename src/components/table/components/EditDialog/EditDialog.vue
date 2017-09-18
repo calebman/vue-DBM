@@ -73,7 +73,6 @@
               }else{
                 this.param.rowData.tid = response.body.data.tid
               }
-              this.param.rowData.tid = response.body.data.tid
               this.$emit('onEditSuccess',true,this.param.rowData)
             }
           })

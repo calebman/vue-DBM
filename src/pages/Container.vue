@@ -21,11 +21,7 @@
           <Tab-pane closable v-for="item in tabParams.tabItems" v-if="item.active" :name="item.name" :label="item.label">
             <template v-if="item.type == 'data'">
               <m-table
-                :_tableName="item.info.tableName"
-                :_tableData="item.info.tableData"
-                :_columns="item.info.columns"
-                :_configs="item.info.configs"
-                :_pagination="item.info.pagination"></m-table>
+                v-model="item.info"></m-table>
             </template>
             <template v-else-if="item.type == 'role'">
               <role-page
