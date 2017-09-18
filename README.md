@@ -47,109 +47,109 @@
 
 ```
 .
-│  README.md							=>项目自述
+│  README.md(项目自述)
 │  
 ├─build
-│      build.js							=>工程构建
-│      check-versions.js					=>npm版本检查
-│      dev-client.js						=>浏览器刷新
-│      dev-server.js						=>静态文件、代理、热更新
-│      utils.js	=>utils
-│      vue-loader.conf.js				=>webpack生产环境配置
-│      webpack.base.conf.js				=>webpack基础配置
-│      webpack.dev.conf.js				=>webpack开发环境配置
-│      webpack.prod.conf.js				=>webpack生产环境配置
+│      build.js(工程构建)
+│      check-versions.js(npm版本检查)
+│      dev-client.js	(浏览器刷新)
+│      dev-server.js	(静态文件、代理、热更新)
+│      utils.js(utils)
+│      vue-loader.conf.js(webpack生产环境配置)
+│      webpack.base.conf.js(webpack基础配置)
+│      webpack.dev.conf.js(webpack开发环境配置)
+│      webpack.prod.conf.js(webpack生产环境配置)
 │      
 ├─config
-│      dev.env.js						=>开发环境配置
-│      index.js							=>程序入口
-│      prod.env.js						=>生产环境配置
+│      dev.env.js(开发环境配置)
+│      index.js	(程序入口)
+│      prod.env.js(生产环境配置)
 │      
 ├─src
 │  │  App.vue
 │  │  main.js
 │  │  
 │  ├─assets
-│  │      login-bg.png					=>登录背景
-│  │      logo.png						=>项目logo
+│  │      login-bg.png(登录背景)
+│  │      logo.png(项目logo)
 │  │      
 │  ├─common
 │  │  └─js
-│  │          log.js					=>日志类
-│  │          util.js					=>工具类
+│  │          log.js(日志类)
+│  │          util.js(工具类)
 │  │          
 │  ├─components
 │  │  ├─table
-│  │  │  │  MTable.vue					=>表格组件
+│  │  │  │  MTable.vue(表格组件)
 │  │  │  │  
 │  │  │  └─components
-│  │  │      │  ColumnHeader.vue		=>表头渲染
-│  │  │      │  ImgColumn.vue			=>图片类型的数据渲染列
-│  │  │      │  SelectColumn.vue		=>选择类型的数据渲染列
+│  │  │      │  ColumnHeader.vue(表头渲染)
+│  │  │      │  ImgColumn.vue(图片类型的数据渲染列)
+│  │  │      │  SelectColumn.vue(选择类型的数据渲染列)
 │  │  │      │  
 │  │  │      ├─EditDialog
-│  │  │      │  │  EditDialog.vue		=>编辑数据对话框
+│  │  │      │  │  EditDialog.vue(编辑数据对话框)
 │  │  │      │  │  
 │  │  │      │  └─components
-│  │  │      │          MDatePicker.vue		=>时间选择组件
-│  │  │      │          MNumberInput.vue	=>数字选择组件
-│  │  │      │          MSelect.vue			=>选择组件
-│  │  │      │          MText.vue			=>文本输入组件
+│  │  │      │          MDatePicker.vue(时间选择组件)
+│  │  │      │          MNumberInput.vue(数字选择组件)
+│  │  │      │          MSelect.vue(选择组件)
+│  │  │      │          MText.vue(文本输入组件)
 │  │  │      │          
 │  │  │      ├─FilterDetail
-│  │  │      │      FilterDetail.vue		=>筛选详情对话框
+│  │  │      │      FilterDetail.vue(筛选详情对话框)
 │  │  │      │      
 │  │  │      └─FilterDialog
-│  │  │              FilterDialog.vue		=>数据筛选对话框
+│  │  │              FilterDialog.vue(数据筛选对话框)
 │  │  │              
 │  │  └─tree
-│  │      │  MTree.vue	=>表格树
+│  │      │  MTree.vue(表格树)
 │  │      │  	
 │  │      └─components
-│  │              TreeItem.vue			=>自定义树节点
+│  │              TreeItem.vue(自定义树节点)
 │  │              
 │  ├─pages
-│  │  │  Container.vue					=>内容
-│  │  │  ErrorPage.vue					=>错误页面
-│  │  │  HomePage.vue					=>主页
-│  │  │  Login.vue						=>登录
-│  │  │  Main.vue						=>主页面
+│  │  │  Container.vue(内容)
+│  │  │  ErrorPage.vue(错误页面)
+│  │  │  HomePage.vue(主标签页)
+│  │  │  Login.vue(登录)
+│  │  │  Main.vue(主页面)
 │  │  │  
 │  │  ├─framework
-│  │  │      NavMenu.vue				=>左侧菜单栏
-│  │  │      RoutePage.vue				=>动态路由页面
+│  │  │      NavMenu.vue(左侧菜单栏)
+│  │  │      RoutePage.vue(动态路由页面)
 │  │  │      
 │  │  └─system
 │  │      ├─data
-│  │      │  │  TablePage.vue			=>表格管理页面
+│  │      │  │  TablePage.vue(表格管理页面)
 │  │      │  │  
 │  │      │  └─components
-│  │      │          CreateSteps.vue	=>建表流程对话框
-│  │      │          TableCard.vue		=>表格卡片
+│  │      │          CreateSteps.vue(建表流程对话框)
+│  │      │          TableCard.vue(表格卡片)
 │  │      │          
 │  │      ├─role
-│  │      │  │  RolePage.vue			=>角色管理页面
+│  │      │  │  RolePage.vue(角色管理页面)
 │  │      │  │  
 │  │      │  └─components
-│  │      │          AddRoleDialog.vue	=>添加角色对话框
-│  │      │          DelRoleDialog.vue	=>删除角色权限对话框
-│  │      │          EditRoleDialog.vue	=>修改角色权限对话框
-│  │      │          RoleTags.vue		=>角色权限项
+│  │      │          AddRoleDialog.vue(添加角色对话框)
+│  │      │          DelRoleDialog.vue(删除角色权限对话框)
+│  │      │          EditRoleDialog.vue(修改角色权限对话框)
+│  │      │          RoleTags.vue(角色权限项)
 │  │      │          
 │  │      └─user
-│  │          │  UserPage.vue			=>用户管理页面
+│  │          │  UserPage.vue(用户管理页面)
 │  │          │  
 │  │          └─components
-│  │                  SwitchEnabled.vue	=>用户状态切换
-│  │                  UserTag.vue		=>用户角色标识
+│  │                  SwitchEnabled.vue(用户状态切换)
+│  │                  UserTag.vue(用户角色标识)
 │  │                  
 │  ├─router
-│  │      index.js    					=>路由配置
+│  │      index.js(路由配置)
 │  │      
 │  └─vuex
-│          store.js    					=>状态机配置
+│          store.js(状态机配置)
 │          
-└─static    							=>静态数据模拟
+└─static(静态数据模拟)
 ```
 
 
