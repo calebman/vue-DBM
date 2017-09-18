@@ -22,8 +22,6 @@ Vue.use(iView)
 Vue.use(VueResource)
 //引用vuex状态机管理
 Vue.use(Vuex)
-//对vue-resource做相关配置
-// Vue.http.options.root = process.env.NODE_ENV === 'development' ? 'static' : ''
 Vue.http.options.emulateJSON = true
 //项目上线后不再提示警告
 Vue.config.productionTip = false

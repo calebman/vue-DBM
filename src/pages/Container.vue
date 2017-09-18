@@ -102,13 +102,7 @@
                 name:nodeData.id+"",
                 label:nodeData.label,
                 type:'data',
-                info:{
-                  tableName:data.tableName,
-                  tableData:data.tableData,
-                  columns:data.columns,
-                  configs:data.configs,
-                  pagination:data.pagination
-                },
+                info:data,
                 active:true
               }
               this.$store.commit('addTabItem', tableParam)

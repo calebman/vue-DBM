@@ -23,7 +23,14 @@
 
 如果对您有帮助，您可以点击右上角 "**Star**" 支持一哈！谢谢！
 
-# 目标功能
+## 目录
+- [目标功能](#目标功能)
+- [文件结构](#文件结构)
+- [部分控件的封装与使用](#部分控件的封装与使用)
+- [项目运行](#项目运行)
+- [部分截图](#部分截图)
+
+## 目标功能
 - [x] 标签页、菜单栏
 - [x] 登录页面
 - [x] 用户设置菜单
@@ -42,13 +49,12 @@
 - [x] 数据表的添加、编辑对话框
 - [x] 数据表分页
 
-# 文件结构
----
+## 文件结构
 
 ```
 .
 │  README.md(项目自述)
-│  
+│
 ├─build
 │      build.js(工程构建)
 │      check-versions.js(npm版本检查)
@@ -59,136 +65,192 @@
 │      webpack.base.conf.js(webpack基础配置)
 │      webpack.dev.conf.js(webpack开发环境配置)
 │      webpack.prod.conf.js(webpack生产环境配置)
-│      
+│
 ├─config
 │      dev.env.js(开发环境配置)
 │      index.js	(程序入口)
 │      prod.env.js(生产环境配置)
-│      
+│
 ├─src
 │  │  App.vue
 │  │  main.js
-│  │  
+│  │
 │  ├─assets
 │  │      login-bg.png(登录背景)
 │  │      logo.png(项目logo)
-│  │      
+│  │
 │  ├─common
 │  │  └─js
 │  │          log.js(日志类)
 │  │          util.js(工具类)
-│  │          
+│  │
 │  ├─components
 │  │  ├─table
 │  │  │  │  MTable.vue(表格组件)
-│  │  │  │  
+│  │  │  │
 │  │  │  └─components
 │  │  │      │  ColumnHeader.vue(表头渲染)
 │  │  │      │  ImgColumn.vue(图片类型的数据渲染列)
 │  │  │      │  SelectColumn.vue(选择类型的数据渲染列)
-│  │  │      │  
+│  │  │      │  TextColumn.vue(文本、数字、时间类型的数据渲染列)
+│  │  │      │
 │  │  │      ├─EditDialog
 │  │  │      │  │  EditDialog.vue(编辑数据对话框)
-│  │  │      │  │  
+│  │  │      │  │
 │  │  │      │  └─components
 │  │  │      │          MDatePicker.vue(时间选择组件)
 │  │  │      │          MNumberInput.vue(数字选择组件)
 │  │  │      │          MSelect.vue(选择组件)
 │  │  │      │          MText.vue(文本输入组件)
-│  │  │      │          
+│  │  │      │
 │  │  │      ├─FilterDetail
 │  │  │      │      FilterDetail.vue(筛选详情对话框)
-│  │  │      │      
+│  │  │      │
 │  │  │      └─FilterDialog
 │  │  │              FilterDialog.vue(数据筛选对话框)
-│  │  │              
+│  │  │
 │  │  └─tree
 │  │      │  MTree.vue(表格树)
-│  │      │  	
+│  │      │
 │  │      └─components
 │  │              TreeItem.vue(自定义树节点)
-│  │              
+│  │
 │  ├─pages
 │  │  │  Container.vue(内容)
 │  │  │  ErrorPage.vue(错误页面)
 │  │  │  HomePage.vue(主标签页)
 │  │  │  Login.vue(登录)
 │  │  │  Main.vue(主页面)
-│  │  │  
+│  │  │
 │  │  ├─framework
 │  │  │      NavMenu.vue(左侧菜单栏)
 │  │  │      RoutePage.vue(动态路由页面)
-│  │  │      
+│  │  │
 │  │  └─system
 │  │      ├─data
 │  │      │  │  TablePage.vue(表格管理页面)
-│  │      │  │  
+│  │      │  │
 │  │      │  └─components
 │  │      │          CreateSteps.vue(建表流程对话框)
 │  │      │          TableCard.vue(表格卡片)
-│  │      │          
+│  │      │
 │  │      ├─role
 │  │      │  │  RolePage.vue(角色管理页面)
-│  │      │  │  
+│  │      │  │
 │  │      │  └─components
 │  │      │          AddRoleDialog.vue(添加角色对话框)
 │  │      │          DelRoleDialog.vue(删除角色权限对话框)
 │  │      │          EditRoleDialog.vue(修改角色权限对话框)
 │  │      │          RoleTags.vue(角色权限项)
-│  │      │          
+│  │      │
 │  │      └─user
 │  │          │  UserPage.vue(用户管理页面)
-│  │          │  
+│  │          │
 │  │          └─components
 │  │                  SwitchEnabled.vue(用户状态切换)
 │  │                  UserTag.vue(用户角色标识)
-│  │                  
+│  │
 │  ├─router
 │  │      index.js(路由配置)
-│  │      
+│  │
 │  └─vuex
 │          store.js(状态机配置)
-│          
+│
 └─static(静态数据模拟)
 ```
 
+## 部分控件的封装与使用
 
-# 项目运行
+### 自定义树
+#### 概要
+* 基于element-ui树形控件的二次封装
+* 提供编辑、删除节点的接口
+* 提供一个next钩子，在业务处理失败时可使用next(false)回滚操作
 
-## 克隆到本地
+#### 文档
+* props
+
+属性 | 说明 | 类型
+------------ | ------------- | -------------
+value | 源数据，可使用v-model双向绑定 | Array
+
+* events
+
+事件名 | 说明 | 参数
+------------ | ------------- | -------------
+SaveEdit | 点击编辑或者添加树节点后的保存事件 | (父节点数据、当前节点数据、next)
+DelNode | 源数据，可使用v-model双向绑定 | (父节点数据、当前节点数据、next)
+NodeClick | 源数据，可使用v-model双向绑定 | (当前节点数据)
+
+* 源数据描述
+
+属性 | 说明 
+------------ | -------------
+value | 树节点的唯一标识
+label | 树节点的显示名称
+status | 1：编辑状态  0：显示状态  -1：不可编辑状态
+children | 子节点数据
+
+* 调用示例
+
+```
+ <m-tree 
+	v-model="tableTree"
+    @SaveEdit="SaveEdit"
+    @DelNode="DelNode"
+    @NodeClick="handleNodeClick"></m-tree>
+
+SaveEdit(parentNode,data,next){
+    var param = {
+      isAdd:data.isAdd,
+      parentNode:parentNode,
+      node:data
+    }
+    this.$http.post(this.HOST+'/admin/system/tree/edit',param).then((response) => {
+      if(response.status == 200){
+        next(true,response.body.data.tid)
+      }
+    })
+}
+```
+
+
+## 项目运行
+
+### 克隆到本地
 ```
 git clone https://github.com/calebman/vue-DBM.git
 ```
 
-## 安装依赖包
+### 安装依赖包
 ```
 npm install
 ```
 
-## 开启本地服务器localhost:8000
+### 开启本地服务器localhost:8000
 ```
 npm run dev
 ```
 
-## 打包页面
+### 打包页面
 ```
 npm run build
 ```
 
-## 登录系统
+### 登录系统
 由于演示版本使用模拟数据，登录账号与密码可随意输入
 
 ps:由于前端工程使用了大量的json文件来做数据模拟，因此可以在不搭建nodejs+mysql后台的情况下运行
 
-# 效果演示
+### 效果演示
 
 [demo地址](https://calebman.github.io/vue-DBM/index.html)
 
-# 对应的后端工程
+### 对应的后端工程
 
 [地址在这里](https://github.com/calebman/nodejs-DBM)
 
-# 部分截图
+## 部分截图
 
 #### 登录
 
