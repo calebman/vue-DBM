@@ -1,4 +1,12 @@
-# 说明
+# 目录
+- [项目说明](#说明)
+- [目标功能](#目标功能)
+- [项目文件结构](#文件结构)
+- [部分控件的封装与使用](#部分控件的封装与使用)
+- [项目运行](#项目运行)
+- [截图](#部分截图)
+
+## 说明
 刚开始学习nodejs时不免枯燥，总想着如何造一个好看的前端页面，尝试着在网上搜索相关的项目找找灵感，发现对于前端使用vue.js搭配后台nodejs的教程不多（也可能是我没找着:camel:），不管怎样，在这个大前提下**DMB**的开发工作开始了。
 
 **DMB**是针对经常使用excel的个人或者团体（比如公司每月提交excel报表）而开发的excel数据管理系统，他能够帮助您完成表格的整合、编辑、数据筛选以及导出等等功能，一键导入、按需筛选、指定导出，**DMB**能让你不再被一堆excel文件折磨。
@@ -23,12 +31,6 @@
 
 如果对您有帮助，您可以点击右上角 "**Star**" 支持一哈！谢谢！
 
-## 目录
-- [目标功能](#目标功能)
-- [文件结构](#文件结构)
-- [部分控件的封装与使用](#部分控件的封装与使用)
-- [项目运行](#项目运行)
-- [部分截图](#部分截图)
 
 ## 目标功能
 - [x] 标签页、菜单栏
@@ -161,11 +163,12 @@
 
 ## 部分控件的封装与使用
 
-### 自定义树
+### 自定义树控件
 #### 概要
 * 基于element-ui树形控件的二次封装
 * 提供编辑、删除节点的接口
 * 提供一个next钩子，在业务处理失败时可使用next(false)回滚操作
+* 控件详情请查看[demo](https://calebman.github.io/vue-DBM/index.html)
 
 #### 文档
 * props
@@ -188,27 +191,28 @@ NodeClick | 源数据，可使用v-model双向绑定 | (当前节点数据)
 ------------ | -------------
 value | 树节点的唯一标识
 label | 树节点的显示名称
-status | 1：编辑状态  0：显示状态  -1：不可编辑状态
+status | 1：编辑状态\0：显示状态\-1：不可编辑状态
 children | 子节点数据
 
 * 调用示例
 
 ```
- <m-tree 
-	v-model="tableTree"
+ <m-tree
+    v-model="tableTree"
     @SaveEdit="SaveEdit"
     @DelNode="DelNode"
     @NodeClick="handleNodeClick"></m-tree>
 
 SaveEdit(parentNode,data,next){
     var param = {
-      isAdd:data.isAdd,
       parentNode:parentNode,
       node:data
     }
-    this.$http.post(this.HOST+'/admin/system/tree/edit',param).then((response) => {
+    this.$http.post(URL,param).then((response) => {
       if(response.status == 200){
-        next(true,response.body.data.tid)
+        next(true,response.body.data.nodeId)
+      }else{
+        next(false)
       }
     })
 }
