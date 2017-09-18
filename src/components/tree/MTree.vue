@@ -8,7 +8,7 @@
     <el-tree
       class="filter-tree"
       style="overflow:auto;"
-      :data="tableTree"
+      :data="treeData"
       :filter-node-method="filterNode"
       @node-click="handleNodeClick"
       ref="tree"
@@ -25,7 +25,9 @@
   export default {
     data() {
       return {
-        filterText: ''
+        filterText: '',
+        treeData:this.value,
+        runParam:{}
       }
     },
     watch: {
@@ -39,7 +41,7 @@
         return data.label.indexOf(value) !== -1
       },
       addNode(){
-        this.tableTree.splice(0,0,{
+        this.treeData.splice(0,0,{
           value:this.$utilHelper.generateUUID(),
           label: '请输入模块名称',
           children: [],
@@ -48,27 +50,7 @@
         })
       },
       handleNodeClick(nodeData) {
-        if(nodeData.status == -1 ){
-          this.$http.get(this.HOST+'/admin/data/table/'+nodeData.label+'/create').then((response) => {
-            if(response.status == 200){
-              var data = response.body.data
-              var tableParam = {
-                name:nodeData.id+"",
-                label:nodeData.label,
-                type:'data',
-                info:{
-                  tableName:data.tableName,
-                  tableData:data.tableData,
-                  columns:data.columns,
-                  configs:data.configs,
-                  pagination:data.pagination
-                },
-                active:true
-              }
-              this.$store.commit('addTabItem', tableParam)
-            }
-          })
-        }
+        this.$emit('NodeClick',nodeData)
       },
       renderContent(h, { node, data, store }) {
         return h(TreeItem,{
@@ -85,46 +67,22 @@
               data.children.push({ value: this.$utilHelper.generateUUID(), label: '请输入模块名称', children: [],status:1,isAdd:true })
             },
             Delete: (nodeData) => {
-              var parentNode = this.$utilHelper.getNode(this.tableTree,data.value).parentNode
-              var param = {
-                parentNode:parentNode,
-                node:data
-              }
-              this.$http.post(this.HOST+'/admin/system/tree/del',param).then((response) => {
-                if(response.status == 200){
-                  parentNode.children.forEach((v,i)=>{
-                    if(v.value == data.value){
-                      parentNode.children.splice(i,1)
-                    }
-                  })
-                }
-              })
+              var parentNode = this.$utilHelper.getNode(this.treeData,data.value).parentNode
+              this.runParam.parentNode = parentNode
+              this.runParam.data = data
+              this.runParam.nodeData = nodeData
+              this.$emit('DelNode',parentNode,data,this.CanDelNext)
+
             },
             SaveEdit:(nodeData)=> {
-              var parentNode = this.$utilHelper.getNode(this.tableTree,data.value).parentNode
-              var param = {
-                isAdd:data.isAdd,
-                parentNode:parentNode,
-                node:data
-              }
-              this.$http.post(this.HOST+'/admin/system/tree/edit',param).then((response) => {
-                if(response.status == 200){
-                  if(this.HOST == "static"){
-                    data.value = this.$utilHelper.generateUUID()
-                  }else{
-                    data.value = response.body.data.tid
-                  }
-                }else{
-                  parentNode.children.forEach((v,i)=>{
-                    if(v.value == nodeData.value){
-                      parentNode.children.splice(i,1,nodeData)
-                    }
-                  })
-                }
-              })
+              var parentNode = this.$utilHelper.getNode(this.treeData,data.value).parentNode
+              this.runParam.parentNode = parentNode
+              this.runParam.data = data
+              this.runParam.nodeData = nodeData
+              this.$emit('SaveEdit',parentNode,data,this.CanSaveNext)
             },
             CancelEdit:(nodeData)=>{
-              var parentNode = this.$utilHelper.getNode(this.tableTree,data.value).parentNode
+              var parentNode = this.$utilHelper.getNode(this.treeData,data.value).parentNode
               if(data.isAdd){
                 parentNode.children.forEach((v,i)=>{
                   if(v.value == data.value){
@@ -141,16 +99,62 @@
             }
           }
         })
+      },
+      CanSaveNext(isNext,nodeId){
+        let parentNode = this.runParam.parentNode
+        let nodeData = this.runParam.nodeData
+        let data = this.runParam.data
+        if(isNext){
+          parentNode.children.forEach((v,i)=>{
+            if(v.value == data.value){
+              if(this.HOST != "static"&&data.isAdd){
+                data.value = nodeId
+              }
+              data.status = 0
+              parentNode.children.splice(i,1,data)
+            }
+          })
+        }else{
+          if(!data.isAdd){
+            parentNode.children.forEach((v,i)=>{
+              if(v.value == nodeData.value){
+                data.label = nodeData.label
+                parentNode.children.splice(i,1,data)
+              }
+            })
+          }
+        }
+        this.runParam = {}
+      },
+      CanDelNext(isNext){
+        let parentNode = this.runParam.parentNode
+        let nodeData = this.runParam.nodeData
+        let data = this.runParam.data
+        if(isNext){
+          parentNode.children.forEach((v,i)=>{
+            if(v.value == data.value){
+              parentNode.children.splice(i,1)
+            }
+          })
+        }
+        this.runParam = {}
       }
     },
-    computed:{
-      tableTree:{
-        get(){
-          return this.$store.state.tableTree
+    props:{
+      value:Array
+    },
+    watch:{
+      value:{
+        handler:function(val,oldVal){
+          this.treeData = val
         },
-        set(newValue){
-          this.$store.state.tableTree = newValue
-        }
+        deep:true
+      },
+      treeData:{
+        handler:function(val){
+          this.$emit('input',val)
+        },
+        deep:true
       }
     },
     components:{

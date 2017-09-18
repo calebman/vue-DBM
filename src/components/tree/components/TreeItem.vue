@@ -47,7 +47,6 @@
           this.$emit('Append')
         },
         SaveEdit(){
-          this.node.status = 0
           this.$emit('SaveEdit',this.nodeData)
         },
         CancelEdit(){
@@ -74,7 +73,7 @@
           },
           deep:true
         }
-      },
+      }
     }
 </script>
 <style>
