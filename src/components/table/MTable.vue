@@ -28,7 +28,7 @@
             <Icon type="chevron-down"></Icon>
           </div>
           <div class="api" slot="content">
-            <c-show-filter-detail :filterParam="filterParam" :tableColumnsData="tableColumnsData"></c-show-filter-detail>
+            <filter-detail :filterParam="filterParam" :tableColumnsData="tableColumnsData"></filter-detail>
           </div>
         </Poptip>
         </Col>
@@ -59,29 +59,29 @@
         :current.sync="pagination.pageCurrent"
         show-total></Page>
     </div>
-    <c-edit-dialog
+    <edit-dialog
       :editUrl="configs.editUrl"
       :addUrl="configs.addUrl"
       :tableName="tableName"
       :tableColumnsData="tableColumnsData"
       :editParam="editParam"
-      @onEditSuccess="editSuccess"></c-edit-dialog>
-    <c-filter-dialog
+      @onEditSuccess="editSuccess"></edit-dialog>
+    <filter-dialog
       :filterUrl="configs.filterUrl"
       :tableColumnsData="tableColumnsData"
       :tableName="tableName"
       @onFilterSuccess="filterSuccess"
-      :filterParam="filterParam"></c-filter-dialog>
+      :filterParam="filterParam"></filter-dialog>
   </section>
 </template>
 
 <script>
-  import CEditDialog from './components/CEditDialog.vue'
-  import CFilterDialog from './components/CFilterDialog.vue'
-  import CShowFilterDetail from './components/CShowFilterDetail.vue'
-  import CImg from './components/CImg.vue'
+  import EditDialog from './components/EditDialog/EditDialog.vue'
+  import FilterDialog from './components/FilterDialog/FilterDialog.vue'
+  import FilterDetail from './components/FilterDetail/FilterDetail.vue'
+  import ImgColumn from './components/ImgColumn.vue'
   import ColumnHeader from './components/ColumnHeader.vue'
-  import SelectTag from  './components/SelectTag.vue'
+  import SelectColumn from './components/SelectColumn.vue'
   export default {
     data() {
       return {
@@ -259,7 +259,7 @@
                 case 'select':
                   item.render = (h, params) => {
                     return h('div', [
-                      h(SelectTag,{
+                      h(SelectColumn,{
                         props:{
                           data:params.row[item.key]
                         }
@@ -270,7 +270,7 @@
                 case 'img':
                   item.render = (h, params) => {
                     return h('div', [
-                      h(CImg,{
+                      h(ImgColumn,{
                         props:{
                           row:params.row,
                           rowKey:item.key,
@@ -345,7 +345,7 @@
     },
     //时间、选择、文本筛选控件,用于根据筛选条件动态创建
     components:{
-      CEditDialog, CFilterDialog, CShowFilterDetail, CImg, ColumnHeader, SelectTag
+      EditDialog, FilterDialog, FilterDetail, ImgColumn, ColumnHeader, SelectColumn
     },
     props:{
       _tableName:String,

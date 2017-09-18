@@ -87,7 +87,11 @@
       }
     },
     created() {
-      this.$http.get(this.HOST+'/create').then((response) => {
+      let url = this.HOST+'/create'
+      if(this.HOST=="static"){
+        url+=".json"
+      }
+      this.$http.get(url).then((response) => {
         if(response.status == 200){
           this.$store.commit('setLoginInfo', response.body.data.loginInfo)
           this.$store.commit('setTableTree', response.body.data.tableTree)

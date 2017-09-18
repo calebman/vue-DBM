@@ -95,7 +95,7 @@ Vue.http.interceptors.push(function(request, next) {
   this.$Loading.start()
 
   //如果是使用静态数据模式
-  if(Vue.prototype.HOST.indexOf("static")>-1){
+  if(Vue.prototype.HOST=="static"&&request.url.indexOf(".json")==-1){
     //在使用静态数据测试阶段需要开启以下两个配置
     request.method = "GET"
     request.url+=".json"

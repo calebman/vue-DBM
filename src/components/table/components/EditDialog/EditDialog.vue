@@ -9,37 +9,37 @@
         <template v-if="col.type == 'select'">
           <template v-for="var (key,value) in param.rowData" v-if="value == col.prop">
             <Form-item :label="col.label + '：'">
-              <c-select :items="col.items" :name="col.prop" :value="key"  @onValueChange="createData"></c-select>
+              <m-select :items="col.items" :name="col.prop" :value="key"  @onValueChange="createData"></m-select>
             </Form-item>
           </template>
         </template>
         <template v-else-if="col.type == 'date'">
           <template v-for="var (key,value) in param.rowData" v-if="value == col.prop">
             <Form-item :label="col.label + '：'">
-              <c-date-picker
+              <m-date-picker
                 @onValueChange="createData"
                 :name="col.prop"
-                :value="key"></c-date-picker>
+                :value="key"></m-date-picker>
             </Form-item>
           </template>
         </template>
         <template v-else-if="col.type == 'number'">
           <template v-for="var (key,value) in param.rowData" v-if="value == col.prop">
             <Form-item :label="col.label + '：'">
-              <c-nnmber-input
+              <m-nnmber-input
                 @onValueChange="createData"
                 :name="col.prop"
-                :value="key"></c-nnmber-input>
+                :value="key"></m-nnmber-input>
             </Form-item>
           </template>
         </template>
         <template v-else-if="col.type == 'text'">
           <template v-for="var (key,value) in param.rowData" v-if="value == col.prop">
             <Form-item :label="col.label + '：'">
-              <c-text
+              <m-text
                 :name="col.prop"
                 @onValueChange="createData"
-                :value="key"></c-text>
+                :value="key"></m-text>
             </Form-item>
           </template>
         </template>
@@ -49,10 +49,10 @@
 </template>
 
 <script>
-  import CText from './CText.vue'
-  import CDatePicker from './CDatePicker.vue'
-  import CSelect from './CSelect.vue'
-  import CNnmberInput from  './CNumberInput.vue'
+  import MText from './components/MText.vue'
+  import MDatePicker from './components/MDatePicker.vue'
+  import MSelect from './components/MSelect.vue'
+  import MNnmberInput from './components/MNumberInput.vue'
   export default {
     data() {
       return {
@@ -114,7 +114,7 @@
     },
     //时间、选择、文本控件
     components:{
-      CDatePicker, CSelect, CText, CNnmberInput
+      MDatePicker, MSelect, MText, MNnmberInput
     }
   }
 </script>
