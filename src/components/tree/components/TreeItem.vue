@@ -44,9 +44,11 @@
           this.node.isAdd = false
         },
         Append(){
+          //添加节点事件
           this.$emit('Append')
         },
         SaveEdit(){
+          //保存节点事件
           this.$emit('SaveEdit',this.nodeData)
         },
         CancelEdit(){

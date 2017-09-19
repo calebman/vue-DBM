@@ -66,7 +66,9 @@
               node.expanded = true
               data.children.push({ value: this.$utilHelper.generateUUID(), label: '请输入模块名称', children: [],status:1,isAdd:true })
             },
+            //删除节点
             Delete: (nodeData) => {
+              //递归查找父节点
               var parentNode = this.$utilHelper.getNode(this.treeData,data.value).parentNode
               this.runParam.parentNode = parentNode
               this.runParam.data = data
@@ -74,14 +76,18 @@
               this.$emit('DelNode',parentNode,data,this.CanDelNext)
 
             },
+            //保存节点
             SaveEdit:(nodeData)=> {
+              //递归查找父节点
               var parentNode = this.$utilHelper.getNode(this.treeData,data.value).parentNode
               this.runParam.parentNode = parentNode
               this.runParam.data = data
               this.runParam.nodeData = nodeData
               this.$emit('SaveEdit',parentNode,data,this.CanSaveNext)
             },
+            //撤销修改
             CancelEdit:(nodeData)=>{
+              //递归查找父节点
               var parentNode = this.$utilHelper.getNode(this.treeData,data.value).parentNode
               if(data.isAdd){
                 parentNode.children.forEach((v,i)=>{

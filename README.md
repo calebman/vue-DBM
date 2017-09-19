@@ -1,3 +1,4 @@
+# 中文|[ENGLISH](https://github.com/calebman/vue-DBM/blob/master/README_EN.md) #
 # 目录
 - [项目说明](#说明)
 - [目标功能](#目标功能)

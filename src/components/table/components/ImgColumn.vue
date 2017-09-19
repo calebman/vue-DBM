@@ -6,7 +6,7 @@
         <!--<img v-if="HOST=='/static'" :src="item.src">-->
         <!--<img v-else :src="HOST+'/'+item.src">-->
         <div class="demo-upload-list-cover">
-          <Icon type="ios-eye-outline" size="20" style="margin-top: 5px;margin-right: 3px;" @click.native="handleView(item)"></Icon>
+          <Icon type="ios-eye-outline" size="20" style="margin-top: 5px;margin-right: 3px;" @click.native="handleView(item,index)"></Icon>
         </div>
       </template>
       <template v-else>
@@ -44,13 +44,15 @@
     data () {
       return {
         uploadItem: {},
+        selectIndex:0,
         visible: false,
         uploadList: []
       }
     },
     methods: {
-      handleView (item) {
+      handleView (item,index) {
         this.uploadItem = item;
+        this.selectIndex = index
         this.visible = true;
       },
       handleRemove (file) {
@@ -183,5 +185,10 @@
     font-size: 20px;
     cursor: pointer;
     margin: 0 2px;
+  }
+  .demo-carousel{
+    color: #8391a5;
+    width: 300px;
+    height: 500px;
   }
 </style>
