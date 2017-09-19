@@ -152,9 +152,11 @@
             }
           })
         },
-        editTableData(tableName,updateOpts){
+        editTableData(tableName,updateOpts,isAdd){
           var data = {
-            updateOpts:updateOpts
+            tableName:tableName,
+            updateOpts:updateOpts,
+            isAdd:isAdd
           }
           this.$http.post(this.HOST+'/admin/system/table/edit',data).then((response) => {
             if(response.status == 200){

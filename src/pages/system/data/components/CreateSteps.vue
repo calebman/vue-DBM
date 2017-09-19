@@ -132,6 +132,7 @@
           tableParam:{},
           editLog:[],
           updateOpts:[],
+          isAdd:false,
           canCommit:false,
           selectPosition:"",
           importTableParam:{
@@ -229,6 +230,7 @@
               }
               this.editLog=getEdit.logs
               this.updateOpts=getEdit.updateOpts
+              this.isAdd = getEdit.isAdd
           }
         }
       },
@@ -241,7 +243,7 @@
         },
         commit(){
           this.v = false
-          this.$emit('onEditTable',this.tableParam.tableName,this.updateOpts)
+          this.$emit('onEditTable',this.tableParam.tableName,this.updateOpts,this.isAdd)
         },
         handleSuccess(res, file) {
           res.data.columnsData.forEach((value,index)=>{
@@ -302,7 +304,8 @@
         getEditLog(oldTable,newTable){
           var getEdit = {
             logs:[],
-            updateOpts:[]
+            updateOpts:[],
+            isAdd:false
           }
           var log = []
           var sameItem = []
@@ -333,6 +336,7 @@
               })
             }
           }else{
+            getEdit.isAdd = true
             getEdit.logs.push({
               type:"success",
               info:"新增数据表的名称为 【"+newTable.tableName+"】"

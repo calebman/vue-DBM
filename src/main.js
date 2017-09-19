@@ -48,7 +48,7 @@ let vm = new Vue({
   created(){
     //全局配置log是否打印,默认为false
     this.$logHelper.openLog = true
-    this.$logHelper.filter = "TablePage"
+    this.$logHelper.filter = "main"
     //全局配置Message 参数分别为距离上部高度、延时关闭秒数
     this.$Message.config({top: 50, duration: 2})
     //全局配置Notice 参数分别为距离上部高度、延时关闭秒数
