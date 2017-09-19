@@ -48,6 +48,7 @@ let vm = new Vue({
   created(){
     //全局配置log是否打印,默认为false
     this.$logHelper.openLog = true
+    this.$logHelper.filter = "TablePage"
     //全局配置Message 参数分别为距离上部高度、延时关闭秒数
     this.$Message.config({top: 50, duration: 2})
     //全局配置Notice 参数分别为距离上部高度、延时关闭秒数
@@ -105,10 +106,10 @@ Vue.http.interceptors.push(function(request, next) {
   request.body = {
     data:JSON.stringify(requestParams)
   }
-  this.$logHelper.info("[requset data]---"+request.body.data)
+  this.$logHelper.info("[requset data]---"+request.body.data,"main")
   //对请求结果做处理
   next(function(response) {
-    this.$logHelper.info("[response data]---"+JSON.stringify(response.body))
+    this.$logHelper.info("[response data]---"+JSON.stringify(response.body),"main")
     //请求响应成功的全局处理
     if(response.status == 200){
       //判断业务结果吗是否正确

@@ -169,7 +169,9 @@
 * 提供编辑、删除节点的接口
 * 提供一个next钩子，在业务处理失败时可使用next(false)回滚操作
 * 控件源码见src/components/tree
-* 控件演示请查看[demo](https://calebman.github.io/vue-DBM/index.html)
+
+#### 演示
+![](https://calebman.github.io/vue-DBM/tree.gif)
 
 #### 文档
 * props

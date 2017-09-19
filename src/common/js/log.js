@@ -1,18 +1,31 @@
 export default {
   openLog : false ,
-  info:function (msg) {
+  filter:"",
+  info:function (msg,type) {
     if(this.openLog){
-      console.info(msg)
+      if(type&&type.indexOf(this.filter)>-1){
+        console.info(msg)
+      }else if(!type){
+        console.info(msg)
+      }
     }
   },
-  error:function (msg) {
+  error:function (msg,type) {
     if(this.openLog){
-      console.error(msg)
+      if(type&&type.indexOf(this.filter)>-1){
+        console.error(msg)
+      }else if(!type){
+        console.error(msg)
+      }
     }
   },
-  log:function (msg) {
+  log:function (msg,type) {
     if(this.openLog){
-      console.log(msg)
+      if(type&&type.indexOf(this.filter)>-1){
+        console.log(msg)
+      }else if(!type){
+        console.log(msg)
+      }
     }
   }
 }
