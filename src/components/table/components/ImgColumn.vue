@@ -135,7 +135,7 @@
       defaultList(){
         let urlstr = this.row[this.rowKey]
         let list =[]
-        if(urlstr != ""){
+        if(urlstr&&urlstr != ""){
           let urls = urlstr.split(";")
           urls.forEach((src,index)=>{
             list.push({

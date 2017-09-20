@@ -4,7 +4,6 @@
       placeholder="输入关键字进行过滤"
       v-model="filterText">
     </el-input>
-    <Button  style="margin-bottom: 5px" type="success" @click="addNode" long>新增根节点</Button>
     <el-tree
       class="filter-tree"
       style="overflow:auto;"
@@ -17,6 +16,7 @@
       :render-content="renderContent"
       default-expand-all>
     </el-tree>
+    <Button  style="margin-top: 10px" type="info" @click="addNode" long>添加根目录</Button>
   </div>
 </template>
 

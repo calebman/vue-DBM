@@ -29,8 +29,8 @@ Vue.config.productionTip = false
 Vue.prototype.$logHelper = log
 //引入工具，配置代理
 Vue.prototype.$utilHelper = util
-Vue.prototype.HOST = 'static'
-//Vue.prototype.HOST = process.env.NODE_ENV === 'development'? '/api':''
+//Vue.prototype.HOST = 'static'
+Vue.prototype.HOST = process.env.NODE_ENV === 'development'? '/api':''
 
 let vm = new Vue({
   el: '#app',
@@ -71,7 +71,7 @@ router.beforeEach((to, from, next) => {
     //判断此路由是否需要进行登录验证
     if(to.meta.requiresAuth){
       //验证其登录状态
-      if(window.sessionStorage.getItem("token",true)){
+      if(window.sessionStorage.getItem("token")){
         next()
       }else{
         vm.showErrorMessage('请先登录!')

@@ -99,7 +99,7 @@
             if(response.status == 200){
               var data = response.body.data
               var tableParam = {
-                name:nodeData.id+"",
+                name:nodeData.value+"",
                 label:nodeData.label,
                 type:'data',
                 info:data,
@@ -118,13 +118,16 @@
         }
         this.$http.post(this.HOST+'/admin/system/tree/edit',param).then((response) => {
           if(response.status == 200){
-            next(true,response.body.data.tid)
+            if(data.isAdd){
+              next(true,response.body.data.tid)
+            }else{
+              next(true)
+            }
           }
         })
       },
       DelNode(parentNode,data,next){
         var param = {
-          parentNode:parentNode,
           node:data
         }
         this.$http.post(this.HOST+'/admin/system/tree/del',param).then((response) => {
