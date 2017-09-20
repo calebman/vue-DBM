@@ -172,7 +172,7 @@
 * 控件源码见src/components/tree
 
 #### 演示
-![](https://calebman.github.io/vue-DBM/tree.gif)
+![](http://owkmkzzaa.bkt.clouddn.com/image/jpgtree.gif)
 
 #### 文档
 * props
@@ -252,7 +252,9 @@ ps:由于前端工程使用了大量的json文件来做数据模拟，因此可�
 
 ### 效果演示
 
-[demo地址](https://calebman.github.io/vue-DBM/index.html)
+[overseas](https://calebman.github.io/vue-DBM/index.html)
+
+[国内](http://owkmkzzaa.bkt.clouddn.com/index.html)
 
 ### 对应的后端工程
 
@@ -262,7 +264,7 @@ ps:由于前端工程使用了大量的json文件来做数据模拟，因此可�
 
 #### 登录
 
-![](https://calebman.github.io/vue-DBM/login.png)
+![](http://owkmkzzaa.bkt.clouddn.com/login.png)
 
 #### 权限管理
 
@@ -270,14 +272,14 @@ ps:由于前端工程使用了大量的json文件来做数据模拟，因此可�
 
 #### 表格列表
 
-![](https://calebman.github.io/vue-DBM/table.png)
+![](http://owkmkzzaa.bkt.clouddn.com/table.png)
 
 #### 创建表格
 
-![](https://calebman.github.io/vue-DBM/createTable.png)
+![](http://owkmkzzaa.bkt.clouddn.com/createTable.png)
 
 #### 表格操作
 
-![](https://calebman.github.io/vue-DBM/tableData.png)
+![](http://owkmkzzaa.bkt.clouddn.com/tableData.png)
 
 

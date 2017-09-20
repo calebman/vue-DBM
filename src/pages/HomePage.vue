@@ -23,20 +23,20 @@
     <div class="summary">
       <Row :gutter="16">
         <Col span="6">
-        <span class="number">56,123</span><br>
+        <span class="number">5,300</span><br>
         <span class="number_detail">总计访问</span>
         </Col>
         <Col span="6">
-        <span class="number">56,123</span><br>
+        <span class="number">1,213</span><br>
         <span class="number_detail">总计数据</span>
         </Col>
         <Col span="6">
-        <span class="number">56,123</span><br>
-        <span class="number_detail">总计数据</span>
+        <span class="number">0</span><br>
+        <span class="number_detail">还没想好放什么</span>
         </Col>
         <Col span="6">
-        <span class="number">56,123</span><br>
-        <span class="number_detail">总计数据</span>
+        <span class="number">0</span><br>
+        <span class="number_detail">还没想好放什么</span>
         </Col>
       </Row>
     </div>
