@@ -29,8 +29,8 @@ Vue.config.productionTip = false
 Vue.prototype.$logHelper = log
 //引入工具，配置代理
 Vue.prototype.$utilHelper = util
-//Vue.prototype.HOST = 'static'
-Vue.prototype.HOST = process.env.NODE_ENV === 'development'? '/api':''
+Vue.prototype.HOST = 'static'
+//Vue.prototype.HOST = process.env.NODE_ENV === 'development'? '/api':''
 
 let vm = new Vue({
   el: '#app',
