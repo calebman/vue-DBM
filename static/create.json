@@ -94,6 +94,13 @@
           }
         ]
       }
-    ]
+    ],
+    "homeData":{
+      "accessCount":6700,
+      "dataCount":3000,
+      "a":1200,
+      "b":3000,
+      "chars":[]
+    }
   }
 }
