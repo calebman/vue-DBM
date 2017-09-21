@@ -40,6 +40,11 @@
         </Col>
       </Row>
     </div>
+    <i-circle :percent="percent" :stroke-color="color">
+      <Icon v-if="percent == 100" type="ios-checkmark-empty" size="60" style="color:#5cb85c"></Icon>
+      <span v-else style="font-size:24px">{{ percent }}%</span>
+    </i-circle>
+    <Button @click="send">123</Button>
     <div class="summary">
       <Tabs style="margin-top: 10px" v-model="selectTab" :animated="false">
         <TabPane label="访问量" name="accessChars">
@@ -60,13 +65,37 @@
         return {
           selectTab:"",
           accessChars:{},
-          dataChars:{}
+          dataChars:{},
+          percent: 0
         }
+    },
+    methods:{
+      send(){
+        this.$socket.emit('message',"123")
+      }
     },
     mounted(){
       // 基于准备好的dom，初始化echarts实例
       this.accessChars = echarts.init(document.getElementById('accessChar'));
       this.dataChars = echarts.init(document.getElementById('dataChar'));
+    },
+    computed: {
+      color () {
+        let color = '#2db7f5';
+        if (this.percent == 100) {
+          color = '#5cb85c';
+        }
+        return color;
+      }
+    },
+    mounted(){
+      this.$socket.emit('bind', window.sessionStorage.getItem("username"))
+    },
+    sockets:{
+      message: function(val){
+        console.log("[websocket] "+val)
+        this.percent = val
+      }
     },
     created(){
       let option = {
@@ -104,20 +133,20 @@
       if(this.HOST=="static"){
         url+=".json"
       }
-      this.$http.get(url).then((response) => {
-        if(response.status == 200){
-          let accessList = response.body.data.accessList
-          option.xAxis.data = accessList.map(function (item) {return item[0]})
-          option.series.data = accessList.map(function (item) {return item[1]})
-          option.title.text = "系统访问量统计"
-          this.accessChars.setOption(option)
-          let dataList = response.body.data.dataList
-          option.xAxis.data = dataList.map(function (item) {return item[0]})
-          option.series.data = dataList.map(function (item) {return item[1]})
-          option.title.text = "系统总数据量统计"
-          this.dataChars.setOption(option)
-        }
-      })
+//      this.$http.get(url).then((response) => {
+//        if(response.status == 200){
+//          let accessList = response.body.data.accessList
+//          option.xAxis.data = accessList.map(function (item) {return item[0]})
+//          option.series.data = accessList.map(function (item) {return item[1]})
+//          option.title.text = "系统访问量统计"
+//          this.accessChars.setOption(option)
+//          let dataList = response.body.data.dataList
+//          option.xAxis.data = dataList.map(function (item) {return item[0]})
+//          option.series.data = dataList.map(function (item) {return item[1]})
+//          option.title.text = "系统总数据量统计"
+//          this.dataChars.setOption(option)
+//        }
+//      })
     }
   }
 </script>

@@ -4,7 +4,7 @@ export default {
   info:function (msg,type) {
     if(this.openLog){
       if(type&&type.indexOf(this.filter)>-1){
-        console.info(msg)
+        console.log("["+type+"]"+msg)
       }else if(!type){
         console.info(msg)
       }
@@ -13,7 +13,7 @@ export default {
   error:function (msg,type) {
     if(this.openLog){
       if(type&&type.indexOf(this.filter)>-1){
-        console.error(msg)
+        console.log("["+type+"]"+msg)
       }else if(!type){
         console.error(msg)
       }
@@ -22,7 +22,7 @@ export default {
   log:function (msg,type) {
     if(this.openLog){
       if(type&&type.indexOf(this.filter)>-1){
-        console.log(msg)
+        console.log("["+type+"]"+msg)
       }else if(!type){
         console.log(msg)
       }

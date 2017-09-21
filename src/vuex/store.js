@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+
 Vue.use(Vuex)
+
+
 
 const store = new Vuex.Store({
   // 定义状态
@@ -29,6 +32,9 @@ const store = new Vuex.Store({
       activeNameList:["home"],
       //标签页内容
       tabItems:[]
+    },
+    socket:{
+      event:{}
     }
   },
   mutations:{
@@ -76,6 +82,7 @@ const store = new Vuex.Store({
       if(notActive){
         items.splice(items.length,1,item)
       }
+      console.log("[store]"+JSON.stringify(items))
     },
     //移除一个标签页
     removeTabItem(state,name){

@@ -302,6 +302,7 @@
           this.setp2Param.showErrorInfo = []
         },
         getEditLog(oldTable,newTable){
+          newTable.tableName = newTable.tableName.toLowerCase()
           var getEdit = {
             logs:[],
             updateOpts:[],
@@ -312,6 +313,7 @@
           this.canCommit = true
           //检测表名与表位置变化变化
           if(oldTable){
+            oldTable.tableName = oldTable.tableName.toLowerCase()
             if(newTable.tableName != oldTable.tableName){
               getEdit.logs.push({
                 type:"warning",

@@ -1,10 +1,10 @@
 <template>
   <div>
-    <Icon type="pound" size="18" v-if="columnType == 'text'"></Icon>
+    <Icon type="compose" size="18" v-if="columnType == 'text'"></Icon>
     <Icon type="ios-clock-outline" size="18" v-if="columnType == 'date'"></Icon>
     <Icon type="images" size="20" v-if="columnType == 'img'"></Icon>
-    <Icon type="calculator" size="17" v-if="columnType == 'number'"></Icon>
-    <Icon type="ios-flag-outline" size="20" v-if="columnType == 'select'"></Icon>
+    <Icon type="ios-infinite-outline" size="18" v-if="columnType == 'number'"></Icon>
+    <Icon type="ios-settings" size="20" v-if="columnType == 'select'"></Icon>
     <span style="margin-left: 5px;font-size: 17px;color: #828282">{{column.title}}</span>
   </div>
 </template>

@@ -42,14 +42,16 @@
         @on-selection-change="handleSelectionChange"
         v-if="!isLoading"
         @on-row-dblclick="handleEdit"
-        height="600"
         size="small"
+        no-data-text="数据为空"
         highlight-row
         border></Table>
-      <Spin size="large" fix v-if="isLoading">
-        <Icon type="load-c" size=18 class="demo-spin-icon-load"></Icon>
-        <div>加载中</div>
-      </Spin>
+      <div class="Spin" v-if="isLoading">
+        <Spin  size="large" fix>
+          <Icon type="load-c" size=18 class="demo-spin-icon-load"></Icon>
+          <div>加载中</div>
+        </Spin>
+      </div>
     </div>
     <div style="margin-top:15px;margin-right:30px;" align="right">
       <Page
@@ -367,6 +369,14 @@
 <style>
   .demo-table{
     display: inline-block;
+    overflow: auto;
+    width: 100%;
+    max-height: 600px;
+    position: relative;
+  }
+  .Spin{
+    display: inline-block;
+    overflow: auto;
     width: 100%;
     height: 600px;
     position: relative;

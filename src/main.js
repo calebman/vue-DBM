@@ -12,6 +12,7 @@ import util from './common/js/util'
 import log from './common/js/log'
 import 'iview/dist/styles/iview.css'
 import 'element-ui/lib/theme-default/index.css'
+import VueSocketio from 'vue-socket.io';
 
 //单独引用element-ui相关组件
 Vue.use(Input)
@@ -29,8 +30,12 @@ Vue.config.productionTip = false
 Vue.prototype.$logHelper = log
 //引入工具，配置代理
 Vue.prototype.$utilHelper = util
-Vue.prototype.HOST = 'static'
-//Vue.prototype.HOST = process.env.NODE_ENV === 'development'? '/api':''
+//引入全局webSocket
+Vue.use(VueSocketio, 'http://localhost:3983');
+//使用静态文件
+//Vue.prototype.HOST = 'static'
+//使用代理连接后台
+Vue.prototype.HOST = process.env.NODE_ENV === 'development'? '/api':''
 
 let vm = new Vue({
   el: '#app',

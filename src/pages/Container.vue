@@ -99,7 +99,7 @@
             if(response.status == 200){
               var data = response.body.data
               var tableParam = {
-                name:nodeData.value+"",
+                name:nodeData.label,
                 label:nodeData.label,
                 type:'data',
                 info:data,

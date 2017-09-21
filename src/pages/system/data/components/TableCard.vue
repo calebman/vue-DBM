@@ -1,7 +1,7 @@
 <style>
   .span_type{
     font-size: 18px;
-    color: #0082e6;
+    color: #9F79EE;
   }
   .span_label{
     font-size: 18px;
@@ -28,6 +28,10 @@
         &nbsp;
         <span class="span_detail"> {{columnsData.length}}列 &nbsp;{{tableDataCount}}行</span>
       </p>
+      <a href="#" slot="extra" @click.prevent="searchTable" style="margin-right: 8px;">
+        <Icon type="search"></Icon>
+        查看
+      </a>
       <a href="#" slot="extra" @click.prevent="editTable" style="margin-right: 8px;">
         <Icon type="edit"></Icon>
         编辑
@@ -43,11 +47,11 @@
             <span class="span_label">{{item.label}}</span>
             </Col>
             <Col :span="12">
-            <Icon type="pound" size="18" :color="columnColor" v-if="item.type == 'text'"></Icon>
+            <Icon type="compose" size="18" :color="columnColor" v-if="item.type == 'text'"></Icon>
             <Icon type="android-time" size="18" :color="columnColor" v-if="item.type == 'date'"></Icon>
             <Icon type="images" size="18" :color="columnColor" v-if="item.type == 'img'"></Icon>
-            <Icon type="calculator" size="18" :color="columnColor" v-if="item.type == 'number'"></Icon>
-            <Icon type="ios-flag-outline" size="20" :color="columnColor"  v-if="item.type == 'select'"></Icon>
+            <Icon type="ios-infinite-outline" size="18" :color="columnColor" v-if="item.type == 'number'"></Icon>
+            <Icon type="ios-settings" size="20" :color="columnColor"  v-if="item.type == 'select'"></Icon>
             &nbsp;
             <span class="span_type" v-if="item.type == 'text'">文本类型</span>
             <span class="span_type" v-if="item.type == 'date'">时间类型</span>
@@ -90,7 +94,7 @@
     export default {
       data () {
         return {
-          columnColor:"blue",
+          columnColor:"#9F79EE",
           delVisible:false
         }
       },
@@ -113,6 +117,21 @@
         },
         showDel(){
           this.delVisible = true
+        },
+        searchTable(){
+          this.$http.get(this.HOST+'/admin/data/table/'+this.tableName+'/create').then((response) => {
+            if(response.status == 200){
+              var data = response.body.data
+              var tabParam = {
+                name:this.tableName,
+                label:this.tableName,
+                type:'data',
+                info:data,
+                active:true
+              }
+              this.$store.commit('addTabItem', tabParam)
+            }
+          })
         }
       },
       props:{
