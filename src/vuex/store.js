@@ -33,9 +33,15 @@ const store = new Vuex.Store({
       //标签页内容
       tabItems:[]
     },
-    socket:{
-      event:{}
-    }
+    event:{
+      detail:"",
+      percent:0
+    },
+    fastItem:{
+      detail:"",
+      url:""
+    },
+    notification:[]
   },
   mutations:{
     //设置表格树
@@ -109,6 +115,22 @@ const store = new Vuex.Store({
         item.active = false
         items.splice(removeItem,1,item)
       }
+    },
+    //添加执行事件描述
+    addEvent(state,event){
+      state.event=event
+    },
+    //添加一个通知
+    addNotification(state,notification){
+
+    },
+    //移除一个通知
+    removeNotification(state,notificationId){
+
+    },
+    //添加一个快捷选项
+    addFastItem(state,fastItem){
+      state.fastItem = fastItem
     }
   }
 })

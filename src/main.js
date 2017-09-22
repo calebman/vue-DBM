@@ -60,6 +60,20 @@ let vm = new Vue({
     this.$Notice.config({top: 100, duration: 2})
     //全局配置Loading 参数分别为进度条颜色、失败颜色、高度
     this.$Loading.config({color: '#5cb85c', failedColor: '#f0ad4e', height: 3})
+
+  },
+  sockets:{
+    bind:function () {
+      if(window.sessionStorage.getItem("username")){
+        this.$socket.emit('bind', window.sessionStorage.getItem("username"))
+      }
+    },
+    progress:function (val) {
+      this.$store.commit('addEvent',val)
+    },
+    notify:function (val) {
+      var notificationId = util.generateUUID()
+    }
   }
 })
 
@@ -97,14 +111,12 @@ router.beforeEach((to, from, next) => {
 Vue.http.interceptors.push(function(request, next) {
   //开启全局Loading
   this.$Loading.start()
-
   //如果是使用静态数据模式
   if(Vue.prototype.HOST=="static"&&request.url.indexOf(".json")==-1){
     //在使用静态数据测试阶段需要开启以下两个配置
     request.method = "GET"
     request.url+=".json"
   }
-
   //打印请求体的内容
   var requestParams = request.body
   //对请求体做处理,封装为json

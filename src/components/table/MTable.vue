@@ -8,7 +8,11 @@
             <Button type="primary" size="small" icon="plus" @click="handleAdd">新增一行</Button>
           </Tooltip>
           <Tooltip  :content="'读取Excel文件数据导入'+mtable.tableName" placement="bottom-start" effect="light">
-            <Button type="primary" size="small" icon="ios-folder-outline" @click="importData">导入数据</Button>
+            <Upload :action="HOST+'/admin/data/table/'+mtable.tableName+'/create/import'"
+                    :show-upload-list=false
+                    :on-progress="importProgress">
+              <Button type="primary" size="small" icon="ios-folder-outline">导入数据</Button>
+            </Upload>
           </Tooltip>
           <Tooltip  :content="'将'+mtable.tableName+'导出为Excel文件'" placement="bottom-start" effect="light">
             <Button type="primary" size="small" icon="share" @click="exportData">导出数据</Button>
@@ -304,14 +308,12 @@
         })
         return tableCol
       },
-      //导入数据
-      importData(){
-        this.$Loading.start()
-        var t
-        clearTimeout(t)
-        t = setTimeout(()=>{
-          this.$Loading.finish()
-        }, 3000)
+      //上传excel进度
+      importProgress(event){
+        this.$store.commit('addEvent',{
+          percent:(20*event.percent)/100,
+          detail:"正在处理excel文件"
+        })
       },
       //导出数据
       exportData(){
@@ -321,7 +323,11 @@
         }
         this.$http.post(this.HOST+"/admin/data/table/"+this.mtable.tableName+"/create/export", data).then((response) => {
           if(response.status == 200){
-            var fileUrl = response.body.data.fileUrl
+            var downloadItem = {
+              detail:this.mtable.tableName+"导出成功，点击下载",
+              url: response.body.data.fileUrl
+            }
+            this.$store.commit("addFastItem",downloadItem)
             this.$Message.success("数据导出成功")
           }
         })
