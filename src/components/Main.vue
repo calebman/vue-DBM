@@ -72,8 +72,8 @@
 </template>
 
 <script>
-  import Container from './Container.vue'
-  import progressbar from '../components/progress/progress.vue'
+  import Container from './framework/Container.vue'
+  import progressbar from '../components/public/progress/Index.vue'
   export default {
     data() {
       return {

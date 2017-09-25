@@ -47,13 +47,13 @@
 </template>
 
 <script>
-  import MTable from '../components/table/MTable.vue'
-  import HomePage from '../pages/HomePage.vue'
-  import NavMenu from './framework/NavMenu.vue'
-  import MTree from '../components/tree/MTree.vue'
-  import RolePage from './system/role/RolePage.vue'
-  import UserPage from './system/user/UserPage.vue'
-  import TablePage from './system/data/TablePage.vue'
+  import MTable from '../public/table/Index.vue'
+  import HomePage from './HomePage.vue'
+  import NavMenu from './NavMenu.vue'
+  import MTree from '../public/tree/Index.vue'
+  import RolePage from '../role/Index.vue'
+  import UserPage from '../user/Index.vue'
+  import TablePage from '../data/Index.vue'
   export default {
     data() {
       return {

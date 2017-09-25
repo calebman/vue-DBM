@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import RoutePage from './pages/framework/RoutePage.vue'
+  import RoutePage from './components/framework/RoutePage.vue'
 export default {
   name: 'app',
   components:{

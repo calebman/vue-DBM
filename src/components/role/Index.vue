@@ -34,10 +34,10 @@
 
 </template>
 <script>
-  import RoleTags from './components/RoleTags.vue'
-  import EditRoleDialog from './components/EditRoleDialog.vue'
-  import AddRoleDialog from './components/AddRoleDialog.vue'
-  import DelRoleDialog from './components/DelRoleDialog.vue'
+  import RoleTags from './RoleTags.vue'
+  import EditRoleDialog from './EditRoleDialog.vue'
+  import AddRoleDialog from './AddRoleDialog.vue'
+  import DelRoleDialog from './DelRoleDialog.vue'
   export default {
     data () {
       return {

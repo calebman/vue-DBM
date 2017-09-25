@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  import TreeItem from './components/TreeItem.vue'
+  import TreeItem from './TreeItem.vue'
   export default {
     data() {
       return {

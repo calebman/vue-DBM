@@ -18,8 +18,8 @@
 
 </template>
 <script>
-  import UserTag from "./components/UserTag.vue"
-  import SwitchEnabled from "./components/SwitchEnabled.vue"
+  import UserTag from "./UserTag.vue"
+  import SwitchEnabled from "./SwitchEnabled.vue"
   export default {
     data () {
       return {

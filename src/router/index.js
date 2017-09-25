@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import ErrorPage from '../pages/ErrorPage.vue'
-import Login from '../pages/Login.vue'
-import Main from '../pages/Main.vue'
+import ErrorPage from '../components/framework/ErrorPage.vue'
+import Login from '../components/Login.vue'
+import Main from '../components/Main.vue'
 
 Vue.use(Router)
 

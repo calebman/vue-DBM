@@ -49,10 +49,10 @@
 </template>
 
 <script>
-  import MText from './components/MText.vue'
-  import MDatePicker from './components/MDatePicker.vue'
-  import MSelect from './components/MSelect.vue'
-  import MNnmberInput from './components/MNumberInput.vue'
+  import MText from './MText.vue'
+  import MDatePicker from './MDatePicker.vue'
+  import MSelect from './MSelect.vue'
+  import MNnmberInput from './MNumberInput.vue'
   export default {
     data() {
       return {

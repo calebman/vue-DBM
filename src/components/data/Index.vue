@@ -48,8 +48,8 @@
 </template>
 
 <script>
-  import CreateSteps from './components/CreateSteps.vue'
-  import TableCard from './components/TableCard.vue'
+  import CreateSteps from './CreateSteps.vue'
+  import TableCard from './TableCard.vue'
   import Waterfall from 'vue-waterfall/lib/waterfall'
   import WaterfallSlot from 'vue-waterfall/lib/waterfall-slot'
     export default {

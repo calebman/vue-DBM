@@ -82,13 +82,13 @@
 </template>
 
 <script>
-  import EditDialog from './components/EditDialog/EditDialog.vue'
-  import FilterDialog from './components/FilterDialog/FilterDialog.vue'
-  import FilterDetail from './components/FilterDetail/FilterDetail.vue'
-  import ImgColumn from './components/ImgColumn.vue'
-  import ColumnHeader from './components/ColumnHeader.vue'
-  import SelectColumn from './components/SelectColumn.vue'
-  import TextColumn from './components/TextColumn.vue'
+  import EditDialog from './edit/Index.vue'
+  import FilterDialog from './filter/Index.vue'
+  import FilterDetail from './filterdetail/Index.vue'
+  import ImgColumn from './ImgColumn.vue'
+  import ColumnHeader from './ColumnHeader.vue'
+  import SelectColumn from './SelectColumn.vue'
+  import TextColumn from './TextColumn.vue'
   export default {
     data() {
       return {
