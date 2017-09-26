@@ -84,7 +84,7 @@
 │  │
 │  ├─common
 │  │  └─js
-│  │          log.js(日志类)
+│  │          logger.js(日志类)
 │  │          util.js(工具类)
 │  │
 │  ├─components

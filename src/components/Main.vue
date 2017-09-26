@@ -131,7 +131,7 @@
             })
             break
           case 'setting':
-            console.log(JSON.stringify(this.fastItem))
+
             break
         }
       }
@@ -155,7 +155,9 @@
           + " "+(date.getHours()>9?date.getHours():('0'+date.getHours()))
           +":"+(date.getMinutes()>9?date.getMinutes():('0'+date.getMinutes()))
           +":"+(date.getSeconds()>9?date.getSeconds():('0'+date.getSeconds()))
-        document.getElementById("time").innerHTML = now
+        if( document.getElementById("time")){
+          document.getElementById("time").innerHTML = now
+        }
       },1000);
     }
   }

@@ -110,20 +110,20 @@
       if(this.HOST=="static"){
         url+=".json"
       }
-//      this.$http.get(url).then((response) => {
-//        if(response.status == 200){
-//          let accessList = response.body.data.accessList
-//          option.xAxis.data = accessList.map(function (item) {return item[0]})
-//          option.series.data = accessList.map(function (item) {return item[1]})
-//          option.title.text = "系统访问量统计"
-//          this.accessChars.setOption(option)
-//          let dataList = response.body.data.dataList
-//          option.xAxis.data = dataList.map(function (item) {return item[0]})
-//          option.series.data = dataList.map(function (item) {return item[1]})
-//          option.title.text = "系统总数据量统计"
-//          this.dataChars.setOption(option)
-//        }
-//      })
+      this.$http.get(url).then((response) => {
+        if(response.status == 200){
+          let accessList = response.body.data.accessList
+          option.xAxis.data = accessList.map(function (item) {return item[0]})
+          option.series.data = accessList.map(function (item) {return item[1]})
+          option.title.text = "系统访问量统计"
+          this.accessChars.setOption(option)
+          let dataList = response.body.data.dataList
+          option.xAxis.data = dataList.map(function (item) {return item[0]})
+          option.series.data = dataList.map(function (item) {return item[1]})
+          option.title.text = "系统总数据量统计"
+          this.dataChars.setOption(option)
+        }
+      })
     }
   }
 </script>

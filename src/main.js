@@ -9,7 +9,7 @@ import Vuex from 'vuex'
 import store from './vuex/index'
 import iView from 'iview'
 import util from './util/util'
-import log from './util/log'
+import log from './util/logger'
 import 'iview/dist/styles/iview.css'
 import 'element-ui/lib/theme-default/index.css'
 import VueSocketio from 'vue-socket.io';
