@@ -32,6 +32,7 @@ Vue.prototype.$logHelper = log
 Vue.prototype.$utilHelper = util
 //引入全局webSocket
 Vue.use(VueSocketio, 'http://localhost:3983');
+
 //使用静态文件
 //Vue.prototype.HOST = 'static'
 //使用代理连接后台
