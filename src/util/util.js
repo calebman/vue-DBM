@@ -16,6 +16,8 @@ export default {
     var searchNode = this.searchNode(tree,nodeId,null)
     if(!searchNode.parentNode){
       searchNode.parentNode = {
+        value:null,
+        label:null,
         children:tree
       }
     }
@@ -47,6 +49,7 @@ export default {
       parentNode: this.parentNode,
       node: this.node
     }
+
   },
   clearTable:function (tree) {
     for (var i = 0; i < tree.length; i++) {

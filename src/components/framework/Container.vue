@@ -75,9 +75,6 @@
       tabParams:{
         get(){
           return this.$store.state.tabParams
-        },
-        set(newValue){
-          this.$store.state.tabParams = newValue
         }
       },
       tableTree:{
@@ -85,7 +82,7 @@
           return this.$store.state.tableTree
         },
         set(newValue){
-          this.$store.state.tableTree = newValue
+          this.$store.commit('setTableTree', newValue)
         }
       }
     },

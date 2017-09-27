@@ -63,15 +63,19 @@ let vm = new Vue({
     this.$Loading.config({color: '#5cb85c', failedColor: '#f0ad4e', height: 3})
 
   },
+  //全局监听websocket回传数据
   sockets:{
+    //用户绑定
     bind:function () {
       if(window.sessionStorage.getItem("username")){
         this.$socket.emit('bind', window.sessionStorage.getItem("username"))
       }
     },
+    //事物进度
     progress:function (val) {
       this.$store.commit('addEvent',val)
     },
+    //通知消息
     notify:function (val) {
       var notificationId = util.generateUUID()
     }
