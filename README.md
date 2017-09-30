@@ -59,7 +59,6 @@
 ├package.json(架包管理)
 ├README.md(项目自述)
 ├README_EN.md(Project Readme)
-├SELF_CHECK.md(相关记录)
 ├<build>
 │  ├build.js(工程构建)
 │  ├check-versions.js(npm版本检查)
@@ -95,6 +94,8 @@
 │  │  │  ├NavMenu.vue(左侧菜单栏)
 │  │  │  └RoutePage.vue(路由页)
 │  │  ├<public>
+│  │  │  ├<charts>
+│  │  │  │  └Index.vue(图表组件)
 │  │  │  ├<progress>
 │  │  │  │  └Index.vue(进度条组件)
 │  │  │  ├<table>
@@ -232,6 +233,41 @@ SaveEdit(parentNode,data,next){
       }
     })
 }
+```
+
+### 自定义图表
+#### 概要
+* 基于echarts的二次封装
+* 由数据驱动，当数据源发生改变图表重绘
+* 控件源码见src/components/charts
+
+#### 演示
+![](http://owkmkzzaa.bkt.clouddn.com/image/jpgtree.gif)
+
+#### 文档
+* props
+
+属性 | 说明 | 类型
+------------ | ------------- | -------------
+_id | 图表唯一标识，当id重复将会报错 | String
+_titleText | 图表标题 | String
+_xText | x轴描述 | String
+_yText | y轴描述 | String
+_chartData | 图表数据 | Array
+_type | 图表类型，提供三种(LineAndBar/LineOrBar/Pie) | String
+
+* 调用示例
+
+```
+ <chart
+  :_id="'testCharts'"
+  :_titleText="'访问量统计'"
+  :_xText="'类别'"
+  :_yText="'总访问量'"
+  :_chartData="chartData"
+  :_type="'Pie'"></chart>
+ //测试数据样例
+ [["类别1",10],["类别2",20]]
 ```
 
 
