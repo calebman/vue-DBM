@@ -32,8 +32,8 @@
               <Dropdown-menu slot="list">
                 <Dropdown-item disabled>{{loginInfo.nickName}}</Dropdown-item>
                 <Dropdown-item disabled>{{loginInfo.username}}</Dropdown-item>
+                <Dropdown-item name="updatePassword">修改密码</Dropdown-item>
                 <Dropdown-item name="logout">注销</Dropdown-item>
-                <Dropdown-item name="setting">设置</Dropdown-item>
               </Dropdown-menu>
             </Dropdown>
           </Col>
@@ -68,6 +68,17 @@
         </Col>
       </Row>
     </div>
+    <Modal
+      v-model="showUpdate"
+      title="修改密码"
+      @on-ok="updatePassword">
+      <Input v-model="updateInfo.password" type="password">
+      <span slot="prepend">原密码：</span>
+      </Input>
+      <Input style="margin-top: 10px" v-model="updateInfo.newpassword" type="password">
+      <span slot="prepend">新密码：</span>
+      </Input>
+    </Modal>
   </div>
 </template>
 
@@ -77,7 +88,11 @@
   export default {
     data() {
       return {
-
+        showUpdate:false,
+        updateInfo:{
+          password:"",
+          newpassword:""
+        }
       }
     },
     components:{
@@ -130,9 +145,20 @@
               }
             })
             break
-          case 'setting':
-
+          case 'updatePassword':
+            this.showUpdate = true
             break
+        }
+      },
+      updatePassword(){
+        this.$http.post(this.HOST+'/update',this.updateInfo).then((response) => {
+          if(response.status == 200){
+            this.$Message.success('密码修改成功!')
+          }
+        })
+        this.updateInfo={
+          password:"",
+          newpassword:""
         }
       }
     },

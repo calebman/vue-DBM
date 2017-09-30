@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="min-height: 300px">
     <Row type="flex" justify="end" style="margin-right: 30px">
       <Col>
       <Button type="primary" icon="plus-circled" @click="createUser">新建用户</Button>
@@ -13,7 +13,20 @@
         size="large"></Table>
       </Col>
     </Row>
-
+    <Modal
+      v-model="showAdd"
+      title="添加用户"
+      @on-ok="clickAddUser">
+      <Input type="text" v-model="addUser.username" size="large" placeholder="管理员账号" style="margin-top: 10px">
+      <Icon type="ios-person-outline" slot="prepend"></Icon>
+      </Input>
+      <Input type="text" v-model="addUser.realname" size="large" placeholder="管理员姓名" style="margin-top: 10px"  >
+      <Icon type="android-create" slot="prepend"></Icon>
+      </Input>
+      <Input type="text" placeholder="管理员密码" size="large" disabled :value="'123456'" style="margin-top: 10px">
+      <Icon type="ios-locked-outline" slot="prepend"></Icon>
+      </Input>
+    </Modal>
   </div>
 
 </template>
@@ -24,7 +37,12 @@
     data () {
       return {
         roles: this._roles,
-        userInfos:this._userInfos,
+        userInfos:JSON.parse(JSON.stringify(this._userInfos)),
+        showAdd:false,
+        addUser:{
+          username:"",
+          realname:""
+        },
         userCoumns:[
           {
             title: '用户账号',
@@ -51,8 +69,12 @@
               return h('div', [
                 h(UserTag,{
                   props:{
-                    data:params.row.nickName==null?"尚无角色":params.row.nickName,
-                    color:params.row.nickName==null?"":"blue"
+                    _roleCode:params.row.roleCode,
+                    _userCode:params.row.userCode,
+                    _roles:this.roles
+                  },
+                  on:{
+                    onRoleSuccess:this.onRoleChange
                   }
                 })
               ])
@@ -84,20 +106,6 @@
               return h('div', [
                 h('Button', {
                   props: {
-                    type: 'primary',
-                    size: 'small'
-                  },
-                  style: {
-                    marginRight: '5px'
-                  },
-                  on: {
-                    click: () => {
-                      this.editUser(params.row)
-                    }
-                  }
-                }, '编辑'),
-                h('Button', {
-                  props: {
                     type: 'error',
                     size: 'small'
                   },
@@ -106,7 +114,7 @@
                       this.delUser(params.row.userCode)
                     }
                   }
-                }, '删除')
+                }, '删除用户')
               ]);
             }
           }
@@ -121,7 +129,29 @@
     },
     methods: {
       createUser(){
-
+        this.showAdd = true
+      },
+      clickAddUser(){
+        this.showAdd = false
+        var username = this.addUser.username
+        var realname = this.addUser.realname
+        this.addUser = {
+          username:"",
+          realname:""
+        }
+        this.$http.post(this.HOST+'/admin/system/user/add',this.addUser).then((response) => {
+          if(response.status == 200){
+            this.userInfos.push({
+              userCode:response.body.data,
+              username:username,
+              realname:realname,
+              isUse:false,
+              nickName:"",
+              roleCode:null
+            })
+            this.$Notice.success({title: '用户操作', desc: '添加用户成功'})
+          }
+        })
       },
       onUserEnabled(userCode,enabled){
         var _userInfos = this.userInfos
@@ -132,8 +162,14 @@
           }
         })
       },
-      editUser(){
-
+      onRoleChange(userCode,roleCode){
+        var _userInfos = this.userInfos
+        _userInfos.forEach((value,index)=>{
+          if(value.userCode == userCode){
+            value.roleCode = roleCode
+            _userInfos.splice(index,1,value)
+          }
+        })
       },
       delUser(userCode){
         var data = {

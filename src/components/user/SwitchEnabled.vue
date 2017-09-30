@@ -6,39 +6,41 @@
 </template>
 
 <script>
-    export default {
-      data () {
-        return {
-          isUse:this._isUse
+  export default {
+    data () {
+      return {
+        isUse:this._isUse
+      }
+    },
+    props:{
+      userCode:"",
+      _isUse:false
+    },
+    methods: {
+      userAbled(abled) {
+        var data = {
+          userCode: this.userCode
         }
-      },
-      props:{
-        userCode:"",
-        _isUse:false
-      },
-      methods: {
-        userAbled(abled) {
-          var data = {
-            userCode: this.userCode
-          }
-          if (abled) {
-            this.$http.post(this.HOST + '/admin/system/user/enabled', data).then((response) => {
-              if (response.status == 200) {
-                this.$emit('onAbledSuccess', data.userCode, true)
-              }else{
-                this.isUse = false
-              }
-            })
-          } else {
-            this.$http.post(this.HOST + '/admin/system/user/disabled', data).then((response) => {
-              if (response.status == 200) {
-                this.$emit('onAbledSuccess', data.userCode, false)
-              }else{
-                this.isUse = true
-              }
-            })
-          }
+        if (abled) {
+          this.$http.post(this.HOST + '/admin/system/user/enabled', data).then((response) => {
+            if (response.status == 200) {
+              this.$Message.success('启用成功!')
+              this.$emit('onAbledSuccess', data.userCode, true)
+            }else{
+              this.isUse = false
+            }
+          })
+        } else {
+          this.$http.post(this.HOST + '/admin/system/user/disabled', data).then((response) => {
+            if (response.status == 200) {
+              this.$Message.success('禁用成功!')
+              this.$emit('onAbledSuccess', data.userCode, false)
+            }else{
+              this.isUse = true
+            }
+          })
         }
       }
     }
+  }
 </script>
