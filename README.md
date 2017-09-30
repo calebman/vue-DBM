@@ -238,11 +238,11 @@ SaveEdit(parentNode,data,next){
 ### 自定义图表
 #### 概要
 * 基于echarts的二次封装
-* 由数据驱动，当数据源发生改变图表重绘
+* 由数据驱动
 * 控件源码见src/components/charts
 
 #### 演示
-![](http://owkmkzzaa.bkt.clouddn.com/image/jpgtree.gif)
+![](http://owkmkzzaa.bkt.clouddn.com/charts.gif)
 
 #### 文档
 * props
@@ -266,8 +266,7 @@ _type | 图表类型，提供三种(LineAndBar/LineOrBar/Pie) | String
   :_yText="'总访问量'"
   :_chartData="chartData"
   :_type="'Pie'"></chart>
- //测试数据样例
- [["类别1",10],["类别2",20]]
+ //测试数据样例 [["类别1",10],["类别2",20]]
 ```
 
 
