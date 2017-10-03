@@ -1,4 +1,3 @@
-# 中文|[ENGLISH](https://github.com/calebman/vue-DBM/blob/master/README_EN.md) #
 # 目录
 - [项目说明](#说明)
 - [目标功能](#目标功能)
@@ -302,6 +301,8 @@ ps:由于前端工程使用了大量的json文件来做数据模拟，因此可�
 [overseas](https://calebman.github.io/vue-DBM/index.html)
 
 [国内](http://owkyrdh4c.bkt.clouddn.com)
+
+[带后台](http://116.196.98.242:3982)
 
 ### 对应的后端工程
 

@@ -14,6 +14,8 @@
           <Button type="ghost" @click="handleReset('formCustom')" style="margin-left: 8px">重置</Button>
         </div>
       </Form>
+      <br>
+      <h3>用户名（超级管理员）/密码: admin/admin</h3>
     </div>
   </div>
 </template>

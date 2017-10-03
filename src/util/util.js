@@ -69,5 +69,35 @@ export default {
         }
       }
     }
+  },
+  formatNum:function (str) {
+    var newStr = "";
+    var count = 0;
+    if (!isNaN(str)) {
+      str = str.toString()
+    }
+    if(str.indexOf(".")==-1){
+      for(var i=str.length-1;i>=0;i--){
+        if(count % 3 == 0 && count != 0){
+          newStr = str.charAt(i) + "," + newStr;
+        }else{
+          newStr = str.charAt(i) + newStr;
+        }
+        count++;
+      }
+      return newStr;
+    }
+    else {
+      for(var i = str.indexOf(".")-1;i>=0;i--){
+        if(count % 3 == 0 && count != 0){
+          newStr = str.charAt(i) + "," + newStr;
+        }else{
+          newStr = str.charAt(i) + newStr; //逐个字符相接起来
+        }
+        count++;
+      }
+      str = newStr + (str + "00").substr((str + "00").indexOf("."),3);
+      return str;
+    }
   }
 }

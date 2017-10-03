@@ -23,11 +23,11 @@
     <div class="summary">
       <Row :gutter="16">
         <Col span="6">
-        <span class="number">5,300</span><br>
+        <span class="number">{{showAccessCount}}</span><br>
         <span class="number_detail">总计访问</span>
         </Col>
         <Col span="6">
-        <span class="number">1,213</span><br>
+        <span class="number">{{showDataCount}}</span><br>
         <span class="number_detail">总计数据</span>
         </Col>
         <Col span="6">
@@ -40,37 +40,25 @@
         </Col>
       </Row>
     </div>
-    <div>
-      <Button type="info" size="large" style="margin-top: 20px;width: 100px" @click="send">add</Button>
-    </div>
     <div class="summary">
       <Tabs style="margin-top: 10px" v-model="selectTab" :animated="false">
-        <TabPane label="柱状与折线" name="accessCharts">
+        <TabPane label="系统访问量" name="accessCharts">
           <chart
             :_id="'accessCharts'"
             :_titleText="'访问量统计'"
-            :_xText="'类别'"
+            :_xText="'日期'"
             :_yText="'总访问量'"
-            :_chartData="chartData"
+            :_chartData="accessList"
             :_type="'LineAndBar'"></chart>
         </TabPane>
-        <TabPane label="柱状或折线" name="dataCharts">
+        <TabPane label="系统数据总量" name="dataCharts">
           <chart
             :_id="'dataCharts'"
-            :_titleText="'访问量统计'"
-            :_xText="'类别'"
-            :_yText="'总访问量'"
-            :_chartData="chartData"
+            :_titleText="'数据总量统计'"
+            :_xText="'日期'"
+            :_yText="'表格数据总量'"
+            :_chartData="dataList"
             :_type="'LineOrBar'"></chart>
-        </TabPane>
-        <TabPane label="饼图" name="testCharts">
-          <chart
-            :_id="'testCharts'"
-            :_titleText="'访问量统计'"
-            :_xText="'类别'"
-            :_yText="'总访问量'"
-            :_chartData="chartData"
-            :_type="'Pie'"></chart>
         </TabPane>
       </Tabs>
     </div>
@@ -86,7 +74,10 @@
           accessChars:{},
           dataChars:{},
           percent: 0,
-          chartData:[]
+          accessList:[],
+          dataList:[],
+          accessCount:1005,
+          dataCount:12002
         }
     },
     methods:{
@@ -94,6 +85,14 @@
         var x = "类别"+(this.chartData.length+1)
         var y =Math.ceil(Math.random()*100)
         this.chartData.push([x,y])
+      }
+    },
+    computed:{
+      showAccessCount(){
+        return this.$utilHelper.formatNum(this.accessCount)
+      },
+      showDataCount(){
+        return this.$utilHelper.formatNum(this.dataCount)
       }
     },
     components:{
@@ -106,7 +105,10 @@
       }
       this.$http.get(url).then((response) => {
         if(response.status == 200){
-          this.chartData = response.body.data.chartsData
+          this.accessList = response.body.data.accessList
+          this.accessCount = eval( this.accessList.map(function (item) {return item[1]}).join("+"))
+          this.dataList = response.body.data.dataList
+          this.dataCount = this.dataList[this.dataList.length-1][1]
         }
       })
     }

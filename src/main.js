@@ -34,9 +34,9 @@ Vue.prototype.$utilHelper = util
 Vue.use(VueSocketio, 'http://localhost:3983');
 
 //使用静态文件
-Vue.prototype.HOST = 'static'
+//Vue.prototype.HOST = 'static'
 //使用代理连接后台
-//Vue.prototype.HOST = process.env.NODE_ENV === 'development'? '/api':''
+Vue.prototype.HOST = process.env.NODE_ENV === 'development'? '/api':''
 
 let vm = new Vue({
   el: '#app',
