@@ -22,7 +22,12 @@
       }
     },
     props:{
-      _id:String,
+      _id:{
+        type:String,
+        default() {
+          return this.$utilHelper.generateUUID()
+        }
+      },
       _titleText:String,
       _xText:String,
       _yText:String,

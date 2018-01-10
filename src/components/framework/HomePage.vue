@@ -40,26 +40,49 @@
         </Col>
       </Row>
     </div>
+    <Button type="success" style="margin-top: 30px;width: 150px" @click="send">为图表添加数据</Button>
     <div class="summary">
-      <Tabs style="margin-top: 10px" v-model="selectTab" :animated="false">
-        <TabPane label="系统访问量" name="accessCharts">
+      <Tabs style="margin-top: 10px" :animated="false">
+        <TabPane label="折线与柱形">
           <chart
-            :_id="'accessCharts'"
-            :_titleText="'访问量统计'"
-            :_xText="'日期'"
-            :_yText="'总访问量'"
-            :_chartData="accessList"
+            :_titleText="'折线与柱形'"
+            :_xText="'横轴名称'"
+            :_yText="'纵轴名称'"
+            :_chartData="chartData"
             :_type="'LineAndBar'"></chart>
         </TabPane>
-        <TabPane label="系统数据总量" name="dataCharts">
+        <TabPane label="折线或柱形">
           <chart
-            :_id="'dataCharts'"
-            :_titleText="'数据总量统计'"
-            :_xText="'日期'"
-            :_yText="'表格数据总量'"
-            :_chartData="dataList"
+            :_titleText="'折线或柱形'"
+            :_xText="'横轴名称'"
+            :_yText="'纵轴名称'"
+            :_chartData="chartData"
             :_type="'LineOrBar'"></chart>
         </TabPane>
+        <TabPane label="饼图">
+          <chart
+            :_titleText="'饼图'"
+            :_xText="'横轴名称'"
+            :_yText="'纵轴名称'"
+            :_chartData="chartData"
+            :_type="'Pie'"></chart>
+        </TabPane>
+        <!--<TabPane label="系统访问量" name="accessCharts">-->
+          <!--<chart-->
+            <!--:_titleText="'访问量统计'"-->
+            <!--:_xText="'日期'"-->
+            <!--:_yText="'总访问量'"-->
+            <!--:_chartData="accessList"-->
+            <!--:_type="'LineAndBar'"></chart>-->
+        <!--</TabPane>-->
+        <!--<TabPane label="系统数据总量" name="dataCharts">-->
+          <!--<chart-->
+            <!--:_titleText="'数据总量统计'"-->
+            <!--:_xText="'日期'"-->
+            <!--:_yText="'表格数据总量'"-->
+            <!--:_chartData="dataList"-->
+            <!--:_type="'LineOrBar'"></chart>-->
+        <!--</TabPane>-->
       </Tabs>
     </div>
   </div>
@@ -76,6 +99,7 @@
           percent: 0,
           accessList:[],
           dataList:[],
+          chartData:[["类别1",10],["类别2",20]],
           accessCount:1005,
           dataCount:12002
         }
@@ -105,10 +129,10 @@
       }
       this.$http.get(url).then((response) => {
         if(response.status == 200){
-          this.accessList = response.body.data.accessList
-          this.accessCount = eval( this.accessList.map(function (item) {return item[1]}).join("+"))
-          this.dataList = response.body.data.dataList
-          this.dataCount = this.dataList[this.dataList.length-1][1]
+//          this.accessList = response.body.data.accessList
+//          this.accessCount = eval(this.accessList.map(function (item) {return item[1]}).join("+"))
+//          this.dataList = response.body.data.dataList
+//          this.dataCount = this.dataList[this.dataList.length-1][1]
         }
       })
     }

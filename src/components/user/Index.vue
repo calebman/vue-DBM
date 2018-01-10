@@ -1,5 +1,5 @@
 <template>
-  <div style="min-height: 300px">
+  <div style="overflow: auto;">
     <Row type="flex" justify="end" style="margin-right: 30px">
       <Col>
       <Button type="primary" icon="plus-circled" @click="createUser">新建用户</Button>
@@ -132,13 +132,11 @@
         this.showAdd = true
       },
       clickAddUser(){
+        console.log(this.addUser)
         this.showAdd = false
+        console.log(this.addUser)
         var username = this.addUser.username
         var realname = this.addUser.realname
-        this.addUser = {
-          username:"",
-          realname:""
-        }
         this.$http.post(this.HOST+'/admin/system/user/add',this.addUser).then((response) => {
           if(response.status == 200){
             this.userInfos.push({
@@ -149,6 +147,10 @@
               nickName:"",
               roleCode:null
             })
+            this.addUser = {
+              username:"",
+              realname:""
+            }
             this.$Notice.success({title: '用户操作', desc: '添加用户成功'})
           }
         })
