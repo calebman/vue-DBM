@@ -1,25 +1,28 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import ErrorPage from '../components/framework/ErrorPage.vue'
-import Login from '../components/Login.vue'
-import Main from '../components/Main.vue'
+/*
+ * @Author: calebman 
+ * @Date: 2018-03-22 11:28:33 
+ * @Last Modified by: calebman
+ * @Last Modified time: 2018-05-06 12:13:02
+ */
 
-Vue.use(Router)
+import Vue from 'vue';
+import Router from 'vue-router';
+import { otherRouter, appRouter, errorRouter, loginRouter } from './router';
+Vue.use(Router);
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      component: Login
-    },
-    {
-      path: '/main',
-      component: Main,
-      meta: { requiresAuth: true }
-    },
-    {
-      path: '/error',
-      component: ErrorPage
-    }
-  ]
-})
+let router = new Router({
+  routes: [{
+    path: '/',
+    component: () => import(/* webpackChunkName: "group-index" */'@/views/layout'),
+    meta: { title: "数据管理系统" },
+    children: [
+      loginRouter,
+      otherRouter,
+      ...appRouter,
+      ...errorRouter
+    ]
+  }]
+});
+
+
+export default router;

@@ -1,10 +1,34 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>DBM</title>
-  </head>
-  <body>
-    <div id="app"></div>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+  <script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+  <script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+  <script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js"></script>
+  <script src="https://cdn.bootcss.com/vuex/3.0.1/vuex.min.js"></script>
+  <script src="https://cdn.bootcss.com/moment.js/2.22.0/moment-with-locales.min.js"></script>
+  <script src="https://cdn.bootcss.com/moment.js/2.22.0/locale/zh-cn.js"></script>
+
+  <title>数据管理系统</title>
+  <link type="text/css" href="/static/local/index-loading.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="app"></div>
+  <div id="dbm-loading" class="showbox">
+    <div class="loader">
+      <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+      </svg>
+    </div>
+    <div class="text">
+      <span>系统初始化中...</span>
+    </div>
+  </div>
+  <!-- built files will be auto injected -->
+</body>
+
 </html>
