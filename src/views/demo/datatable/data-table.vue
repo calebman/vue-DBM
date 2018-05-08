@@ -490,7 +490,6 @@ export default {
 .table {
   height: 100%;
   .table-card {
-    margin: 10px;
     padding: 16px;
     height: 100%;
     border-radius: 5px;

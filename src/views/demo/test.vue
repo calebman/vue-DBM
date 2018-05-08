@@ -1,6 +1,10 @@
-<!--  -->
+<!-- 布局测试组件 -->
 <template>
-  <div></div>
+  <div>
+    <ul>
+      <li v-for="i in 1000">布局测试{{i}}</li>
+    </ul>
+  </div>
 </template>
 
 <script>

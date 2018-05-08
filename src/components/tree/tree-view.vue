@@ -41,7 +41,7 @@ export default {
 .tree-view-menu {
   width: 300px;
   min-height: 300px;
-  height: 100%;
+  /* height: 100%; */
   overflow-y: auto;
   overflow-x: hidden;
 }

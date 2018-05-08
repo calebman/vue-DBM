@@ -111,7 +111,6 @@ export default {
   height: 100%;
   text-align: left;
   margin-right: 10px;
-  padding: 16px;
   background: #fff;
 }
 </style>

@@ -15,6 +15,7 @@
         </el-submenu>
       </el-menu>
     </div>
+    <div class="container-center"></div>
     <div class="container-right">
       <div class="breadcrumb">
         <el-breadcrumb separator-class="el-icon-arrow-right">
@@ -69,40 +70,58 @@ export default {
       this.initBreadcrumbItems(to);
     }
   },
+  mounted() {
+    let self = this;
+    self.contentHeight = self.computeContentHeight();
+    window.onresize = function() {
+      self.contentHeight = self.computeContentHeight();
+    };
+  },
   created() {
     this.initBreadcrumbItems(this.$route);
   }
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .container {
   width: 100%;
   height: 100%;
+  position: relative;
   display: flex; /*设为伸缩容器*/
-}
-.container-left {
-  /* float: left; */
-  width: 240px;
-  height: 100%;
-}
-.menu {
-  text-align: left;
-  height: 100%;
-  padding: 16px;
-}
-.container-right {
-  flex: 1;
-  margin-top: 16px;
-  margin-left: 16px;
-}
-.breadcrumb {
-  padding-left: 10px;
-}
-.content {
-  margin-top: 16px;
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
+  .container-left {
+    width: 240px;
+    height: 100%;
+    .menu {
+      text-align: left;
+      height: 100%;
+      padding: 16px;
+    }
+  }
+  .container-center {
+    width: 16px;
+    height: 100%;
+  }
+  .container-right {
+    flex: 1;
+    padding-top: 16px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    .breadcrumb {
+      padding-left: 10px;
+      width: 100%;
+      height: 20px;
+    }
+    .content {
+      background-color: #fff;
+      overflow: auto;
+      width: 100%;
+      position: absolute;
+      top: 50px;
+      bottom: 0px;
+      left: 0px;
+    }
+  }
 }
 </style>
