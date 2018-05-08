@@ -1,24 +1,22 @@
 <template>
   <div class="filter-header" v-if="column.dataType">
-    <Row>
-      <Col span="20">
-      <input class="filter-header-input" v-if="column.dataType == 'decimal'" @blur="createFilter" v-number-only :disabled="isDisabled" @keyup="enter($event)" v-model="inputNum" v-focus/>
-      <el-date-picker class="filter-header-picker" v-else-if="column.dataType == 'datetime'" v-model="value" :type="dateType" :disabled="isDisabled" @change="createFilter"></el-date-picker>
-      <input class="filter-header-input" v-else :disabled="isDisabled" v-focus @keyup="enter($event)" @blur="createFilter" v-model="value" />
-      </Col>
-      <Col span="4">
-      <div class="filter-icon">
-        <el-dropdown @command="selectFilterType">
-          <a href="javascript:void(0)">
+    <el-row>
+      <el-col :xs="16" :sm="17" :md="18" :lg="19" :xl="20">
+        <input class="filter-header-input" v-if="column.dataType == 'decimal'" @blur="createFilter" v-number-only :disabled="isDisabled" @keyup="enter($event)" v-model="inputNum" v-focus/>
+        <el-date-picker class="filter-header-picker" v-else-if="column.dataType == 'datetime'" v-model="value" :type="dateType" :disabled="isDisabled" @change="createFilter"></el-date-picker>
+        <input class="filter-header-input" v-else :disabled="isDisabled" v-focus @keyup="enter($event)" @blur="createFilter" v-model="value" />
+      </el-col>
+      <el-col :xs="8" :sm="7" :md="6" :lg="5" :xl="4">
+        <div class="filter-icon">
+          <el-dropdown @command="selectFilterType">
             <i class="dbm d-icon-filter1"></i>
-          </a>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item v-for="(item,index) in filterType" :key="index" :command="item.name">{{item.title}}</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-      </div>
-      </Col>
-    </Row>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item v-for="(item,index) in filterType" :key="index" :command="item.name">{{item.title}}</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -140,7 +138,7 @@ export default {
   }
 };
 </script>
-<style>
+<style lang="less">
 .filter-header {
   background-color: #eeecec;
   width: 100%;
@@ -150,32 +148,32 @@ export default {
   word-break: break-all;
   overflow: hidden;
   line-height: 1.2em;
-}
-.filter-header-input {
-  text-align: center;
-  padding-left: 17%;
-  left: 30px;
-  width: 100%;
-  height: 32px;
-  outline: none;
-  margin: 3px;
-  font-size: 16px;
-  color: rgba(16, 11, 19, 0.93);
-  border: 1px solid rgba(221, 222, 225, 0.78);
-}
-.filter-header-picker {
-  text-align: center;
-  margin: 3px;
-  font-size: 16px;
-}
-.filter-icon {
-  height: 100%;
-  width: 100%;
-  padding: 10px 0 0 0;
-}
-
-.d-icon-filter1 {
-  font-size: 30px;
-  color: black;
+  .filter-header-input {
+    text-align: center;
+    padding-left: 17%;
+    left: 30px;
+    width: 100%;
+    height: 32px;
+    outline: none;
+    margin: 3px;
+    font-size: 16px;
+    color: rgba(16, 11, 19, 0.93);
+    border: 1px solid rgba(221, 222, 225, 0.78);
+  }
+  .filter-header-picker {
+    text-align: center;
+    margin: 3px;
+    font-size: 16px;
+  }
+  .filter-icon {
+    height: 100%;
+    width: 100%;
+    padding: 10px 0 0 0;
+    i {
+      font-size: 30px;
+      color: black;
+      cursor: pointer;
+    }
+  }
 }
 </style>

@@ -123,7 +123,7 @@ export default {
     }
     .system-user {
       text-align: right;
-      margin-right: 5px;
+      margin-right: 16px;
       .userinfo-inner {
         cursor: pointer;
         color: #fff;

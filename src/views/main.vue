@@ -2,7 +2,7 @@
 <template>
   <div class="container">
     <div class="container-left">
-      <el-menu default-active="1-4-1" class="menu" :collapse="isCollapse" router>
+      <el-menu default-active="1-4-1" class="menu" :defaultOpeneds="defaultOpeneds" router>
         <el-submenu v-for="(menuItem,menuIndex) in appMenu" :key="menuIndex" :index="menuIndex">
           <template slot="title">
             <i v-if="menuItem.icon" :class="menuItem.icon"></i>
@@ -35,7 +35,7 @@ export default {
   components: {},
   data() {
     return {
-      isCollapse: false,
+      defaultOpeneds: [],
       breadcrumbItems: []
     };
   },
@@ -70,15 +70,13 @@ export default {
       this.initBreadcrumbItems(to);
     }
   },
-  mounted() {
-    let self = this;
-    self.contentHeight = self.computeContentHeight();
-    window.onresize = function() {
-      self.contentHeight = self.computeContentHeight();
-    };
-  },
+  mounted() {},
   created() {
     this.initBreadcrumbItems(this.$route);
+    if (Array.isArray(this.appMenu) && this.appMenu.length > 0) {
+      // 默认展开第一项菜单的子项
+      this.defaultOpeneds = [0];
+    }
   }
 };
 </script>

@@ -18,10 +18,6 @@ Vue.prototype.$moment = moment;
 import "@/assets/themes-base/index.css";
 //引入字体图标
 import "@/assets/iconfont/iconfont.css";
-//全局引入iview
-// import iView from 'iview';
-// import 'iview/dist/styles/iview.css';
-// Vue.use(iView);
 
 //全局引入element-ui
 import ElementUI from 'element-ui';
@@ -30,12 +26,6 @@ Vue.use(ElementUI, { size: 'small' });
 
 
 router.beforeEach((to, from, next) => {
-    //如果path不存在则跳转错误页面
-    // console.log(router.getMatchedComponents(to));
-    // if (!router.getMatchedComponents(to)) {
-    //     router.replace({ path: "/404", query: to.query });
-    // } else {
-    // }
     //如果你需要认证、未登录且跳转路由不为登录页面则 跳转登录页面重新登录
     if (!to.meta.notAuth && !store.getters.isLogin && to.path != "/") {
         to.query.routePath = to.path;
@@ -44,22 +34,10 @@ router.beforeEach((to, from, next) => {
         store.commit('UPDATE_ROUTER_LOADING', true);
         next();
     }
-    // if (!checkRouter(router.options.routes, to.path)) {
-    //     router.replace({ path: "/404", query: to.query });
-    // } else {
-    //     //如果你需要认证、未登录且跳转路由不为登录页面则 跳转登录页面重新登录
-    //     if (!to.meta.notAuth && !store.getters.isLogin && to.path != "/") {
-    //         to.query.routePath = to.path;
-    //         router.replace({ path: "/", query: to.query });
-    //     } else {
-    //         store.commit('UPDATE_LOADING', true);
-    //         next();
-    //     }
-    // }
 });
 
 router.afterEach(function (to) {
-    window.document.title = to.meta.title ? `${to.meta.title}` : `数据管理系统`;
+    window.document.title = to.meta.title ? `${to.meta.title}` : `Database Manager`;
     store.commit('UPDATE_ROUTER_LOADING', false);
 });
 
@@ -67,26 +45,6 @@ router.onError(function (err) {
     store.commit('UPDATE_ROUTER_LOADING', false);
 });
 
-
-
-/**
- * @description 判断是否存在此路由
- * @author calebman
- * @param {any} path 路由路径
- */
-function checkRouter(routes, path, parentPath) {
-    if (routes && Array.isArray(routes)) {
-        for (let index in routes) {
-            let routePath = parentPath ? parentPath + routes[index].path : routes[index].path;
-            console.log(routePath + "-------" + path);
-            if ((routes[index].path && routePath == path) || (routes[index].children && checkRouter(routes[index].children, path, routePath))) {
-                return true;
-            }
-        }
-        return false;
-    }
-    return true;
-}
 
 /* eslint-disable no-new */
 new Vue({

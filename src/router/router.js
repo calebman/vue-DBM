@@ -2,7 +2,7 @@
  * @Author: calebman 
  * @Date: 2018-05-06 12:10:56 
  * @Last Modified by: calebman
- * @Last Modified time: 2018-05-07 15:08:38
+ * @Last Modified time: 2018-05-08 14:11:36
  */
 
 const main = () => import(/* webpackChunkName: "group-index" */ '@/views/main');
@@ -47,7 +47,7 @@ export const appRouter = [
       { path: "treeviewdemo", name: "treeViewDemo", meta: { title: "树形组件示例", icon: "dbm d-icon-shu" }, component: () => import( /* webpackChunkName: "group-demo-treeview-page" */ '@/views/demo/tree-view-demo') },
       { path: "datatabledemo", name: "dataTableDemo", meta: { title: "数据表格组件示例", icon: "dbm d-icon-biaoge" }, component: () => import(/* webpackChunkName: "group-demo-table-page" */ '@/views/demo/datatable/data-table') },
       { path: "chartsdemo", name: "chartsDemo", meta: { title: "图表组件示例", icon: "dbm d-icon-tubiao" }, component: () => import(/* webpackChunkName: "group-demo-charts-page" */ '@/views/demo/charts-demo') },
-      { path: "test", name: "test", meta: { title: "测试组件", icon: "icon dbm d-icon-test" }, component: () => import( /* webpackChunkName: "group-demo-menucard-page" */ '@/views/demo/test') }
+      { path: "test", name: "test", meta: { title: "布局测试", icon: "icon dbm d-icon-test" }, component: () => import( /* webpackChunkName: "group-demo-menucard-page" */ '@/views/demo/layout-test') }
     ]
   }
 ]

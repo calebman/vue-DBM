@@ -505,6 +505,7 @@ export default {
         i {
           color: #008b8b;
           font-size: 18px;
+          cursor: pointer;
         }
       }
       .header-right {
