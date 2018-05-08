@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Select v-model="roleCode" style="width: 200px" @on-change="changeRole">
+    <Select v-model="roleCode" style="width: 200px" @on-change="changeRole" transfer>
       <Option v-for="item in _roles" :value="item.roleCode" :key="item.roleCode">{{ item.nickName }}</Option>
     </Select>
   </div>
