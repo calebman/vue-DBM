@@ -2,13 +2,15 @@
  * @Author: calebman 
  * @Date: 2018-03-13 17:35:13 
  * @Last Modified by: calebman
- * @Last Modified time: 2018-05-06 12:27:15
+ * @Last Modified time: 2018-05-09 10:43:48
  */
 
 import Vue from 'vue';
 import Vuex from 'vuex';
-import app from './app';
-import business from './business';
+import app from './modules/app';
+import user from './modules/user';
+import getters from './getters';
+
 import utils from '@/libs/utils';
 import createPersistedState from 'vuex-persistedstate';
 
@@ -16,9 +18,11 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     modules: {
-        app: app,
-        business: business
-    },
+        app,
+        user
+      },
+      getters
+    
     // 持久化vuex状态
     // plugins: [createPersistedState({
     //     storage: {

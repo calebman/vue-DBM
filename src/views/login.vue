@@ -10,7 +10,7 @@
     <el-form-item prop="password">
       <el-input type="password" v-model="ruleForm.password" auto-complete="off" placeholder="密码"></el-input>
     </el-form-item>
-    <el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox>
+    <el-checkbox v-model="isAutoLogin" checked class="remember">自动登录</el-checkbox>
     <el-form-item style="width:100%;">
       <el-button type="primary" style="width:100%;" @click.native.prevent="handleSubmit" :loading="logining">登录</el-button>
     </el-form-item>
@@ -32,7 +32,7 @@ export default {
         username: [{ required: true, message: "请输入账号", trigger: "blur" }],
         password: [{ required: true, message: "请输入密码", trigger: "blur" }]
       },
-      checked: true
+      isAutoLogin: true
     };
   },
   props: {},
@@ -43,24 +43,9 @@ export default {
         if (valid) {
           this.logining = true;
           this.$store
-            .dispatch("login", this.ruleForm)
-            .then(() => {
-              this.dump();
-            })
-            .catch(err => {
-              this.$message({ message: err, type: "error" });
-            })
-            .finally(e => {
-              this.logining = false;
-            });
-        } else {
-          return false;
+            .dispatch("LoginByUsername", this.ruleForm)
+            .then(() => this.dump());
         }
-      });
-    },
-    autoLogin() {
-      this.$store.dispatch("login").then(() => {
-        this.dump();
       });
     },
     dump() {
@@ -80,9 +65,7 @@ export default {
     }
   },
   watch: {},
-  created() {
-    this.autoLogin();
-  }
+  created() {}
 };
 </script>
 
@@ -94,7 +77,7 @@ export default {
   -moz-border-radius: 5px;
   background-clip: padding-box;
   width: 350px;
-  height: 350px;
+  height: 340px;
   margin: auto;
   top: 0;
   right: 0;

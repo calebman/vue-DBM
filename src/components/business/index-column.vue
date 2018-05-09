@@ -5,7 +5,7 @@
     </div>
     <div class="close-index">
       <a @click.prevent="deleteRow">
-        <i class="el-icon-close" style="color:red;font-weight:bold;"></i>
+        <i class="el-icon-close"></i>
       </a>
     </div>
   </div>
@@ -49,5 +49,10 @@ export default {
 }
 .index-div:hover .span-index {
   display: none;
+}
+.close-index i {
+  cursor: pointer;
+  color: red;
+  font-weight: bold;
 }
 </style>

@@ -99,14 +99,12 @@ export default {
       }
     },
     close() {
-      this.isShow = false;
-      this.showIndex = 0;
       this.$emit("close");
+      this.showIndex = 0;
     },
     download() {},
     del() {
       this.$emit("delete", this.showIndex);
-      this.isShow = false;
       this.showIndex = 0;
     },
     getThumbnailIconUrl(relativePath) {

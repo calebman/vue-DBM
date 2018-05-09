@@ -2,18 +2,7 @@
 <template>
   <div class="container">
     <div class="container-left">
-      <el-menu default-active="1-4-1" class="menu" :defaultOpeneds="defaultOpeneds" router>
-        <el-submenu v-for="(menuItem,menuIndex) in appMenu" :key="menuIndex" :index="menuIndex">
-          <template slot="title">
-            <i v-if="menuItem.icon" :class="menuItem.icon"></i>
-            <span slot="title">{{menuItem.title}}</span>
-          </template>
-          <el-menu-item v-for="(item,index) in menuItem.children" :key="index" :index="item.path">
-            <i v-if="item.icon" :class="item.icon"></i>
-            <span slot="title">{{item.title}}</span>
-          </el-menu-item>
-        </el-submenu>
-      </el-menu>
+      <sidebar></sidebar>
     </div>
     <div class="container-center"></div>
     <div class="container-right">
@@ -30,12 +19,14 @@
 </template>
 
 <script>
+import sidebar from "./sidebar";
 export default {
-  name: "home",
-  components: {},
+  name: "layoutMain",
+  components: {
+    sidebar
+  },
   data() {
     return {
-      defaultOpeneds: [],
       breadcrumbItems: []
     };
   },
@@ -43,9 +34,6 @@ export default {
   computed: {
     routerLoading() {
       return this.$store.getters.routerLoading;
-    },
-    appMenu() {
-      return this.$store.getters.appMenu;
     }
   },
   methods: {
@@ -73,10 +61,6 @@ export default {
   mounted() {},
   created() {
     this.initBreadcrumbItems(this.$route);
-    if (Array.isArray(this.appMenu) && this.appMenu.length > 0) {
-      // 默认展开第一项菜单的子项
-      this.defaultOpeneds = [0];
-    }
   }
 };
 </script>
@@ -90,11 +74,7 @@ export default {
   .container-left {
     width: 240px;
     height: 100%;
-    .menu {
-      text-align: left;
-      height: 100%;
-      padding: 16px;
-    }
+    text-align: left;
   }
   .container-center {
     width: 16px;

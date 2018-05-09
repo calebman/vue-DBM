@@ -18,7 +18,7 @@
           <div v-if="isLogin" class="system-user">
             <el-dropdown @command="userCommand">
               <span class="userinfo-inner">
-                <img :src="userInfo.avator" /> {{userInfo.name}}
+                <img :src="avatar" /> {{name}}
               </span>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item command="usercenter">个人中心</el-dropdown-item>
@@ -41,26 +41,16 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
-  name: "layout1",
+  name: "layout",
   components: {},
   data() {
     return {};
   },
   props: {},
   computed: {
-    title() {
-      if (this.$route.meta && this.$route.meta.title) {
-        return ` —— ${this.$route.meta.title}`;
-      }
-      return ``;
-    },
-    userInfo() {
-      return this.$store.getters.userInfo;
-    },
-    isLogin() {
-      return this.$store.getters.isLogin;
-    }
+    ...mapGetters(["username", "avatar", "name", "introduction", "isLogin"])
   },
   methods: {
     userCommand(command) {
@@ -68,6 +58,7 @@ export default {
         case "usercenter":
           break;
         case "logout":
+          this.$store.dispatch("LogOut").then(() => location.reload());
           break;
       }
     }
