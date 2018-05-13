@@ -4,9 +4,13 @@
 
 #### 1.1 布局规划
 
-![布局规划图](https://github.com/calebman/vue-DBM/blob/master/images/layout.png)
+<p align="center">
+  <img src="https://github.com/calebman/vue-DBM/blob/master/images/layout.png">
+</p>
 
-![划分区域](https://github.com/calebman/vue-DBM/blob/master/images/layout-mark.png)
+<p align="center">
+  <img src="https://github.com/calebman/vue-DBM/blob/master/images/layout-mark.png">
+</p>
 
 在这里将区域划分成了蓝色方框和红色方框两部分，蓝色方框是一个上下高度固定中间自适应的上中下布局，红色方框则是一个左边宽度固定之后使用一个小的布局隔开，右边占满剩余宽度的布局。
 
@@ -133,4 +137,6 @@
 ```
 #### 2.3 合并两个布局
 
-![效果展示](https://github.com/calebman/vue-DBM/blob/master/images/layout.gif)
+<p align="center">
+  <img src="https://github.com/calebman/vue-DBM/blob/master/images/layout.gif">
+</p>

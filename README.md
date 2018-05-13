@@ -16,9 +16,7 @@
 
 **主意！此项目已重构，当前版本为2.0，老版本请查看 [release](https://github.com/calebman/vue-DBM/releases)下载1.0版本**
 
-
-
-#目录
+# 目录
 
 - [项目说明](#说明)
 - [开发前准备](#开发前准备)
@@ -54,8 +52,6 @@
 
 由于此项目使用业余时间来做，开发周期较长，代码的整洁程度仍待提高，我将不断修改做到自己满意为止，如果您发现问题请直接在Issues中提出，或者您对模块的实现有更好的解决方案欢迎**PR**
 
-
-
 ## 开发前准备
 
 您的本地环境需要包含有 [nodejs](http://nodejs.org/)，如果您使用git clone还需要有[git](https://git-scm.com/)。本项目主要使用了[vue](https://cn.vuejs.org/index.html)、[vuex](https://vuex.vuejs.org/zh-cn/)、[vue-router](https://router.vuejs.org/zh-cn/)、[element-ui](https://github.com/ElemeFE/element)、[axios](https://github.com/axios/axios)、[Mock.js](https://github.com/nuysoft/Mock)等技术栈，熟悉这些技术能够更好的掌握本项目。
@@ -68,25 +64,18 @@
  - [权限管理](https://github.com/calebman/vue-DBM/blob/master/docs/permission.md)
  - [render函数](https://github.com/calebman/vue-DBM/blob/master/docs/render.md)
 
-
-
 ## 目标功能
 
 ***TODO***
 
 
-
-##项目结构概述
-
-***TODO***
-
-
-
-##部分控件的封装与使用
+## 项目结构概述
 
 ***TODO***
 
+## 部分控件的封装与使用
 
+***TODO***
 
 ## 开发与发布
 
@@ -110,24 +99,17 @@ http://localhost:8060
 npm run build
 ```
 
-
 ## 更新日志
 
  [点我查看 更新日志](https://github.com/calebman/vue-DBM/releases).
-
-
 
 ## Demo
 
 [点我查看 Demo](https://calebman.github.io/vue-DBM )
 
-
-
-##致谢
+## 致谢
 
 本项目的架构参考了[**vue-element-admin**](https://github.com/PanJiaChen/vue-element-admin)的实现，表格组件基于[**vue-easytable**](https://github.com/huangshuwei/vue-easytable)进行了定制化的修改，在此非常感谢[PanJiaChen](https://github.com/PanJiaChen/vue-element-admin)与[huangshuwei](https://github.com/PanJiaChen/vue-element-admin)两位项目作者。
-
-
 
 ## License
 
