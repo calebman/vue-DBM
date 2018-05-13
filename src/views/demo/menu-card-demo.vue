@@ -1,8 +1,8 @@
 <!-- 功能卡片组件 -->
 <template>
-    <div>
-        <menu-card v-for="item,index in lockMenu" :key="item.key" :img="item.img" :title="item.title" :content="item.content" @click="menuClick(item.key)"></menu-card>
-    </div>
+  <div>
+    <menu-card v-for="item,index in sysMenu" :key="item.key" :img="item.img" :title="item.title" :content="item.content" @click="menuClick(item.key)"></menu-card>
+  </div>
 </template>
 
 <script>
@@ -14,18 +14,24 @@ export default {
   },
   data() {
     return {
-      lockMenu: [
+      sysMenu: [
         {
-          key: "record",
-          title: "授权记录",
-          content: "查询、筛选用户的实名授权开锁信息",
-          img: "static/auth-lock-record.png"
+          key: "center",
+          title: "个人中心",
+          content: "用户个人设置",
+          img: "static/user-center.png"
         },
         {
-          key: "openLockRecord",
-          title: "开锁记录",
-          content: "查询、筛选用户的实名开锁信息",
-          img: "static/open-lock-record.png"
+          key: "user",
+          title: "用户管理",
+          content: "对系统的所有管理员进行新增、授权等操作",
+          img: "static/users-manager.png"
+        },
+        {
+          key: "role",
+          title: "角色管理",
+          content: "创建、修改或删除系统的角色",
+          img: "static/role-manager.png"
         }
       ]
     };
@@ -34,7 +40,7 @@ export default {
   computed: {},
   methods: {
     menuClick(key) {
-      this.$Message.success(key);
+      this.$message(key);
     }
   },
   watch: {},

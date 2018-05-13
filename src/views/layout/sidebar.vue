@@ -1,20 +1,29 @@
+<!-- 左侧菜单栏 -->
 <template>
   <div class="scroll-container" ref="scrollContainer" @wheel.prevent="handleScroll">
     <div class="scroll-wrapper" ref="scrollWrapper" :style="{top: top + 'px'}">
-      <slot></slot>
+      <el-menu mode="vertical" :show-timeout="200" router :default-active="$route.path" background-color="#fff" text-color="#304156" active-text-color="#409EFF">
+        <sidebar-item :routes="permissionRouters"></sidebar-item>
+      </el-menu>
     </div>
   </div>
 </template>
 
 <script>
-const delta = 15;
+import { mapGetters } from "vuex";
+import sidebarItem from "./sidebar-item";
 
+const delta = 15;
 export default {
-  name: "scrollbar",
+  name: "sidebar",
+  components: { sidebarItem },
   data() {
     return {
       top: 0
     };
+  },
+  computed: {
+    ...mapGetters(["permissionRouters"])
   },
   methods: {
     handleScroll(e) {
@@ -43,7 +52,6 @@ export default {
   }
 };
 </script>
-
 <style lang="less" scoped>
 .scroll-container {
   position: relative;

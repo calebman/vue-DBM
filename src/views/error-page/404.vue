@@ -1,102 +1,189 @@
-<!-- 404页面 -->
 <template>
-    <div class="error404">
-        <div class="error404-body-con">
-            <Card>
-                <div class="error404-body-con-title">4
-                    <span>
-                        <Icon type="ios-navigate-outline"></Icon>
-                    </span>4</div>
-                <p class="error404-body-con-message">页面不存在！</p>
-                <div class="error404-btn-con">
-                    <Button @click="goHome" size="large" style="width: 200px;" type="text">返回首页</Button>
-                    <Button @click="backPage" size="large" style="width: 200px;margin-left: 40px;" type="primary">返回上一页</Button>
-                </div>
-            </Card>
-        </div>
+  <div class="errPage-container">
+    <div class="wscn-http404">
+      <div class="pic-404">
+        <img class="pic-404__parent" :src="img_404" alt="404">
+        <img class="pic-404__child left" :src="img_404_cloud" alt="404">
+        <img class="pic-404__child mid" :src="img_404_cloud" alt="404">
+        <img class="pic-404__child right" :src="img_404_cloud" alt="404">
+      </div>
+      <div class="bullshit">
+        <span class="warn">Wow 404!</span>
+        <span>这个页面不存在</span>
+        <span>你可以尝试</span>
+        <span class="link" @click="back">返回上一页</span>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
+import img_404 from "@/assets/404_images/404.png";
+import img_404_cloud from "@/assets/404_images/404_cloud.png";
+
 export default {
-  name: "error404",
-  components: {},
+  name: "page404",
   data() {
-    return {};
+    return {
+      img_404,
+      img_404_cloud
+    };
   },
-  props: {},
   computed: {},
   methods: {
-    backPage() {
+    back() {
       this.$router.go(-1);
-    },
-    goHome() {
-      this.$router.push({
-        name: "service"
-      });
     }
-  },
-  watch: {},
-  created() {}
+  }
 };
 </script>
+
 <style lang="less" scoped>
-@keyframes error404animation {
-  0% {
-    transform: rotateZ(0deg);
-  }
-  20% {
-    transform: rotateZ(-60deg);
-  }
-  40% {
-    transform: rotateZ(-10deg);
-  }
-  60% {
-    transform: rotateZ(50deg);
-  }
-  80% {
-    transform: rotateZ(-20deg);
-  }
-  100% {
-    transform: rotateZ(0deg);
-  }
-}
-.error404 {
-  &-body-con {
-    width: 700px;
-    height: 500px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    &-title {
-      text-align: center;
-      font-size: 240px;
-      font-weight: 700;
-      color: #2d8cf0;
-      height: 260px;
-      line-height: 260px;
-      margin-top: 40px;
-      span {
-        display: inline-block;
-        color: #19be6b;
-        font-size: 230px;
-        animation: error404animation 3s ease 0s infinite alternate;
+.errPage-container {
+  margin-top: -20px;
+  height: 100%;
+  .wscn-http404 {
+    position: relative;
+    width: 1200px;
+    margin: 20px auto 60px;
+    padding: 0 100px;
+    overflow: hidden;
+    text-align: center;
+    .pic-404 {
+      position: relative;
+      float: left;
+      width: 600px;
+      padding: 150px 0;
+      overflow: hidden;
+      &__parent {
+        width: 100%;
+      }
+      &__child {
+        position: absolute;
+        &.left {
+          width: 80px;
+          top: 17px;
+          left: 220px;
+          opacity: 0;
+          animation-name: cloudLeft;
+          animation-duration: 2s;
+          animation-timing-function: linear;
+          animation-fill-mode: forwards;
+          animation-delay: 1s;
+        }
+        &.mid {
+          width: 46px;
+          top: 10px;
+          left: 420px;
+          opacity: 0;
+          animation-name: cloudMid;
+          animation-duration: 2s;
+          animation-timing-function: linear;
+          animation-fill-mode: forwards;
+          animation-delay: 1.2s;
+        }
+        &.right {
+          width: 62px;
+          top: 100px;
+          left: 500px;
+          opacity: 0;
+          animation-name: cloudRight;
+          animation-duration: 2s;
+          animation-timing-function: linear;
+          animation-fill-mode: forwards;
+          animation-delay: 1s;
+        }
+        @keyframes cloudLeft {
+          0% {
+            top: 17px;
+            left: 220px;
+            opacity: 0;
+          }
+          20% {
+            top: 33px;
+            left: 188px;
+            opacity: 1;
+          }
+          80% {
+            top: 81px;
+            left: 92px;
+            opacity: 1;
+          }
+          100% {
+            top: 97px;
+            left: 60px;
+            opacity: 0;
+          }
+        }
+        @keyframes cloudMid {
+          0% {
+            top: 10px;
+            left: 420px;
+            opacity: 0;
+          }
+          20% {
+            top: 40px;
+            left: 360px;
+            opacity: 1;
+          }
+          70% {
+            top: 130px;
+            left: 180px;
+            opacity: 1;
+          }
+          100% {
+            top: 160px;
+            left: 120px;
+            opacity: 0;
+          }
+        }
+        @keyframes cloudRight {
+          0% {
+            top: 100px;
+            left: 500px;
+            opacity: 0;
+          }
+          20% {
+            top: 120px;
+            left: 460px;
+            opacity: 1;
+          }
+          80% {
+            top: 180px;
+            left: 340px;
+            opacity: 1;
+          }
+          100% {
+            top: 200px;
+            left: 300px;
+            opacity: 0;
+          }
+        }
       }
     }
-    &-message {
-      display: block;
-      text-align: center;
-      font-size: 30px;
-      font-weight: 500;
-      letter-spacing: 12px;
-      color: #dddde2;
+    .bullshit {
+      position: relative;
+      float: left;
+      width: 300px;
+      padding: 150px 0;
+      overflow: hidden;
+      span {
+        display: block;
+        line-height: 60px;
+        font-size: 18px;
+        color: #8b7b8b;
+      }
+      .warn {
+        color: #ee9a00;
+        font-size: 24px;
+      }
+      .link {
+        line-height: 160px;
+        color: #5cacee;
+        font-size: 20px;
+        cursor: pointer;
+      }
     }
-  }
-  &-btn-con {
-    text-align: center;
-    padding: 20px 0;
-    margin-bottom: 40px;
   }
 }
 </style>

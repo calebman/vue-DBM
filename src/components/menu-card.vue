@@ -1,10 +1,10 @@
 <!-- 功能选项组件 -->
 <template>
-  <Card class="card" @click.native="menuClick">
+  <div class="card" @click="menuClick">
     <img class="img" :src="img">
     <span class="title">{{menuTitle}}</span>
     <span class="content">{{menuContent}}</span>
-  </Card>
+  </div>
 </template>
 
 <script>

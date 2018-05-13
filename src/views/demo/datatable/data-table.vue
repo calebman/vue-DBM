@@ -398,35 +398,7 @@ export default {
   },
   watch: {},
   created() {
-    this.dataFilterRules = {
-      varchar: [
-        { name: "=", title: "等于" },
-        { name: "!=", title: "不等于" },
-        { name: "LIKE", title: "包含" },
-        { name: "NOT LIKE", title: "不包含" },
-        { name: "IS NULL", title: "为空" },
-        { name: "IS NOT NULL", title: "非空" }
-      ],
-      decimal: [
-        { name: "=", title: "等于" },
-        { name: ">=", title: "大于" },
-        { name: "<=", title: "小于" },
-        { name: "IS NULL", title: "为空" },
-        { name: "IS NOT NULL", title: "非空" }
-      ],
-      datetime: [
-        { name: "<", title: "在此之前" },
-        { name: "=", title: "大于" },
-        { name: ">", title: "在此之后" },
-        { name: "IS NULL", title: "为空" },
-        { name: "IS NOT NULL", title: "非空" }
-      ],
-      text: [
-        { name: "LIKE", title: "包含文件名" },
-        { name: "IS NULL", title: "为空" },
-        { name: "IS NOT NULL", title: "非空" }
-      ]
-    };
+    this.dataFilterRules = datatableUtils.dataFilterRule;
     let table = {
       tableName: "个人信息表",
       dataCount: 1205,

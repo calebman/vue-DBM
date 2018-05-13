@@ -1,3 +1,4 @@
+<!-- 左侧菜单栏子项 -->
 <template>
   <div class="sidebar">
     <template v-for="item in routes" v-if="!item.hidden&&item.children">
@@ -49,7 +50,7 @@ export default {
 };
 </script>
 <style lang="less">
-.sidebar li {
-  text-decoration: none;
+.sidebar i {
+  font-size: 18px;
 }
 </style>

@@ -140,7 +140,7 @@ export default {
 </script>
 <style lang="less">
 .filter-header {
-  background-color: #eeecec;
+  background-color: #dbdbdb;
   width: 100%;
   display: inline-block;
   padding: 0 3px;

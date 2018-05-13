@@ -4,10 +4,6 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _settings = require('./settings.js');
-
-var _settings2 = _interopRequireDefault(_settings);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
@@ -94,7 +90,7 @@ exports.default = {
     getScrollbarWidth: function getScrollbarWidth() {
 
         var outer = document.createElement('div');
-        outer.className = _settings2.default.scrollbarClass;
+        outer.className = 'v-scrollbar-wrap';
         outer.style.visibility = 'hidden';
         outer.style.width = '100px';
         outer.style.position = 'absolute';

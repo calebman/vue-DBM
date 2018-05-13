@@ -10,7 +10,5 @@ exports.default = {
         'small': 24
     },
 
-    sizeMapDefault: 32,
-
-    scrollbarClass: 'v-scrollbar-wrap'
+    sizeMapDefault: 32
 };

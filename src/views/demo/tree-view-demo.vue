@@ -2,12 +2,12 @@
 <template>
   <div class="tree">
     <div class="float">
-      <p>一次性加载</p>
-      <tree-view :isLoading="treeLoading" :value="syncTreeData" :icon="deepIcon" :nodeClick="nodeClick"></tree-view>
+      <p>异步加载</p>
+      <tree-view :isLoading="asyncTreeLoading" :value="asyncTreeData" :icon="deepIcon" :nodeClick="nodeClick" :asyncLoadData="asyncLoadData"></tree-view>
     </div>
     <div class="float">
-      <p>异步加载</p>
-      <tree-view :isLoading="treeLoading" :value="asyncTreeData" :icon="deepIcon" :nodeClick="nodeClick" :asyncLoadData="asyncLoadData"></tree-view>
+      <p>一次性加载</p>
+      <tree-view :isLoading="syncTreeLoading" :value="syncTreeData" :icon="deepIcon" :nodeClick="nodeClick"></tree-view>
     </div>
   </div>
 </template>
@@ -23,8 +23,9 @@ export default {
     return {
       deep: 10,
       count: 5,
-      treeLoading: false,
+      syncTreeLoading: false,
       syncTreeData: [],
+      asyncTreeLoading: false,
       asyncTreeData: [],
       asyncId: 1,
       deepIcon: ["help", "gear-a", "edit", "refresh"]
@@ -78,18 +79,22 @@ export default {
           }
         ];
         callback(data);
-      }, 1000);
+      }, 400);
     }
   },
   watch: {},
   created() {
     let self = this;
-    self.treeLoading = true;
+    self.syncTreeLoading = true;
+    self.asyncTreeLoading = true;
     setTimeout(() => {
-      self.treeLoading = false;
+      self.syncTreeLoading = false;
       self.syncTreeData = this.generator([{ id: 1, name: "测测试试文字" }]);
+    }, 1200);
+    setTimeout(() => {
+      self.asyncTreeLoading = false;
       self.asyncTreeData = [{ id: this.asyncId, name: "测测试试文字" }];
-    }, 2000);
+    }, 400);
   }
 };
 </script>

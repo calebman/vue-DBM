@@ -18,7 +18,9 @@ export default {
     }
   },
   mounted() {
-    document.body.removeChild(document.getElementById("dbm-loading"));
+    if (document.getElementById("dbm-loading")) {
+      document.body.removeChild(document.getElementById("dbm-loading"));
+    }
   }
 };
 </script>

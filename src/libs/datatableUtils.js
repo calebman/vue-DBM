@@ -2,7 +2,7 @@
  * @Author: calebman 
  * @Date: 2018-04-26 10:01:50 
  * @Last Modified by: calebman
- * @Last Modified time: 2018-04-26 10:54:58
+ * @Last Modified time: 2018-05-11 10:55:42
  */
 
 
@@ -32,7 +32,7 @@ const dataFilterRule = {
   ],
   datetime: [
     { name: '<', title: '在此之前' },
-    { name: '=', title: '大于' },
+    { name: '=', title: '等于' },
     { name: '>', title: '在此之后' },
     { name: 'IS NULL', title: '为空' },
     { name: 'IS NOT NULL', title: '非空' }

@@ -2,7 +2,7 @@
  * @Author: calebman 
  * @Date: 2018-05-09 09:30:02 
  * @Last Modified by: calebman
- * @Last Modified time: 2018-05-09 14:36:31
+ * @Last Modified time: 2018-05-11 12:38:10
  */
 import { constantRouterMap, asyncRouterMap } from '@/router/routes';
 const app = {
@@ -26,11 +26,7 @@ const app = {
       return new Promise(resolve => {
         const { roles } = data;
         let accessedRouters = [];
-        if (roles.indexOf('admin') >= 0) {
-          accessedRouters = asyncRouterMap;
-        } else {
-          accessedRouters = filterAsyncRouter(asyncRouterMap, roles);
-        }
+        accessedRouters = filterAsyncRouter(asyncRouterMap, roles);
         commit('SET_ROUTERS', accessedRouters);
         resolve(accessedRouters);
       })

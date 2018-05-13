@@ -2,7 +2,7 @@
  * @Author: calebman 
  * @Date: 2018-05-09 12:03:26 
  * @Last Modified by: calebman
- * @Last Modified time: 2018-05-09 14:47:43
+ * @Last Modified time: 2018-05-11 16:10:20
  */
 
 import router from './router';
@@ -23,7 +23,7 @@ router.beforeEach((to, from, next) => {
         store.dispatch('GetUserInfo').then(data => { // 拉取用户
           const roles = data.roles // 权限表必须为数组,例如: ['admin','editer']
           store.dispatch('GenerateRoutes', { roles }).then(() => { // 根据roles权限生成可访问的路由表
-            // router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
+            router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
             next({ ...to, replace: true }) // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
           })
         }).catch(err => {
@@ -36,7 +36,7 @@ router.beforeEach((to, from, next) => {
         if (hasPermission(store.getters.roles, to.meta.roles)) { // 动态权限匹配
           next();
         } else {
-          next({ path: '/403', replace: true, query: { noGoBack: true } });
+          next({ path: '/401', replace: true, query: { noGoBack: true } });
         }
       }
     }
@@ -49,11 +49,11 @@ router.beforeEach((to, from, next) => {
   }
 });
 
-router.afterEach(function (to) {
+router.afterEach(to => {
   store.commit('UPDATE_ROUTER_LOADING', false);
 });
 
-router.onError(function (err) {
+router.onError(err => {
   console.error(err); // for bug
   store.commit('UPDATE_ROUTER_LOADING', false);
 });
