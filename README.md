@@ -29,6 +29,8 @@
 - [致谢](#致谢)
 - [许可证](#License)
 
+
+
 ## 说明
 
 **DMB**是针对经常使用excel的个人或者团体（比如公司每月提交excel报表）而开发的excel数据管理系统，他能够帮助您完成表格的整合、编辑、数据筛选以及导出等等功能，一键导入、按需筛选、指定导出，**DMB**能让你不再被一堆excel文件折磨。
@@ -50,6 +52,8 @@
 
 由于此项目使用业余时间来做，开发周期较长，代码的整洁程度仍待提高，我将不断修改做到自己满意为止，如果您发现问题请直接在Issues中提出，或者您对模块的实现有更好的解决方案欢迎**PR**
 
+
+
 ## 开发前准备
 
 您的本地环境需要包含有 [nodejs](http://nodejs.org/)，如果您使用git clone还需要有[git](https://git-scm.com/)。本项目主要使用了[vue](https://cn.vuejs.org/index.html)、[vuex](https://vuex.vuejs.org/zh-cn/)、[vue-router](https://router.vuejs.org/zh-cn/)、[element-ui](https://github.com/ElemeFE/element)、[axios](https://github.com/axios/axios)、[Mock.js](https://github.com/nuysoft/Mock)等技术栈，熟悉这些技术能够更好的掌握本项目。
@@ -62,19 +66,28 @@
  - [权限管理](https://github.com/calebman/vue-DBM/blob/master/docs/permission.md)
  - [render函数](https://github.com/calebman/vue-DBM/blob/master/docs/render.md)
 
+
+
 ## 目标功能
 
 ***TODO***
+
+
 
 ##项目结构概述
 
 ***TODO***
 
+
+
 ##部分控件的封装与使用
 
 ***TODO***
 
+
+
 ## 开发与发布
+
 ```bash
 # 克隆项目
 git clone https://github.com/calebman/vue-DBM.git
@@ -94,15 +107,25 @@ http://localhost:8060
 # 打包发布
 npm run build
 ```
+
+
 ## 更新日志
+
  [点我查看 更新日志](https://github.com/calebman/vue-DBM/releases).
 
+
+
 ## Demo
+
 [点我查看 Demo](https://calebman.github.io/vue-DBM )
+
+
 
 ##致谢
 
 本项目的架构参考了[**vue-element-admin**](https://github.com/PanJiaChen/vue-element-admin)的实现，表格组件基于[**vue-easytable**](https://github.com/huangshuwei/vue-easytable)进行了定制化的修改，在此非常感谢[PanJiaChen](https://github.com/PanJiaChen/vue-element-admin)与[huangshuwei](https://github.com/PanJiaChen/vue-element-admin)两位项目作者。
+
+
 
 ## License
 
