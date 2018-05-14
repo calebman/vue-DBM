@@ -42,4 +42,3 @@ after_success:
 env:
   global:
     - GH_REF: github.com/calebman/vue-DBM.git
-    - GH_TOKEN: aaed64019784dc891d49694a571912a52f8ef6c2
