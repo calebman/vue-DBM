@@ -2,7 +2,6 @@ import axios from 'axios';
 import { Message, MessageBox } from 'element-ui';
 import store from '@/store';
 import { getToken } from '@/utils/auth';
-import envConfig from '@/config';
 
 /**
  * http请求工具类
@@ -14,7 +13,7 @@ import envConfig from '@/config';
 
 // 创建一个axios实例
 const service = axios.create({
-  baseURL: envConfig.baseURL, // 基础URL
+  baseURL: process.env.BASE_API, // 基础URL
   timeout: 5000 // 超时时间
 });
 
