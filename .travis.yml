@@ -24,8 +24,8 @@ after_script:
   - git config user.name "${USER_NAME}"
   - git config user.email "${USER_EMAIL}"
   - git add .
-  - git commit -m "Update tools"
-  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" gh-pages:gh-pages
+  - git commit -m "Automatically update from travis-ci"
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages
 # E: Build LifeCycle
 
 # 指定分支，只有指定的分支提交时才会运行脚本
