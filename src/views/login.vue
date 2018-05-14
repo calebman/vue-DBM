@@ -62,14 +62,14 @@ export default {
   props: {},
   computed: {},
   methods: {
-    handleSubmit(name) {
+    handleSubmit() {
       this.$refs.ruleForm.validate(valid => {
         if (valid) {
           this.logining = true;
           this.$store
             .dispatch("LoginByUsername", this.ruleForm)
             .then(() => this.dump())
-            .catch(err => (this.logining = false));
+            .catch(() => (this.logining = false));
         }
       });
     },

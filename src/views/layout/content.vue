@@ -53,7 +53,7 @@ export default {
     }
   },
   watch: {
-    $route(to, from) {
+    $route(to) {
       this.initBreadcrumbItems(to);
     }
   },
