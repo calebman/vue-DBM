@@ -152,6 +152,18 @@ export default {
     }
   }
 }
+
+// 在vue组件上使用它
+// 引入并注册permission指令
+import permission from "@/directive/permission/index.js";
+export default {
+  directives: {
+    permission
+  }
+}
+// 使用permission指令
+<el-button v-permission="['admin']">admin 可见</el-button>
+<el-button v-permission="['admin','watcher']">watcher 可见</el-button>
 ```
 
 
