@@ -1,42 +1,37 @@
-branches:
-  only:
-    - master
-
 language: node_js
-
-sudo: false
 
 node_js: stable
 
+# Travis-CI Caching
 cache:
   directories:
     - node_modules
 
-addons:
-  apt:
-    packages:
-      - xvfb
 
+# S: Build Lifecycle
 install:
-  - export DISPLAY=':99.0'
-  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
   - npm install
 
 before_script:
-  - git config --global user.name "chenjianhui"
-  - git config --global user.email "chenjianhui0428@gmail.com"
-  - git clone --branch gh-pages https://${GH_REF} dist
 
-# script:
-#  - npm test
-
-after_success:
+# 无其他依赖项所以执行npm run build 构建就行了
+script:
   - npm run build
-  - cd dist
-  - cp index.html 404.html
-  - git add --all .
-  - git commit --message "Automatically update from travis-ci"
-  - git push --quiet --force  "https://${GH_TOKEN}@${GH_REF}" gh-pages:gh-pages
+
+after_script:
+  - cd ./dist
+  - git init
+  - git config user.name "${USER_NAME}"
+  - git config user.email "${USER_EMAIL}"
+  - git add .
+  - git commit -m "Update tools"
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:${P_BRANCH}
+# E: Build LifeCycle
+
+# 指定分支，只有指定的分支提交时才会运行脚本
+branches:
+  only:
+    - master
 
 # Note: you should set Environment Variables here or 'Settings' on travis-ci.org
 env:
