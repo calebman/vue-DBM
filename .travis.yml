@@ -25,7 +25,7 @@ after_script:
   - git config user.email "${USER_EMAIL}"
   - git add .
   - git commit -m "Update tools"
-  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:${P_BRANCH}
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" gh-pages:gh-pages
 # E: Build LifeCycle
 
 # 指定分支，只有指定的分支提交时才会运行脚本
