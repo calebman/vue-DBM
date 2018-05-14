@@ -2,7 +2,7 @@
  * @Author: calebman 
  * @Date: 2018-05-06 12:10:56 
  * @Last Modified by: calebman
- * @Last Modified time: 2018-05-11 12:37:36
+ * @Last Modified time: 2018-05-14 10:14:21
  */
 
 
@@ -10,9 +10,9 @@
 * hidden: true                   如果hidden为true则在左侧菜单栏展示，默认为false
 * name:'router-name'             路由名称，必须填写
 * meta : {
-    roles: ['admin','editor']    权限列表，用于页面级的权限控制
-    title: 'title'               对应路由在左侧菜单栏的名称
-    icon: 'svg-name'             对应路由在左侧菜单栏的图标样式，样式使用iconfont图标库，见assest/iconfont文件夹
+    roles: ['admin','editor']    权限列表，用于页面级的权限控制，默认不设置代表任何权限均可访问
+    title: 'title'               对应路由在左侧菜单栏的标题名称
+    icon: 'icon-class'             对应路由在左侧菜单栏的图标样式，样式使用iconfont图标库，见assest/iconfont文件夹
   }
 **/
 
