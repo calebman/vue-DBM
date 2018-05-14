@@ -14,11 +14,11 @@
   </a>
 </p>
 
-<p align="center"> 
+<strong  align="center"> 
 
-**主意！此项目已重构，当前版本为2.0，老版本请查看 [release](https://github.com/calebman/vue-DBM/releases)下载1.0版本**
+主意！此项目已重构，当前版本为2.0，老版本请查看 [release](https://github.com/calebman/vue-DBM/releases)下载1.0版本
 
- </p> 
+ </strong > 
 
 
 
