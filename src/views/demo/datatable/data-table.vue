@@ -1,4 +1,3 @@
-<!-- 数据表管理页面 -->
 <template>
   <div class="table">
     <div class="table-card">
@@ -69,7 +68,6 @@ import NumberColumn from "@/components/business/number-column.vue";
 import FileColumn from "@/components/business/file-column.vue";
 import DatetimeColumn from "@/components/business/datetime-column.vue";
 
-import dataUpdateMixins from "./data-update-mixins";
 export default {
   name: "datatable",
   components: {
@@ -82,7 +80,6 @@ export default {
     FileColumn,
     DatetimeColumn
   },
-  mixins: [dataUpdateMixins],
   data() {
     return {
       isLoading: true,
@@ -109,13 +106,16 @@ export default {
         initIndex: 0,
         showPreview: false
       },
+      filterParam: [],
+      isOpenFilter: false,
       titleRows: [30, 60, 90],
       rowHeight: 35,
-      minHeight: 300
+      minHeight: 300,
+      clearFilterFlag: false,
+      dataFilterRules: {}
     };
   },
   computed: {
-    // 当前显示列的数量
     visiableCount() {
       let count = 0;
       for (let index in this.columns) {
@@ -215,6 +215,48 @@ export default {
       }
       this.columns = resultColumns;
     },
+    getData() {
+      this.isLoading = true;
+      let result = {};
+      for (let cindex in this.columns) {
+        let col = this.columns[cindex];
+        if (!col.dataType) continue;
+        if (col.title == col.field) continue;
+        col.title = col.field;
+        this.columns.splice(cindex, 1, col);
+      }
+      for (let pindex in this.filterParam) {
+        for (let cindex in this.columns) {
+          if (this.columns[cindex].field == this.filterParam[pindex].field) {
+            let col = this.columns[cindex];
+            let param = this.filterParam[pindex];
+            col.title =
+              param.field +
+              " " +
+              this.getRuleTitleFromType(col.dataType, param.type) +
+              " " +
+              param.value;
+            this.columns.splice(cindex, 1, col);
+          }
+        }
+      }
+
+      result = datatableMock.mockData(this.table, this.pagination);
+      this.tableData = result.tableData;
+      if (result.pagination) {
+        this.pagination = result.pagination;
+      }
+      if (this.$refs["dataTable"]) {
+        this.$refs["dataTable"].resize();
+      }
+      this.isLoading = false;
+    },
+    onValueChange(rowIndex, rowData, field, newValue) {
+      this.tableData[rowIndex][field] = newValue;
+      this.cancelSelect();
+      // 如果有误可使用以下代码回滚
+      // this.tableData[rowIndex][field] = rowData[field];
+    },
     cellClickDone(rowIndex, rowData, field) {
       this.cellClickData = {
         index: rowIndex,
@@ -232,6 +274,47 @@ export default {
     },
     exportData() {
       alert("导出数据");
+    },
+    insert() {
+      let cols = this.table.cols;
+      let v;
+      let rowData = {};
+      for (let index in cols) {
+        v = cols[index];
+        switch (v.dataType) {
+          case "datetime":
+            rowData[v.columnName] = v.columnDefault
+              ? v.columnDefault
+              : this.$moment().format("YYYY-MM-DD HH:mm:ss");
+            break;
+          case "decimal":
+            rowData[v.columnName] = v.columnDefault ? v.columnDefault : 0;
+            break;
+          case "text":
+            rowData[v.columnName] = v.columnDefault ? v.columnDefault : "";
+            break;
+          default:
+            rowData[v.columnName] = v.columnDefault ? v.columnDefault : "";
+            break;
+        }
+      }
+      this.tableData.splice(0, 0, rowData);
+    },
+    deleteRow(field, index) {
+      this.tableData.splice(index, 1);
+    },
+    clearFilterParam() {
+      this.clearFilterFlag = !this.clearFilterFlag;
+    },
+    openFilter() {
+      if (this.isOpenFilter) {
+        this.filterParam = [];
+        this.getData();
+      }
+      this.isOpenFilter = !this.isOpenFilter;
+    },
+    refreshData() {
+      this.getData();
     },
     cancelSelect() {
       this.cellClickData = {
@@ -299,11 +382,24 @@ export default {
         })
       );
       this.filePreviewClose();
+    },
+    onFilterChange(filterParam) {
+      this.filterParam = filterParam;
+      this.getData();
+    },
+    getRuleTitleFromType(dataType, ruleName) {
+      let dataRule;
+      if (this.dataFilterRules[dataType])
+        dataRule = this.dataFilterRules[dataType];
+      else dataRule = this.dataFilterRules["varchar"];
+      for (let index in dataRule)
+        if (dataRule[index].name == ruleName) return dataRule[index].title;
     }
   },
   watch: {},
   created() {
-    const table = {
+    this.dataFilterRules = datatableUtils.dataFilterRule;
+    let table = {
       tableName: "个人信息表",
       dataCount: 1205,
       cols: [

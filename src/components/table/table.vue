@@ -9,7 +9,7 @@
               <template>
                 <tr class="v-table-header-row">
                   <td v-for="(col,colIndex) in visiableColumns" :class="[col.titleCellClassName]">
-                    <div :class="['v-table-title-cell','vertical-border','horizontal-border']" :style="{'width':col.width+'px','height':titleRowHeight+'px','text-align':col.titleAlign}">
+                    <div :class="['v-table-title-cell',showVerticalBorder?'vertical-border':'',showHorizontalBorder?'horizontal-border':'']" :style="{'width':col.width+'px','height':titleRowHeight+'px','text-align':col.titleAlign}">
                       <span class="table-title">
                         <span v-html="col.title"></span>
                       </span>
@@ -19,7 +19,7 @@
                 <!-- 筛选列 -->
                 <tr v-if="isFilter" class="v-table-header-row">
                   <td v-for="(col,colIndex) in visiableColumns" :class="[col.titleCellClassName]">
-                    <div :class="['v-table-title-cell',,'vertical-border','horizontal-border']" :style="{'width':col.width+'px','height':titleRowHeight+'px','text-align':col.titleAlign}">
+                    <div :class="['v-table-title-cell',showVerticalBorder?'vertical-border':'',showHorizontalBorder?'horizontal-border':'']" :style="{'width':col.width+'px','height':titleRowHeight+'px','text-align':col.titleAlign}">
                       <filter-header :dataFilterRules="dataFilterRules" :column="col" :clearFilterFlag="clearFilterFlag" @on-filter-change="onFilterChange" @on-filter-delete="onFilterDelete"></filter-header>
                     </div>
                   </td>
@@ -34,9 +34,9 @@
         <table class="v-table-btable" cellspacing="0" cellpadding="0" border="0">
           <tbody>
             <tr :key="rowIndex" v-for="(item,rowIndex) in internalTableData" class="v-table-row" :style="[trBgColor(rowIndex+1)]">
-              <td v-for="(col,colIndex) in visiableColumns" :key="colIndex">
+              <td v-for="(col,colIndex) in visiableColumns" :key="colIndex" :class="[setColumnCellClassName(rowIndex,col.field,item)]">
                 <!--不存在列合并-->
-                <div :class="['v-table-body-cell',,'vertical-border','horizontal-border']" :style="{'width':col.width+'px','height': rowHeight+'px','line-height':rowHeight+'px','text-align':col.columnAlign}" :title="col.overflowTitle ?  overflowTitle(item,col) :''" @click.stop="onCellClick(rowIndex,item,col);cellClickDone(rowIndex,item,col.field)">
+                <div :class="['v-table-body-cell',showVerticalBorder ? 'vertical-border':'',showHorizontalBorder?'horizontal-border':'']" :style="{'width':col.width+'px','height': rowHeight+'px','line-height':rowHeight+'px','text-align':col.columnAlign}" :title="col.overflowTitle ?  overflowTitle(item,col) :''" @click.stop="onCellClick(rowIndex,item,col);cellEditClick($event,col.isEdit,item,col.field,rowIndex)">
                   <span v-if="typeof col.render ==='function'">
                     <expand :field="col.field ? col.field : ''" :row="item" :render="col.render" :index="rowIndex"></expand>
                   </span>
@@ -58,8 +58,11 @@
 </template>
 
 <script>
+import classesMixin from "./classes-mixin.js";
+import scrollControlMixin from "./scroll-control-mixin.js";
 import tableResizeMixin from "./table-resize-mixin.js";
 import tableEmptyMixin from "./table-empty-mixin.js";
+import cellEditMixin from "./cell-edit-mixin.js";
 import scrollBarControlMixin from "./scroll-bar-control-mixin.js";
 import tableRowMouseEventsMixin from "./table-row-mouse-events-mixin";
 import expand from "./expand.js";
@@ -74,9 +77,12 @@ import filterHeader from "./table-filter-header";
 export default {
   name: "v-table",
   mixins: [
+    classesMixin,
     tableResizeMixin,
+    scrollControlMixin,
     tableRowMouseEventsMixin,
     tableEmptyMixin,
+    cellEditMixin,
     scrollBarControlMixin
   ],
   components: { filterHeader, tableEmpty, loading, expand },
@@ -134,7 +140,6 @@ export default {
       default: 50
     },
 
-    // 表格背景颜色
     tableBgColor: {
       type: String,
       default: "#fff"
@@ -151,24 +156,28 @@ export default {
       type: String,
       default: ""
     },
-
     // 偶数行颜色
     evenBgColor: {
       type: String,
       default: ""
     },
-
     // 内容行高
     rowHeight: {
       type: Number,
       default: 40
     },
-
     columns: {
       type: Array,
       require: true
     },
-
+    // 特殊表头
+    titleRows: {
+      type: Array,
+      require: true,
+      default: function() {
+        return [];
+      }
+    },
     tableData: {
       type: Array,
       require: true,
@@ -211,6 +220,16 @@ export default {
     rowClickColor: {
       type: String
     },
+    showVerticalBorder: {
+      type: Boolean,
+      default: true
+    },
+    showHorizontalBorder: {
+      type: Boolean,
+      default: true
+    },
+    // 表体单元格样式回调
+    columnCellClassName: Function,
     // 行点击回调
     onRowClick: Function,
     // 单元格编辑完成回调
@@ -247,6 +266,11 @@ export default {
     }
   },
   methods: {
+    // custom columns component event
+    customCompFunc(params) {
+      this.$emit("on-custom-comp", params);
+    },
+
     // 行颜色
     trBgColor(num) {
       if (
@@ -258,6 +282,15 @@ export default {
           : { "background-color": this.oddBgColor };
       }
     },
+
+    // 设置 column 列的样式
+    setColumnCellClassName(rowIndex, field, rowData) {
+      return (
+        this.columnCellClassName &&
+        this.columnCellClassName(rowIndex, field, rowData)
+      );
+    },
+
     // 获取每个表头列的宽度
     titleColumnWidth(fields) {
       var result = 0;
@@ -441,10 +474,21 @@ export default {
     this.tableResize();
 
     this.tableEmpty();
+
+    if (Array.isArray(this.tableData) && this.tableData.length > 0) {
+      this.scrollControl();
+    }
   },
   watch: {
     // 重新更新列信息
     columns: {
+      handler: function(newVal) {
+        this.initColumns();
+      },
+      deep: true
+    },
+    // 重新覆盖复杂表头信息
+    titleRows: {
       handler: function(newVal) {
         this.initColumns();
       },
@@ -464,6 +508,8 @@ export default {
 
         if (Array.isArray(newVal) && newVal.length > 0) {
           this.initView();
+
+          this.scrollControl();
         }
 
         this.resize();
