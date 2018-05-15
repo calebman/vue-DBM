@@ -101,9 +101,7 @@ export default {
 
 ```bash
 # see https://github.com/calebman/vue-DBM/tree/master/src/components/table
-├─table
-│      cell-edit-mixin.js                      # 单元格编辑
-│      classes-mixin.js                        # 表格样式                     
+├─table                   
 │      scroll-bar-control-mixin.js             # 表格滚动
 │      table-empty-mixin.js                    # 无数据时的处理
 │      table-resize-mixin.js                   # 表格的自适应

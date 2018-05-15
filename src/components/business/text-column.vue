@@ -18,7 +18,7 @@ export default {
   methods: {
     enter(ev) {
       if (ev.keyCode == 13) {
-        this.changeValue(this.v);
+        this.$emit("on-value-cancel", this.field, this.index);
       }
     }
   },
@@ -38,10 +38,10 @@ export default {
     width: 100%;
     height: 32px;
     outline: none;
-    border: 1px solid #409EFF;
+    border: 1px solid #409eff;
   }
   .cell-text-edit-input:focus {
-    border: 1px solid #409EFF;
+    border: 1px solid #409eff;
   }
 }
 </style>
