@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import datatableUtils from "@/libs/datatableUtils";
+import datatableUtils from "@/utils/datatableUtils";
 export default {
   name: "imagespreview",
   data: function() {

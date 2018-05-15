@@ -57,7 +57,7 @@
 
 <script>
 import datatableMock from "./datatable_mock.js";
-import datatableUtils from "@/libs/datatableUtils.js";
+import datatableUtils from "@/utils/datatableUtils.js";
 import VTable from "@/components/table/table";
 import VPagination from "@/components/pagination/pagination.js";
 

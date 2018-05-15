@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _settings = require('@/libs/settings.js');
+var _settings = require('@/utils/settings.js');
 
 var _settings2 = _interopRequireDefault(_settings);
 

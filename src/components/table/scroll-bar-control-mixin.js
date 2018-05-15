@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _utils = require('@/libs/utils.js');
+var _utils = require('@/utils/utils.js');
 
 var _utils2 = _interopRequireDefault(_utils);
 

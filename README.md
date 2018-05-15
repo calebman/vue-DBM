@@ -16,7 +16,7 @@
 
 <strong  align="center"> 
 
-主意！此项目已重构，当前版本为2.0，老版本请查看 [release](https://github.com/calebman/vue-DBM/releases)下载1.0版本
+注意！此项目已重构，当前版本为2.0，老版本请查看 [release](https://github.com/calebman/vue-DBM/releases)下载1.0版本
 
  </strong > 
 
@@ -27,8 +27,6 @@
 - [项目说明](#说明)
 - [开发前准备](#开发前准备)
 - [目标功能](#目标功能)
-- [项目结构概述](#项目结构概述)
-- [部分控件的封装与使用](#部分控件的封装与使用)
 - [开发与发布](#开发与发布)
 - [更新日志](#更新日志)
 - [在线Demo](#Demo)
@@ -39,7 +37,7 @@
 
 ## 说明
 
-**DMB**是针对经常使用excel的个人或者团体（比如公司每月提交excel报表）而开发的excel数据管理系统，他能够帮助您完成表格的整合、编辑、数据筛选以及导出等等功能，一键导入、按需筛选、指定导出，**DMB**能让你不再被一堆excel文件折磨。
+**DBM**是一个数据源管理系统，包含数据源管理、开放授权两个模块，数据源管理指关系型数据的一键导入、按需筛选、指定导出等功能，开放授权指数据拥有者给用户开放数据的增、删、改、查等操作权限。部署或使用此系统可以给你的前端项目带来数据持久化的功能，而不再是数据模拟。
 
 **DBM**前端是使用vue-cli脚手架构建的一个SPA应用，主要依赖于 <a href="https://github.com/vuejs/vue">
     <img src="https://img.shields.io/badge/vue-2.5.2-brightgreen.svg" alt="vue">
@@ -47,7 +45,7 @@
     <img src="https://img.shields.io/badge/element--ui-2.3.6-brightgreen.svg" alt="element-ui">
   </a>，为了让前后端分离更加彻底，前端在开发时将根据与后端商定的接口协议使用Mockjs模拟响应，在后端完成接口编写后使用不同的启动命令转接后端接口完成整个系统的测试。
 
-如果您也想使用vue.js结合nodejs开发一个带前后端的完整应用的话，参考**DBM前端工程**的实现也许能够帮您解决如下问题
+如果您也想使用vue.js结合后台语言（nodejs、java等）开发一个带前后端的完整应用的话，参考**DBM前端工程**的实现也许能够帮您解决如下问题
 
 - **如何提高组件的复用性？**
 - **如何使用状态管理中的多模块？**
@@ -62,28 +60,24 @@
 
 您的本地环境需要包含有 [nodejs](http://nodejs.org/)，如果您使用git clone还需要有[git](https://git-scm.com/)。本项目主要使用了[vue](https://cn.vuejs.org/index.html)、[vuex](https://vuex.vuejs.org/zh-cn/)、[vue-router](https://router.vuejs.org/zh-cn/)、[element-ui](https://github.com/ElemeFE/element)、[axios](https://github.com/axios/axios)、[Mock.js](https://github.com/nuysoft/Mock)等技术栈，熟悉这些技术能够更好的掌握本项目。
 
-**本项目在开发时针对性的做了一些笔记，建议先看看这些笔记再了解本项目源码**
+**项目在开发时针对性的做了一些笔记，建议先看看这些笔记再了解本项目源码**
 
- - [系统布局](https://github.com/calebman/vue-DBM/blob/master/docs/layout.md)
+ - [项目结构概述](https://github.com/calebman/vue-DBM/blob/master/docs/structure.md)
+ - [系统主要布局](https://github.com/calebman/vue-DBM/blob/master/docs/layout.md)
  - [路由](https://github.com/calebman/vue-DBM/blob/master/docs/router.md)
  - [状态管理](https://github.com/calebman/vue-DBM/blob/master/docs/vuex.md)
  - [权限管理](https://github.com/calebman/vue-DBM/blob/master/docs/permission.md)
- - [render函数](https://github.com/calebman/vue-DBM/blob/master/docs/render.md)
+ - [控件封装与使用](https://github.com/calebman/vue-DBM/blob/master/docs/render.md)
  - [混入](https://github.com/calebman/vue-DBM/blob/master/docs/mixins.md)
  - [数据模拟](https://github.com/calebman/vue-DBM/blob/master/docs/mock.md)
 
 ## 目标功能
 
-***TODO***
-
-
-## 项目结构概述
-
-***TODO***
-
-## 部分控件的封装与使用
-
-***TODO***
+- [x] 登录页
+- [ ] 仪表盘
+- [x] 数据表管理页面
+- [ ] 数据库管理页面
+- [ ] 数据开放授权页面
 
 ## 开发与发布
 

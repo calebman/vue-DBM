@@ -4,11 +4,11 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _utils = require('@/libs/utils.js');
+var _utils = require('@/utils/utils.js');
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _dom = require('@/libs/dom.js');
+var _dom = require('@/utils/dom.js');
 
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {default: obj};

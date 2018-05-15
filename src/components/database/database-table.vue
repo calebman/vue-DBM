@@ -221,7 +221,7 @@ import tableCard from "./components/table-card.vue";
 import tableDataPie from "./components/table-data-pie.vue";
 import xlxsTable from "./components/xlsx-table.vue";
 import CountTo from "../my_components/CountTo.vue";
-import util from '@/libs/util.js';
+import util from '@/utils/util.js';
 export default {
   name: "database-table",
   components: {

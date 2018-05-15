@@ -13,7 +13,7 @@ var _select = require("./select.vue");
 
 var _select2 = _interopRequireDefault(_select);
 
-var _settings = require("@/libs/settings.js");
+var _settings = require("@/utils/settings.js");
 
 var _settings2 = _interopRequireDefault(_settings);
 

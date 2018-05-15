@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import settings from "@/libs/settings.js";
+import settings from "@/utils/settings.js";
 
 import layerAdjustment from "./layerAdjustment.js";
 

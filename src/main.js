@@ -5,9 +5,6 @@ import App from './App'
 import router from './router'
 import store from './store'
 
-//引入系统工具类
-import utils from './libs/utils'
-Vue.prototype.$utils = utils
 // 引入moment.js工具
 import moment from 'moment'
 //加载中文

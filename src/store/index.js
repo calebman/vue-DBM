@@ -11,7 +11,7 @@ import app from './modules/app';
 import user from './modules/user';
 import getters from './getters';
 
-import utils from '@/libs/utils';
+import utils from '@/utils/utils';
 import createPersistedState from 'vuex-persistedstate';
 
 Vue.use(Vuex);

@@ -67,8 +67,8 @@ import scrollBarControlMixin from "./scroll-bar-control-mixin.js";
 import tableRowMouseEventsMixin from "./table-row-mouse-events-mixin";
 import expand from "./expand.js";
 
-import utils from "@/libs/utils.js";
-import deepClone from "@/libs/deepClone.js";
+import utils from "@/utils/utils.js";
+import deepClone from "@/utils/deepClone.js";
 
 import tableEmpty from "./table-empty.vue";
 import loading from "./table-loading.vue";

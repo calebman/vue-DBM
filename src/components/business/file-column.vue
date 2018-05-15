@@ -15,7 +15,7 @@
   </div>
 </template>
 <script>
-import datatableUtils from "@/libs/datatableUtils";
+import datatableUtils from "@/utils/datatableUtils";
 import renderColumnMinix from "./render-column-mixin";
 export default {
   name: "imagecolumn",
