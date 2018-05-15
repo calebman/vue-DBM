@@ -2,7 +2,7 @@
  * @Author: calebman 
  * @Date: 2018-05-09 10:58:35 
  * @Last Modified by: calebman
- * @Last Modified time: 2018-05-09 15:17:50
+ * @Last Modified time: 2018-05-15 10:15:01
  */
 
 import { param2Obj } from '@/utils';
@@ -28,6 +28,7 @@ const userMap = {
 }
 
 export default {
+  // 使用用户名登录
   loginByUsername: config => {
     const { username, password } = JSON.parse(config.body);
     if (userMap[username] && userMap[username].password === password) {
@@ -36,6 +37,7 @@ export default {
       return Response.fail("01", "0101001（用户名或密码错误）")
     }
   },
+  // 拉取用户信息
   getUserInfo: config => {
     const { token } = param2Obj(config.url);
     if (userMap[token]) {
@@ -44,5 +46,6 @@ export default {
       return Response.fail();
     }
   },
+  // 注销
   logout: () => Response.success()
 }

@@ -24,6 +24,7 @@ Vue.use(ElementUI, { size: 'small' })
 import './mock' // 模拟数据
 import './permission' // 路由权限控制
 
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

@@ -2,7 +2,7 @@
  * @Author: calebman 
  * @Date: 2018-05-09 11:06:54 
  * @Last Modified by: calebman
- * @Last Modified time: 2018-05-09 14:44:25
+ * @Last Modified time: 2018-05-15 10:13:31
  */
 
 /**
@@ -16,6 +16,7 @@
  */
  
 export default {
+  // 成功
   success: data => {
     return {
       errCode: '00',
@@ -23,6 +24,7 @@ export default {
       data: data ? data : null
     }
   },
+  // 失败
   fail: (errCode, errMsg) => {
     return {
       errCode: errCode ? errCode : '04',
@@ -30,6 +32,7 @@ export default {
       data: null
     }
   },
+  // 权限不足
   unauthorized: () => {
     return {
       errCode: '43',
