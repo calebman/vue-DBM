@@ -11,7 +11,7 @@
       <el-col v-if="isLogin" :xs="14" :sm="12" :md="10" :lg="8" :xl="6">
         <div class="system-user">
           <div class="tools">
-            <el-button icon="icon dbm d-icon-tongzhi"></el-button>
+            <!-- <el-button icon="icon dbm d-icon-tongzhi"></el-button> -->
             <!-- <el-button>
               <el-badge is-dot class="item">
                 <i class="icon dbm d-icon-tongzhi"></i>

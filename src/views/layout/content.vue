@@ -13,9 +13,10 @@
           </el-breadcrumb>
         </div>
         <div class="content" v-loading="routerLoading">
-          <el-scrollbar style="height:100%">
+          <!-- <el-scrollbar style="height:100%">
             <slot name="content"></slot>
-          </el-scrollbar>
+          </el-scrollbar> -->
+          <slot name="content"></slot>
         </div>
       </div>
     </div>
@@ -110,7 +111,7 @@ export default {
         }
       }
       .content {
-        overflow: auto;
+        overflow-y: auto;
         width: 100%;
         position: absolute;
         top: 50px;
