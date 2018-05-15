@@ -26,6 +26,7 @@ export default {
     }
   },
   computed: {
+    // 是否选中此单元格
     inSelect() {
       if (this.cellClickData.index == this.index &&
         this.cellClickData.field == this.field) {
@@ -35,6 +36,7 @@ export default {
     }
   },
   methods: {
+    // 获取焦点
     focus() {
       let self = this;
       setTimeout(function () {
@@ -43,18 +45,21 @@ export default {
         }
       }, 100);
     },
+    // 失去焦点
     blur() {
       if (this.v != this.value) {
         this.$emit("on-value-change", this.field, this.index, this.v);
       }
       this.$emit("on-value-cancel", this.field, this.index);
     },
+    // 数据修改
     changeValue(val) {
       this.$emit("on-value-change", this.field, this.index, val);
       this.$emit("on-value-cancel", this.field, this.index);
     }
   },
   watch: {
+    // 监听父组件数据变化
     value(val) {
       this.v = val;
     }

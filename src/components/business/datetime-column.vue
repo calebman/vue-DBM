@@ -21,14 +21,7 @@ export default {
       return this.$moment(this.value).format("YYYY-MM-DD HH:mm:ss");
     }
   },
-  methods: {
-    focus() {
-      let self = this;
-      setTimeout(function() {
-        self.$refs["rendercolumn"].focus();
-      }, 100);
-    }
-  },
+  methods: {},
   mounted() {},
   watch: {}
 };
