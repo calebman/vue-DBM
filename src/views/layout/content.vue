@@ -13,7 +13,9 @@
           </el-breadcrumb>
         </div>
         <div class="content" v-loading="routerLoading">
-          <slot name="content"></slot>
+          <el-scrollbar style="height:100%">
+            <slot name="content"></slot>
+          </el-scrollbar>
         </div>
       </div>
     </div>
@@ -95,6 +97,7 @@ export default {
         line-height: 50px;
         border-right: none;
         border-bottom: 1px solid #e6e6e6;
+        border-left: 1px solid #e6e6e6;
         i {
           float: left;
           font-size: 20px;

@@ -11,15 +11,15 @@ import moment from 'moment'
 // moment.lang('zh_cn');
 Vue.prototype.$moment = moment
 
-//引入本项目基础样式
-import '@/assets/themes-base/index.css';
-// 引入字体图标
-import '@/assets/iconfont/iconfont.css';
-
 // 全局引入element-ui
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI, { size: 'small' })
+
+//引入本项目基础样式
+import '@/assets/themes-base/index.css';
+// 引入字体图标
+import '@/assets/iconfont/iconfont.css';
 
 import './mock' // 模拟数据
 import './permission' // 路由权限控制

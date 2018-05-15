@@ -1,66 +1,37 @@
 <!-- 左侧菜单栏 -->
 <template>
-  <div class="scroll-container" ref="scrollContainer" @wheel.prevent="handleScroll">
-    <div class="scroll-wrapper" ref="scrollWrapper" :style="{top: top + 'px'}">
-      <el-menu mode="vertical" :show-timeout="200" router :default-active="$route.path" background-color="#fff" text-color="#304156" active-text-color="#409EFF">
-        <sidebar-item :routes="permissionRouters"></sidebar-item>
-      </el-menu>
-    </div>
-  </div>
+  <el-scrollbar class="el-scrollbar">
+    <el-menu mode="vertical" :show-timeout="200" router :default-active="$route.path" @open="resizeWidth" @close="resizeWidth" background-color="#fff" text-color="#304156" active-text-color="#409EFF">
+      <sidebar-item :routes="permissionRouters"></sidebar-item>
+    </el-menu>
+  </el-scrollbar>
+  <!-- <div class="scroll-container" :style="{width:width}" ref="scrollContainer">
+    
+  </div> -->
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 import sidebarItem from "./sidebar-item";
 
-const delta = 15;
 export default {
   name: "sidebar",
   components: { sidebarItem },
   data() {
     return {
-      top: 0
+      top: 0,
+      width: "200px"
     };
   },
   computed: {
     ...mapGetters(["permissionRouters"])
   },
-  methods: {
-    handleScroll(e) {
-      const eventDelta = e.wheelDelta || -e.deltaY * 3;
-      const $container = this.$refs.scrollContainer;
-      const $containerHeight = $container.offsetHeight;
-      const $wrapper = this.$refs.scrollWrapper;
-      const $wrapperHeight = $wrapper.offsetHeight;
-      if (eventDelta > 0) {
-        this.top = Math.min(0, this.top + eventDelta);
-      } else {
-        if ($containerHeight - delta < $wrapperHeight) {
-          if (this.top < -($wrapperHeight - $containerHeight + delta)) {
-            this.top = this.top;
-          } else {
-            this.top = Math.max(
-              this.top + eventDelta,
-              $containerHeight - $wrapperHeight - delta
-            );
-          }
-        } else {
-          this.top = 0;
-        }
-      }
-    }
-  }
+  methods: {}
 };
 </script>
 <style lang="less" scoped>
-.scroll-container {
-  position: relative;
-  width: 100%;
+.el-scrollbar {
   height: 100%;
   background-color: #fff;
-  .scroll-wrapper {
-    position: absolute;
-    width: 100% !important;
-  }
 }
 </style>
