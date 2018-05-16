@@ -2,7 +2,7 @@
  * @Author: calebman 
  * @Date: 2018-05-06 12:10:56 
  * @Last Modified by: calebman
- * @Last Modified time: 2018-05-14 10:14:21
+ * @Last Modified time: 2018-05-16 11:18:23
  */
 
 
@@ -36,20 +36,6 @@ export const asyncRouterMap = [
     component: layout,
     children: [
       { path: 'dashboard', name: 'dashboard', meta: { title: "仪表盘" }, component: () => import(/* webpackChunkName: "group-index" */'@/views/dashboard') }
-    ]
-  },
-  {
-    path: '/example',
-    name: 'example',
-    meta: { title: "组件", icon: "dbm d-icon-zujian" },
-    redirect: '/example/datatabledemo',
-    component: layout,
-    children: [
-      { path: "menucarddemo", name: "menuCardDemo", meta: { title: "菜单卡片", icon: "dbm d-icon-qiapian" }, component: () => import('@/views/demo/menu-card-demo') },
-      { path: "treeviewdemo", name: "treeViewDemo", meta: { title: "树形结构", icon: "dbm d-icon-shu" }, component: () => import('@/views/demo/tree-view-demo') },
-      { path: "datatabledemo", name: "dataTableDemo", meta: { title: "数据表格", icon: "dbm d-icon-biaoge" }, component: () => import('@/views/demo/datatable/data-table') },
-      { path: "chartsdemo", name: "chartsDemo", meta: { title: "echarts图表", icon: "dbm d-icon-tubiao" }, component: () => import('@/views/demo/charts-demo') },
-      { path: "test", name: "test", meta: { title: "布局测试", icon: "icon dbm d-icon-test" }, component: () => import('@/views/demo/layout-test') }
     ]
   },
   {
