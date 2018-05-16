@@ -2,18 +2,6 @@
   <img width="320" src="https://github.com/calebman/vue-DBM/blob/master/images/dbm.svg">
 </p>
 
-<p align="center">
-  <a href="https://travis-ci.org/calebman/vue-DBM" rel="nofollow">
-    <img src="https://travis-ci.org/calebman/vue-DBM.svg?branch=master" alt="Build Status">
-  </a>
-  <a href="https://github.com/calebman/vue-DBM/blob/master/LICENSE">
-    <img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="license">
-  </a>
-  <a href="https://github.com/calebman/vue-DBM/releases">
-    <img src="https://img.shields.io/github/release/calebman/vue-DBM.svg" alt="GitHub release">
-  </a>
-</p>
-
 <strong  align="center"> 
 
 此分支为Database Manager去除额外功能后只保留简版框架项目
@@ -23,11 +11,9 @@
 
 ## 说明
 
-该简版框架是使用vue-cli脚手架构建的一个SPA应用，主要依赖于 <a href="https://github.com/vuejs/vue">
+该简版框架是使用vue-cli脚手架构建的一个SPA应用，依赖于 <a href="https://github.com/vuejs/vue">
     <img src="https://img.shields.io/badge/vue-2.5.2-brightgreen.svg" alt="vue">
-  </a> 与<a href="https://github.com/ElemeFE/element">
-    <img src="https://img.shields.io/badge/element--ui-2.3.6-brightgreen.svg" alt="element-ui">
-  </a>，为了让前后端分离更加彻底，前端在开发时将根据与后端商定的接口协议使用Mockjs模拟响应，在后端完成接口编写后使用不同的启动命令转接后端接口完成整个系统的测试。
+  </a> ，为了让前后端分离更加彻底，前端在开发时将根据与后端商定的接口协议使用Mockjs模拟响应，在后端完成接口编写后使用不同的启动命令转接后端接口完成整个系统的测试。
 
 ## 开发前准备
 
