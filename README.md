@@ -11,9 +11,11 @@
 
 ## 说明
 
-该简版框架是使用vue-cli脚手架构建的一个SPA应用，依赖于 <a href="https://github.com/vuejs/vue">
+该简版框架是使用vue-cli脚手架构建的一个SPA应用，主要依赖于 <a href="https://github.com/vuejs/vue">
     <img src="https://img.shields.io/badge/vue-2.5.2-brightgreen.svg" alt="vue">
-  </a> ，为了让前后端分离更加彻底，前端在开发时将根据与后端商定的接口协议使用Mockjs模拟响应，在后端完成接口编写后使用不同的启动命令转接后端接口完成整个系统的测试。
+  </a> 与<a href="https://github.com/ElemeFE/element">
+    <img src="https://img.shields.io/badge/element--ui-2.3.6-brightgreen.svg" alt="element-ui">
+  </a>，为了让前后端分离更加彻底，前端在开发时将根据与后端商定的接口协议使用Mockjs模拟响应，在后端完成接口编写后使用不同的启动命令转接后端接口完成整个系统的测试。
 
 ## 开发前准备
 
