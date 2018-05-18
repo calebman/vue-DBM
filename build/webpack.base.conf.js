@@ -27,7 +27,8 @@ module.exports = {
     'vue': 'Vue',
     'vue-router': 'VueRouter',
     'vuex': 'Vuex',
-    'moment': 'moment'
+    'moment': 'moment',
+    'element-ui': 'ELEMENT'
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
