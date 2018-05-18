@@ -56,6 +56,7 @@
  - [控件封装与使用](https://github.com/calebman/vue-DBM/blob/master/docs/render.md)
  - [混入](https://github.com/calebman/vue-DBM/blob/master/docs/mixins.md)
  - [数据模拟](https://github.com/calebman/vue-DBM/blob/master/docs/mock.md)
+ - [打包优化与用户体验](https://github.com/calebman/vue-DBM/blob/master/docs/package.md)
 
 ## 目标功能
 
